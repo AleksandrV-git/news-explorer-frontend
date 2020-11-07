@@ -1,0 +1,8 @@
+.search-form__field {
+    width: 608px;
+    height: 64px;
+    padding: 0 0 0 24px;
+    border: 1px solid #D1D2D6;
+    border-radius: 100px;
+    box-sizing: border-box;
+}

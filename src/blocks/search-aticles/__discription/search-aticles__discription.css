@@ -1,0 +1,9 @@
+.search-aticles__discription {
+    max-width: 608px;
+    box-sizing: border-box;
+    padding-right: 65px;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+}

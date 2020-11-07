@@ -1,0 +1,18 @@
+@import URL(./__inner/button__inner.css);
+@import URL(./__logout-icon/button__logout-icon.css);
+.button {
+    background-color: transparent;
+    outline: none;
+    min-height: 48px;
+    border: solid 1px #FFFFFF;
+    border-radius: 100px;
+    padding: 0 17px;
+    color: #FFFFFF;
+    font-size: 18px;
+    display: block;
+    cursor: pointer;
+}
+
+.button:focus {
+    /* outline-color: greenyellow; */
+}

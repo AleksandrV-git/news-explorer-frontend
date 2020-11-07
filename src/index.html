@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NewsExplorer</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+</head>
+
+<body>
+    <div class="root">
+        <header class="header root__section">
+            <div class="header-container">
+                <h2 class="logo">NewsExplorer</h2>
+                <div class="nav-container">
+                    <span class="nav-container__item nav-container__item_header">Главная</span>
+                    <span class="nav-container__item nav-container__item_header">Сохранённые статьи</span>
+                    <button class="button nav-container__button">
+                      <span class="button__inner">
+                      <span class="nav-container__item">Авторизоваться</span>
+                      <span class="button__logout-icon"></span>
+                      </span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div class="search-aticles">
+            <h1 class="search-aticles__title">Что творится в мире?</h1>
+            <h3 class="search-aticles__discription">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</h3>
+            <form class="search-form">
+                <span id="search-field-error" class="search-field__error"></span>
+                <input id="search-field" type="text" name="search-field" class="search-form__field" placeholder="Введите тему новости" required minlength="2" maxlength="30">
+                <button class="button search-form__button">
+                      <span class="button__inner">
+                      <span class="nav-container__item">Искать</span>
+                      </span>
+            </form>
+        </div>
+
+        <div class="profile root__section">
+            <div class="user-info">
+                <div class="user-info__photo"></div>
+                <div class="user-info__data">
+                    <h1 class="user-info__name">Jaques Causteau</h1>
+                    <p class="user-info__job">Sailor, Researcher</p>
+                    <button class="button profile__button">Edit</button>
+        </div>
+        <button class="button user-info__button">+</button>
+
+    </div>
+    </div>
+    <div class="places-list root__section">
+    </div>
+    </div>
+    </div>
+    <div class="popup">
+        <div class="popup__content">
+            <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__form" name="new">
+                <span id="name-error" class="popup__error"></span>
+                <input id="name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название" required minlength="2" maxlength="30">
+                <span id="link-error" class="popup__error"></span>
+                <input id="link" type="text" name="link" class="popup__input popup__input_type_link-url" placeholder="Ссылка на картинку" required minlength="2">
+                <button type disabled class="button popup__button">+</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_edit-profile">
+        <div class="popup__content">
+            <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close popup__close_edit-profile">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form" name="formProfile">
+                <span id="name-error" class="popup__error"></span>
+                <input id="name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required minlength="2" maxlength="30">
+                <span id="about-error" class="popup__error"></span>
+                <input id="about" type="text" name="about" class="popup__input popup__input_type_link-url" placeholder="О себе" required minlength="2" maxlength="30">
+                <button type disabled class="button popup__button popup__button_edit-profile">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_image">
+        <div class="popup__content-image">
+            <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close popup__close_image">
+            <img src="" alt="" class="popup_img">
+        </div>
+    </div>
+    <div id="avatarEditPopup" class="popup">
+        <div class="popup__content">
+            <img id="avatarPopupClose" src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
+            <h3 class="popup__title">Обновть аватар</h3>
+            <form class="popup__form" name="formAvatar">
+                <span id="avatarLink-error" class="popup__error"></span>
+                <input id="avatarLink" type="text" name="link" class="popup__input" placeholder="Ссылка на аватар" required minlength="2" pattern="^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$">
+                <button id="avatarEditBtn" type disabled class="button popup__button popup__button_edit-profile">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="<%= htmlWebpackPlugin.files.js %>"></script>
+
+</body>
+
+</html>
