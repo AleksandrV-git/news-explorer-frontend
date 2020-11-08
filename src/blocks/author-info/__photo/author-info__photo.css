@@ -1,0 +1,19 @@
+.author-info__photo {
+    width: 464px;
+    height: 464px;
+    min-width: 464px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../../../images/avatar.jpg);
+}
+
+.author-info__photo:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 980px) {
+    .author-info__photo {
+        margin-top: 40px;
+    }
+}

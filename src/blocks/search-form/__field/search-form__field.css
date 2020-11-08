@@ -5,4 +5,10 @@
     border: 1px solid #D1D2D6;
     border-radius: 100px;
     box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    outline: none;
 }

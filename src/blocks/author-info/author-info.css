@@ -1,0 +1,18 @@
+@import URL(./__paragraf/author-info__paragraf.css);
+@import URL(./__photo/author-info__photo.css);
+@import URL(./__text/author-info__text.css);
+@import URL(./__title/author-info__title.css);
+.author-info {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    color: white;
+    width: 100%;
+}
+
+@media screen and (max-width: 980px) {
+    .author-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}

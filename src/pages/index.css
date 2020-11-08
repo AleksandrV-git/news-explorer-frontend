@@ -8,11 +8,13 @@
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/search-aticles/search-aticles.css);
 @import url(../blocks/search-form/search-form.css);
-@import url(../blocks/user-info/user-info.css);
-@import url(../blocks/profile/profile.css);
+@import url(../blocks/about-author/about-author.css);
+@import url(../blocks/author-info/author-info.css);
+@import url(../blocks/footer/footer.css);
 @import url(../blocks/places-list/places-list.css);
 @import url(../blocks/place-card/place-card.css);
 @import url(../blocks/popup/popup.css);
 body {
     background-color: #000;
+    font-family: Roboto;
 }
