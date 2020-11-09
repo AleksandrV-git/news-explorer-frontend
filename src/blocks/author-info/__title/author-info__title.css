@@ -1,6 +1,7 @@
 .author-info__title {
-    margin: 0;
-    font-weight: normal;
-    font-size: 54px;
-    line-height: 56px;
+  margin: 0;
+  font-family: Roboto Slab;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
 }

@@ -1,7 +1,13 @@
+@import URL(./__container/header__container.css);
+@import URL(./__nav-container/header__nav-container.css);
 .header {
   min-height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #A5A5A5;
+  border-bottom: 1px solid #1A1B22;
+  position: relative;
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
 }

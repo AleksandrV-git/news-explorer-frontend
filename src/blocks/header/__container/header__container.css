@@ -1,4 +1,4 @@
-.header-container {
+.header__container {
     width: calc(100% - 400px);
     min-height: 80px;
     margin: 0 auto;

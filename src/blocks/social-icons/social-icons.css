@@ -1,0 +1,8 @@
+@import URL(./__item/social-icons__item.css);
+@import URL(./__item/_fb/social-icons__item_fb.css);
+@import URL(./__item/_github/social-icons__item_github.css);
+.social-icons {
+  display: flex;
+  margin: 0 0 0 40px;
+  padding: 0;
+}

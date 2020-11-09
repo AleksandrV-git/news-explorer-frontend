@@ -1,11 +1,11 @@
 .author-info__text {
-    max-width: 364px;
-    margin-left: 36px;
+  max-width: 364px;
+  margin-left: 36px;
 }
 
 @media screen and (max-width: 980px) {
-    .author-info__text {
-        margin: 20px 0;
-        text-align: center;
-    }
+  .author-info__text {
+    margin: 20px 0;
+    text-align: center;
+  }
 }
