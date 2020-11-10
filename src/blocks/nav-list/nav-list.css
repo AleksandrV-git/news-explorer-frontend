@@ -1,8 +1,6 @@
 @import url(./__button/nav-list__button.css);
 @import url(./__item/nav-list__item.css);
-@import url(./__item/_header/nav-list__item_header.css);
-@import url(./__item/_footer/nav-list__item_footer.css);
-@import url(./__item/_not-active/nav-list__item_not-active.css);
+/* модификатры элементов */
 .nav-list {
   padding: 0;
   margin: 0;

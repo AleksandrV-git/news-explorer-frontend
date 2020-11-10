@@ -1,5 +1,5 @@
 @import URL(./__inner/button__inner.css);
-@import URL(./__logout-icon/button__logout-icon.css);
+@import URL(./__inner-text/button__inner-text.css);
 .button {
   background-color: transparent;
   outline: none;
@@ -10,6 +10,7 @@
   color: #FFFFFF;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   cursor: pointer;
 }

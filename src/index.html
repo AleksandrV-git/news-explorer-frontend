@@ -16,14 +16,14 @@
       <div class="header__container">
         <h2 class="logo">NewsExplorer</h2>
         <nav class="header__nav-container">
-          <ul class="nav-list">
-            <li class="nav-list__item nav-list__item_header">Главная</li>
-            <li class="nav-list__item nav-list__item_header nav-list__item_not-active">Сохранённые статьи</li>
+          <ul class="nav-list nav-list_place-header">
+            <li class="nav-list__item"><a class="header__link" href="http://">Главная</a></li>
+            <li class="nav-list__item">Сохранённые статьи</li>
           </ul>
-          <button class="button nav-list__button">
+          <button class="button header__button-auth">
             <span class="button__inner">
-              <span class="nav-list__item">Авторизоваться</span>
-              <span class="button__logout-icon"></span>
+              <span class="button__inner-text">Авторизоваться</span>
+              <span class="header__logout-icon"></span>
             </span>
           </button>
         </nav>
@@ -32,39 +32,78 @@
 
     <div class="search-aticles">
       <h1 class="search-aticles__title">Что творится в мире?</h1>
-      <h3 class="search-aticles__discription">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
+      <h3 class="search-aticles__discription">Находите самые свежие статьи на любую тему и сохраняйте в своём личном
+        кабинете.
       </h3>
       <form class="search-form">
         <span id="search-field-error" class="search-field__error"></span>
-        <input id="search-field" type="text" name="search-field" class="search-form__field" placeholder="Введите тему новости" required minlength="2" maxlength="30">
+        <input id="search-field" type="text" name="search-field" class="search-form__field"
+          placeholder="Введите тему новости" required minlength="2" maxlength="30">
         <button class="button search-form__button">
           <span class="button__inner">
             <span class="nav-list__item">Искать</span>
           </span>
+        </button>
       </form>
+    </div>
+
+    <div class="search-status">
+      <div class="saerch-status__preloader">
+        <i class="circle-preloader"></i>
+        <span class="search-status__message-text">Идет поиск новостей...</span>
+      </div>
+      <div class="search-status__message">
+        <span class="search-status__message-icon"></span>
+        <span class="search-status__message-tile">Ничего не найдено</span>
+        <p class="search-status__message-text">К сожалению по вашему запросу
+        ничего не найдено.</p>
+      </div>
+
+    </div>
+
+    <div class="articles root__section">
+      <h2 class="section-title">Результаты поиска</h2>
+      <div class="articles-list">
+        <div class="article-card">
+          <div class="article-card__image"></div>
+          <span class="article-card__category">Природа</span>
+          <span class="article-card__icon-delete"></span>
+          <span class="article-card__icon-save"></span>
+          <div class="article-card__text-container">
+            <p class="article-card__date">2 августа, 2019</p>
+            <h3 class="article-card__title">Национальное достояние – парки</h3>
+            <p class="article-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала
+              складываться система национальных парков –
+              охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
+            <p class="article-card__source">Лента.ру</p>
+          </div>
+        </div>
+      </div>
+      <button class="button articles__button"
+        <span class="button__inner">
+          <span class="nav-list__item">Показать еще</span>
+        </span>
+      </button>
     </div>
 
     <div class="about-author root__section">
       <div class="author-info">
         <div class="author-info__photo"></div>
         <div class="author-info__text">
-          <h1 class="author-info__title">Об авторе</h1>
-          <p class="author-info__paragraf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-            deserunt maiores minima assumenda adipisci velit ullam quaerat autem animi tenetur eos aut
-            nostrum, voluptatem elige</p>
+          <h2 class="section-title">Об авторе</h2>
+          <p class="author-info__paragraf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto deserunt
+            maiores minima assumenda adipisci velit ullam quaerat autem animi tenetur eos aut nostrum, voluptatem elige
+          </p>
         </div>
       </div>
-    </div>
-
-    <div class="places-list root__section">
     </div>
 
     <footer class="footer root__section">
       <h2 class="footer__copyrite">© 2020 Supersite, Powered by News API</h2>
       <nav class="footer__nav-container">
-        <ul class="nav-list">
-          <li class="nav-list__item nav-list__item_footer">Главная</li>
-          <li class="nav-list__item nav-list__item_footer">Яндекс.Практикум</li>
+        <ul class="nav-list nav-list_place-footer">
+          <li class="nav-list__item">Главная</li>
+          <li class="nav-list__item">Яндекс.Практикум</li>
         </ul>
         <span class="social-icons">
           <span class="social-icons__item social-icons__item_github"></span>
@@ -99,9 +138,11 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="formProfile">
         <span id="name-error" class="popup__error"></span>
-        <input id="name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required minlength="2" maxlength="30">
+        <input id="name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required
+          minlength="2" maxlength="30">
         <span id="about-error" class="popup__error"></span>
-        <input id="about" type="text" name="about" class="popup__input popup__input_type_link-url" placeholder="О себе" required minlength="2" maxlength="30">
+        <input id="about" type="text" name="about" class="popup__input popup__input_type_link-url" placeholder="О себе"
+          required minlength="2" maxlength="30">
         <button type disabled class="button popup__button popup__button_edit-profile">Сохранить</button>
       </form>
     </div>
@@ -120,8 +161,10 @@
       <h3 class="popup__title">Обновть аватар</h3>
       <form class="popup__form" name="formAvatar">
         <span id="avatarLink-error" class="popup__error"></span>
-        <input id="avatarLink" type="text" name="link" class="popup__input" placeholder="Ссылка на аватар" required minlength="2" pattern="^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$">
-        <button id="avatarEditBtn" type disabled class="button popup__button popup__button_edit-profile">Сохранить</button>
+        <input id="avatarLink" type="text" name="link" class="popup__input" placeholder="Ссылка на аватар" required
+          minlength="2" pattern="^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$">
+        <button id="avatarEditBtn" type disabled
+          class="button popup__button popup__button_edit-profile">Сохранить</button>
       </form>
     </div>
   </div>

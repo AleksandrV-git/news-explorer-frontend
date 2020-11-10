@@ -1,5 +1,8 @@
 @import URL(./__container/header__container.css);
 @import URL(./__nav-container/header__nav-container.css);
+@import URL(./__button-auth/header__button-auth.css);
+@import URL(./__logout-icon/header__logout-icon.css);
+@import URL(./__link/header__link.css);
 .header {
   min-height: 80px;
   width: 100%;

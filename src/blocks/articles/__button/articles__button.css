@@ -1,0 +1,9 @@
+.articles__button {
+  width: 288px;
+  height: 64px;
+  background-color:#FFFFFF;
+  padding: 0 48px;
+  border: none;
+  margin: 64px auto;
+  color:#1A1B22;
+}

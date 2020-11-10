@@ -1,0 +1,6 @@
+.search-status__message-icon {
+  display: block;
+	width: 96px;
+  height: 96px;
+  background-image: url(../../../images/not-found_v1.svg);
+}
