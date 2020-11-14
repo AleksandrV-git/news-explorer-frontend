@@ -3,6 +3,7 @@
 @import URL(./__item/_github/social-icons__item_github.css);
 .social-icons {
   display: flex;
-  margin: 0 0 0 40px;
-  padding: 0;
+  min-height: 24px;
+  margin: 0 0 0 30px;
+  padding-bottom: 5px;
 }

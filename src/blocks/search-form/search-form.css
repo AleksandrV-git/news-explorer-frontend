@@ -2,4 +2,5 @@
 @import URL(./__button/search-form__button.css);
 .search-form {
     display: flex;
+    margin: 64px 0 80px 0;
 }

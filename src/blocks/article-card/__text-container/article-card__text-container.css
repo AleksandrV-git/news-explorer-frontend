@@ -1,9 +1,10 @@
 .article-card__text-container {
   display: flex;
+  max-height: 250px;
   flex-direction: column;
   min-height: 78px;
   align-items: flex-start;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 22px;
+  padding: 0 24px 54px;
 }

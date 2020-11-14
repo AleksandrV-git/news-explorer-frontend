@@ -2,6 +2,7 @@
 @import URL(./__photo/author-info__photo.css);
 @import URL(./__text/author-info__text.css);
 .author-info {
+  margin: 80px 0 80px;
   display: flex;
   position: relative;
   align-items: flex-start;

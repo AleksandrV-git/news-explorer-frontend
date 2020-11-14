@@ -1,11 +1,10 @@
 @import URL(./__nav-container/footer__nav-container.css);
 @import URL(./__copyrite/footer__copyrite.css);
+@import URL(./__link/footer__link.css);
 .footer {
-  width: calc(100% - 400px);
   min-height: 80px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  background-color: #FFFFFF;
   color: #1A1B22;
 }

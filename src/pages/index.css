@@ -13,7 +13,6 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/social-icons/social-icons.css);
 @import url(../blocks/articles/articles.css);
-@import url(../blocks/articles-list/articles-list.css);
 @import url(../blocks/article-card/article-card.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/circle-preloader/circle-preloader.css);
@@ -22,6 +21,9 @@
 @import url(../blocks/header/header_theme-text-black.css);
 @import url(../blocks/nav-list/nav-list_place-header.css);
 @import url(../blocks/nav-list/nav-list_place-footer.css);
+@import url(../blocks/header/header_authorized.css);
+@import url(../blocks/article-card/article-card_active-saved.css);
+
 body {
   background-color: #FFFFFF;
   font-family: Roboto;

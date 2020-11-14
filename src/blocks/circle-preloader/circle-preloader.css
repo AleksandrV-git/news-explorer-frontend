@@ -2,18 +2,15 @@
 	display: block;
 	width: 74px;
 	height: 74px;
-	border: 4px solid #444;
-	border-bottom-color: #888;
+  background: url(../../images/preloader.png);
+  background-position: center;
+  background-size: contain;
 
-	border-radius: 50%;
-
-	margin: auto;
-
-	animation: spin .75s infinite linear;
+	animation: spin 1.3s infinite linear;
 }
 
 @keyframes spin {
 	100% {
-		transform: rotate(360deg);
+		transform: rotate(-360deg);
 	}
 }

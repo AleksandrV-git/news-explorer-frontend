@@ -1,6 +1,6 @@
 .author-info__text {
-  max-width: 364px;
-  margin-left: 36px;
+  margin: 51px 0 51px 56px;
+  max-width: 600px;
 }
 
 @media screen and (max-width: 980px) {

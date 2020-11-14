@@ -1,0 +1,7 @@
+.header__link_active::after{
+  display: flex;
+}
+
+.header__link_active:hover {
+  color: #FFFFFF;
+}

@@ -2,6 +2,16 @@
   width: 168px;
   margin-left: -165px;
   background-color: #2F71E5;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   padding: 0 48px;
   border: none;
 }
+
+.search-form__button:hover {
+  background-color:#347EFF;
+}
+
+.search-form__button:active {
+  background-color:#2A65CC;
+}
+
