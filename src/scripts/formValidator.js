@@ -5,12 +5,11 @@ export class FormValidator {
   }
 
   checkInputValidity() {
-
-    let valid = true
+    let valid = true;
 
     this.inputs.forEach((el) => {
       const inputId = el.getAttribute('id');
-      const errorElem = this.form.querySelector(`#${inputId}-error`)
+      const errorElem = this.form.querySelector(`#${inputId}-error`);
 
       if (el.validity.valueMissing && !el.validity.tooShort) {
         errorElem.textContent = this.errorMessages.valueMissing;
@@ -18,15 +17,15 @@ export class FormValidator {
       } else if (el.validity.tooShort || el.validity.tooLong) {
         errorElem.textContent = this.errorMessages.tooShort;
         valid = false;
-      } else if (el.validity.patternMismatch) {
-        errorElem.textContent = this.errorMessages.typeMismatch;
-        valid = false;       
+      } else if (el.type === 'email' && el.validity.patternMismatch) {
+        errorElem.textContent = this.errorMessages.emailPatternMismatch;
+        valid = false;
       } else {
         errorElem.textContent = ' ';
       }
     });
 
-    this.setSubmitButtonState(valid)
+    this.setSubmitButtonState(valid);
   }
 
   setEventListeners() {
@@ -38,7 +37,7 @@ export class FormValidator {
   }
 
   resetErrorText() {
-    const errorElems = this.form.querySelectorAll('.popup__error')
+    const errorElems = this.form.querySelectorAll('.popup__error');
     errorElems.forEach((el) => {
       el.textContent = ' ';
     });
@@ -47,16 +46,16 @@ export class FormValidator {
   setSubmitButtonState(validity, text = null) {
     if (validity === false) {
       this.btn.setAttribute('disabled', true);
-      this.btn.classList.remove('popup__btn_enabled');
+      this.btn.classList.add('popup__button_disabled');
     } else {
       this.btn.removeAttribute('disabled');
-      this.btn.classList.add('popup__btn_enabled');
+      this.btn.classList.remove('popup__button_disabled');
     }
     if (text !== null) {
       this.btn.textContent = text;
     } else {
       this.btn.textContent = this.btnText;
       this.btn.style.fontSize = this.btnTextSize;
-    }    
+    }
   }
 }

@@ -14,15 +14,14 @@ export class Popup {
     }
 
     setEventListeners() {
+        this
+            .closeEl
+            .addEventListener('click', this.close);
 
         if (this.openEl !== null) {
             this
                 .openEl
                 .addEventListener('click', this.open);
         }
-
-        this
-            .closeEl
-            .addEventListener('click', this.close);
     }
 }

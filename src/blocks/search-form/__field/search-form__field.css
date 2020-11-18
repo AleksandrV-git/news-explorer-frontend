@@ -12,3 +12,7 @@
     line-height: 22px;
     outline: none;
 }
+
+.search-form__field::placeholder {
+  color: #B6BCBF;
+}

@@ -8,3 +8,7 @@
     font-size: 18px;
     line-height: 24px;
 }
+
+#search-aticles-discription-authorized {
+  display: none;
+}

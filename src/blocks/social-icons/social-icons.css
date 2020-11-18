@@ -1,6 +1,7 @@
 @import URL(./__item/social-icons__item.css);
-@import URL(./__item/_fb/social-icons__item_fb.css);
-@import URL(./__item/_github/social-icons__item_github.css);
+/* модификаторы элементов */
+@import URL(./__item/social-icons__item_github.css);
+@import URL(./__item/social-icons__item_fb.css);
 .social-icons {
   display: flex;
   min-height: 24px;

@@ -1,0 +1,7 @@
+.social-icons__item_github {
+  background-image: url(../../../images/github.svg);
+}
+
+.social-icons__item_github:hover {
+  background-image: url(../../../images/github-hover.svg);
+}

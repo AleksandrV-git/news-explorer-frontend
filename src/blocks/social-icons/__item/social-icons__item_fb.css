@@ -1,0 +1,7 @@
+.social-icons__item_fb {
+  background-image: url(../../../images/fb.svg);
+}
+
+.social-icons__item_fb:hover {
+  background-image: url(../../../images/fb-hover.svg);
+}

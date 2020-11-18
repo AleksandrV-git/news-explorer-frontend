@@ -16,7 +16,7 @@ const isDev = process.env.NODE_ENV === 'development';
 // создаем переменную для development-сборки
 
 module.exports = {
-    entry: { main: './src/index.js' },
+    entry: { main: './src/script.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash].js'
@@ -39,7 +39,7 @@ module.exports = {
                 },
                 'postcss-loader'
             ] // к этим файлам нужно применить пакеты, которые мы уже установили // добавили минификацию CSS
-            // в правилах укажите, что если вы собираете в режиме dev, то плагин MiniCssExtractPlugin загружать не нужно. 
+            // в правилах укажите, что если вы собираете в режиме dev, то плагин MiniCssExtractPlugin загружать не нужно.
         },
         {
             test: /\.(png|jpg|gif|ico|svg)$/,
@@ -78,8 +78,8 @@ module.exports = {
             inject: false, // стили НЕ нужно прописывать внутри тегов
             // hash: true, // для страницы нужно считать хеш
             template: './src/index.html', // откуда брать образец для сравнения с текущим видом проекта
-            filename: 'index.html' // имя выходного файла, то есть того, что окажется в папке dist после сборки
-        }),
+            filename: 'index.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+          }),
         new WebpackMd5Hash(),
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

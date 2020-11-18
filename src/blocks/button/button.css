@@ -16,3 +16,7 @@
   transition: background-color .2s;
 }
 
+.button:focus-visible {
+  outline: auto;
+}
+

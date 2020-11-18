@@ -1,5 +1,5 @@
 export class UserInfo {
-  constructor(nameElement, aboutElement, avatarElement, mestoApi) {
+  constructor(nameElement, aboutElement, avatarElement, mestoApi=null) {
     this.nameElement = nameElement;
     this.aboutElement = aboutElement;
     this.avatarElement = avatarElement;
@@ -11,19 +11,19 @@ export class UserInfo {
     this.mestoApi = mestoApi;
   }
 
-  getUserInfo = () => {
-    this.mestoApi.getUserProfile()
+  // getUserInfo = () => {
+  //   this.mestoApi.getUserProfile()
 
-      .then((result) => {
-        this.setUserInfoFromGetRequest(result);
-      })
-      .then((result) => {
-        this.updateUserInfo(result);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      })
-  }
+  //     .then((result) => {
+  //       this.setUserInfoFromGetRequest(result);
+  //     })
+  //     .then((result) => {
+  //       this.updateUserInfo(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка: ${err}`);
+  //     })
+  // }
 
 
   setUserInfo(formElements) {
