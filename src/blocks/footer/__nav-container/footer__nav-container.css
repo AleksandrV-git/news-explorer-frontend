@@ -1,7 +1,26 @@
 .footer__nav-container {
   display: flex;
-  margin: 19px 0 13px 0;
-  align-items: center;
+  align-items: flex-end;
+  margin: 19px 0 0;
   font-family: Roboto;
   color: #1A1B22;
+}
+
+@media (max-width: 1024px) {
+  .footer__nav-container {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer__nav-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 565px) {
+  .footer__nav-container {
+    align-items: flex-start;
+  }
 }

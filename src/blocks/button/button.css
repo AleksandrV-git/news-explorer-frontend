@@ -3,16 +3,16 @@
 .button {
   background-color: transparent;
   outline: none;
-  min-height: 48px;
   border: solid 1px #FFFFFF;
   border-radius: 100px;
   padding: 0 17px;
-  color: #FFFFFF;
+  color:#ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   cursor: pointer;
+  font-size: 18px;
   transition: background-color .2s;
 }
 

@@ -6,3 +6,9 @@
   color: #B6BCBF;
   margin: 20px 0 0;
 }
+
+@media (max-width: 1024px) {
+  .article-card__date {
+    margin-top: 16px;
+  }
+}

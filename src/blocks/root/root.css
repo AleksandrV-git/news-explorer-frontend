@@ -6,7 +6,3 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
 }
-
-@media screen and (max-width: 1024px) {
-  .root {}
-}

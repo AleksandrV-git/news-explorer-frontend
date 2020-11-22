@@ -16,6 +16,9 @@ const isDev = process.env.NODE_ENV === 'development';
 // создаем переменную для development-сборки
 
 module.exports = {
+    devServer: {
+    index: '/main.html'
+    },
     entry: { main: './src/script.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -77,8 +80,15 @@ module.exports = {
             // Означает, что:
             inject: false, // стили НЕ нужно прописывать внутри тегов
             // hash: true, // для страницы нужно считать хеш
-            template: './src/index.html', // откуда брать образец для сравнения с текущим видом проекта
-            filename: 'index.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+            template: './src/pages/main.html', // откуда брать образец для сравнения с текущим видом проекта
+            filename: 'main.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+          }),
+        new HtmlWebpackPlugin({
+            // Означает, что:
+            inject: false, // стили НЕ нужно прописывать внутри тегов
+            // hash: true, // для страницы нужно считать хеш
+            template: './src/pages/saved-articles.html',
+            filename: 'saved-articles.html',
           }),
         new WebpackMd5Hash(),
         new webpack.DefinePlugin({

@@ -17,12 +17,13 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/circle-preloader/circle-preloader.css);
 @import url(../blocks/search-status/search-status.css);
+@import url(../blocks/adjustment-layer/adjustment-layer.css);
+@import url(../blocks/ratio-container/ratio-container.css);
 /* модификаторы блоков */
 @import url(../blocks/header/header_theme-text-black.css);
-@import url(../blocks/nav-list/nav-list_place-header.css);
-@import url(../blocks/nav-list/nav-list_place-footer.css);
 @import url(../blocks/article-card/article-card_active-saved.css);
-@import url(../blocks/root/root_active-authorized.css);
+@import url(../blocks/root/root_active-authorized-user.css);
+@import url(../blocks/adjustment-layer/adjustment-layer_active.css);
 
 body {
   background-color: #FFFFFF;

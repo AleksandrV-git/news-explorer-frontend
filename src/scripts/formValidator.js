@@ -8,8 +8,8 @@ export class FormValidator {
     let valid = true;
 
     this.inputs.forEach((el) => {
-      const inputId = el.getAttribute('id');
-      const errorElem = this.form.querySelector(`#${inputId}-error`);
+      const inputName = el.getAttribute('id');
+      const errorElem = this.form.querySelector(`#${inputName}-error`);
 
       if (el.validity.valueMissing && !el.validity.tooShort) {
         errorElem.textContent = this.errorMessages.valueMissing;

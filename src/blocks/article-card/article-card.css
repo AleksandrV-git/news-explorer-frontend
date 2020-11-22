@@ -13,10 +13,12 @@
 @import URL(./__image/article-card__image_place-right.css);
 
 .article-card {
-  width: 400px;
+  width: 100%;
+  min-width: 1px;
+  max-width: 400px;
+  margin: 0 auto;
   background-color: #fff;
   border-radius: 10px;
-  height: 576px;
   position: relative;
 }
 

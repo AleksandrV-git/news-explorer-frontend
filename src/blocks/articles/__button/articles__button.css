@@ -4,11 +4,23 @@
   background-color:#FFFFFF;
   padding: 0 48px;
   border: none;
-  margin: 64px auto 0;
+  margin: 64px auto 80px;
   color:#1A1B22;
 }
 
 .articles__button:hover {
   transition: .2s;
   opacity: .9;
+}
+
+@media (max-width: 1024px) {
+  .articles__button {
+    margin: 32px auto 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .articles__button {
+    margin: 15px auto 32px;
+  }
 }

@@ -4,8 +4,9 @@
   width: 40px;
   height: 40px;
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 0;
+  right: 0;
+  margin: 6% 6% 0 0;
   cursor: pointer;
   display: block;
 }
@@ -41,4 +42,10 @@
   width: 182px;
   transition: .3s;
   opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .article-card__icon-save {
+    margin: 7% 7% 0 0;
+  }
 }

@@ -1,7 +1,28 @@
 .articles__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
+  grid-template-columns: repeat(auto-fit, minmax(223px, 1fr));
   grid-gap: 16px 16px;
   justify-content: center;
   margin: 64px auto 0;
+}
+
+@media (max-width: 1024px) {
+  .articles__list {
+    margin-top: 32px;
+    grid-gap: 8px 8px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .articles__list {
+    margin-top: 32px;
+    grid-gap: 8px 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .articles__list {
+    margin-top: 24px;
+    grid-gap: 10px 10px;
+  }
 }

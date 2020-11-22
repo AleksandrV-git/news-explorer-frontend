@@ -1,5 +1,6 @@
 .search-aticles__discription {
     max-width: 608px;
+    width: 100%;
     box-sizing: border-box;
     padding-right: 65px;
     margin: 32px 0 0 0;
@@ -11,4 +12,12 @@
 
 #search-aticles-discription-authorized {
   display: none;
+}
+
+@media (max-width: 1024px) {
+  .search-aticles__discription {
+    max-width: 452px;
+    margin-top: 16px;
+    padding-right: 0;
+  }
 }

@@ -1,4 +1,4 @@
-import "./pages/index.css";
+import "./pages/main.css";
 import "./images/favicon.svg"
 
 import { Popup } from './scripts/popup.js';
@@ -47,15 +47,21 @@ document.querySelector("#popupSignIn .popup__link").addEventListener('click', ()
 
 document.querySelector('#formSignIn').addEventListener('submit', (event) => {
   event.preventDefault();
-  mainPageRoot.classList.add('root_active-authorized');
+  mainPageRoot.classList.add('root_active-authorized-user');
   popupSignIn.close();
   });
 document.querySelector('#button-logout').addEventListener('click', () => {
-  mainPageRoot.classList.remove('root_active-authorized');
+  mainPageRoot.classList.remove('root_active-authorized-user');
   });
 document.querySelector('#formSignUp').addEventListener('submit', (event) => {
   event.preventDefault();
   popupSuccessfulSignUp.open();
   popupSignUp.close();
+  });
+document.querySelector('.header__menu-open-icon').addEventListener('click', () => {
+  document.querySelector('.header__menu-open-icon').classList.toggle('header__menu-open-icon_theme-close-icon');
+  document.querySelector('#nav-authorized').classList.toggle('header__nav-container_mobile-opened')
+  document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')
+  document.querySelector('.adjustment-layer').classList.toggle('adjustment-layer_active')
   });
 

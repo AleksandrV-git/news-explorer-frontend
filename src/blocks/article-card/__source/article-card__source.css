@@ -1,8 +1,8 @@
 .article-card__source {
   position: absolute;
-  left: 24px;
-  bottom: 24px;
-  margin: 0;
+  left: 0px;
+  bottom: 0px;
+  margin: 0 0 6% 6%;
   font-family: Roboto Slab;
   font-weight: bold;
   font-size: 16px;
@@ -11,3 +11,10 @@
   text-transform: uppercase;
   color: #B6BCBF;
 }
+
+@media (max-width: 1024px) {
+  .article-card__source {
+    margin: 0 0 7% 7%;
+  }
+}
+
