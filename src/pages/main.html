@@ -22,7 +22,8 @@
         <nav id="nav-authorized" class="header__nav-container">
           <ul class="nav-list">
             <li class="nav-list__item"><a class="header__link header__link_active" href="/main.html">Главная</a></li>
-            <li class="nav-list__item"><a class="header__link" href="/saved-articles.html">Сохранённые&#160;статьи</a></li>
+            <li class="nav-list__item"><a class="header__link" href="/saved-articles.html">Сохранённые&#160;статьи</a>
+            </li>
           </ul>
           <button id="button-logout" class="button header__button-auth">
             <span class="button__inner">
@@ -49,7 +50,8 @@
       <h3 id="search-aticles-discription-authorized" class="search-aticles__discription">Введите в поиске любую тему
         и узнайте, насколько популярной она была в новостях за прошедшую неделю.
       </h3>
-      <h3 id="search-aticles-discription-not-authorized" class="search-aticles__discription">Находите самые свежие статьи на
+      <h3 id="search-aticles-discription-not-authorized" class="search-aticles__discription">Находите самые свежие
+        статьи на
         любую тему и сохраняйте в своём личном
         кабинете.
       </h3>
@@ -147,12 +149,12 @@
       <span class="footer__copyrite">© 2020 Supersite, Powered by News API</span>
       <nav class="footer__nav-container">
         <ul class="nav-list">
-          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" href="#">Главная</a></li>
-          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" href="#">Яндекс.Практикум</a></li>
+          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" href="/main.html">Главная</a></li>
+          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" target="blank" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a></li>
         </ul>
         <span class="social-icons footer__social-icons">
-          <a class="social-icons__item social-icons__item_github" href=""></a>
-          <a class="social-icons__item social-icons__item_fb" href=""></a>
+          <a class="social-icons__item social-icons__item_github" href="https://github.com/AleksandrV-git/news-explorer-frontend"></a>
+          <a class="social-icons__item social-icons__item_fb" href="https://www.facebook.com/yandex.praktikum/"></a>
         </span>
       </nav>
     </footer>
@@ -167,16 +169,16 @@
       <form id="formSignUp" class="popup__form">
         <span class="popup__field-name">Email</span>
         <input id="popupSignUp-email" type="email" class="popup__input" name="email"
-          pattern="([-A-Za-z0-9]+.?([A-Za-z0-9]+)?)@([-A-Za-z0-9]+).([A-Za-z0-9]+.?[A-Za-z0-9]+)$" placeholder="Введите Email"
-          required minlength="2" maxlength="30">
+          pattern="([-A-Za-z0-9]+.?([A-Za-z0-9]+)?)@([-A-Za-z0-9]+).([A-Za-z0-9]+.?[A-Za-z0-9]+)$"
+          placeholder="Введите Email" required minlength="2" maxlength="30">
         <span id="popupSignUp-email-error" class="popup__error"></span>
         <span class="popup__field-name">Пароль</span>
         <input id="popupSignUp-password" type="text" class="popup__input" name="password" placeholder="Введите пароль"
           required minlength="2" maxlength="30">
         <span id="popupSignUp-password-error" class="popup__error"></span>
         <span class="popup__field-name">Имя</span>
-        <input id="popupSignUp-name" type="text" class="popup__input" name="name" placeholder="Введите своё имя" required
-          minlength="2" maxlength="30">
+        <input id="popupSignUp-name" type="text" class="popup__input" name="name" placeholder="Введите своё имя"
+          required minlength="2" maxlength="30">
         <span id="popupSignUp-name-error" class="popup__error"></span>
         <span class="popup__form-error">ошибка</span>
         <button disabled class="button popup__button popup__button_disabled">
@@ -196,8 +198,8 @@
       <form id="formSignIn" class="popup__form" name="formProfile">
         <span class="popup__field-name">Email</span>
         <input id="popupSignUp-email" type="email" class="popup__input" name="email"
-          pattern="([-A-Za-z0-9]+.?([A-Za-z0-9]+)?)@([-A-Za-z0-9]+).([A-Za-z0-9]+.?[A-Za-z0-9]+)$" placeholder="Введите Email"
-          required minlength="2" maxlength="30">
+          pattern="([-A-Za-z0-9]+.?([A-Za-z0-9]+)?)@([-A-Za-z0-9]+).([A-Za-z0-9]+.?[A-Za-z0-9]+)$"
+          placeholder="Введите Email" required minlength="2" maxlength="30">
         <span id="popupSignUp-email-error" class="popup__error"></span>
         <span class="popup__field-name">Пароль</span>
         <input id="popupSignUp-password" type="text" class="popup__input" name="password" placeholder="Введите пароль"
@@ -218,7 +220,7 @@
     <div class="popup__content">
       <img src="<%=require('../images/close.svg')%>" alt="иконка для закрытия всплывающего окна" class="popup__close">
       <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
-        <span class="popup__link">Войти</span>
+      <span class="popup__link">Войти</span>
     </div>
   </div>
 

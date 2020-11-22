@@ -17,9 +17,9 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
     devServer: {
-    index: '/main.html'
+    index: '/main.html',
     },
-    entry: { main: './src/script.js' },
+    entry: { main: './src/main.js', savedArticles: './src/saved-articles.js' },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash].js'
@@ -67,7 +67,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: 'style.[contenthash].css' }),
+        new MiniCssExtractPlugin({ chunkFilename: '[name].[contenthash].css' }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
@@ -77,15 +77,11 @@ module.exports = {
             canPrint: true
         }),
         new HtmlWebpackPlugin({
-            // Означает, что:
-            inject: false, // стили НЕ нужно прописывать внутри тегов
             // hash: true, // для страницы нужно считать хеш
             template: './src/pages/main.html', // откуда брать образец для сравнения с текущим видом проекта
             filename: 'main.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
           }),
         new HtmlWebpackPlugin({
-            // Означает, что:
-            inject: false, // стили НЕ нужно прописывать внутри тегов
             // hash: true, // для страницы нужно считать хеш
             template: './src/pages/saved-articles.html',
             filename: 'saved-articles.html',

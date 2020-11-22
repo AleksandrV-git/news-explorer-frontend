@@ -1,0 +1,25 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+@import url(../blocks/root/root.css);
+@import url(../blocks/button/button.css);
+@import url(../blocks/section-title/section-title.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/nav-list/nav-list.css);
+@import url(../blocks/logo/logo.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/social-icons/social-icons.css);
+@import url(../blocks/articles/articles.css);
+@import url(../blocks/article-card/article-card.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/adjustment-layer/adjustment-layer.css);
+@import url(../blocks/ratio-container/ratio-container.css);
+/* модификаторы блоков */
+@import url(../blocks/header/header_theme-text-black.css);
+@import url(../blocks/article-card/article-card_active-saved.css);
+@import url(../blocks/root/root_active-authorized-user.css);
+@import url(../blocks/adjustment-layer/adjustment-layer_active.css);
+
+body {
+  background-color: #FFFFFF;
+  font-family: Roboto;
+}
