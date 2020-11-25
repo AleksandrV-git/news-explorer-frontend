@@ -1,0 +1,20 @@
+.page-desription__subtitle {
+  margin: 30px 0 56px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+}
+
+@media (max-width: 1024px) {
+  .page-desription__subtitle {
+    margin: 16px 0 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 568px) {
+  .page-desription__subtitle {
+    font-size: 18px;
+  }
+}

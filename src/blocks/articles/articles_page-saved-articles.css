@@ -1,0 +1,19 @@
+.articles_page-saved-articles {
+   padding: 0;
+}
+
+.articles_page-saved-articles .articles__list {
+  margin: 62px auto 62px;
+}
+
+@media (max-width: 1024px) {
+  .articles_page-saved-articles .articles__list {
+    margin: 32px auto 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .articles_page-saved-articles .articles__list {
+    margin: 24px auto 20px;
+  }
+}

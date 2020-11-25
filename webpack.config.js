@@ -67,7 +67,24 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({ chunkFilename: '[name].[contenthash].css' }),
+        new HtmlWebpackPlugin({
+            //hash: true, // для страницы нужно считать хеш
+            inject: false,
+            chunks: ['main'],
+            template: './src/pages/main.html', // откуда брать образец для сравнения с текущим видом проекта
+            filename: 'main.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+          }),
+        new HtmlWebpackPlugin({
+            // hash: true,
+            inject: false,
+            chunks: ['savedArticles'],
+            template: './src/pages/saved-articles.html',
+            filename: 'saved-articles.html',
+          }),
+        new MiniCssExtractPlugin({
+            filename: "[name].[contenthash].css",
+            chunkFilename: "[id].[contenthash].css"
+        }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
@@ -76,16 +93,7 @@ module.exports = {
             },
             canPrint: true
         }),
-        new HtmlWebpackPlugin({
-            // hash: true, // для страницы нужно считать хеш
-            template: './src/pages/main.html', // откуда брать образец для сравнения с текущим видом проекта
-            filename: 'main.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
-          }),
-        new HtmlWebpackPlugin({
-            // hash: true, // для страницы нужно считать хеш
-            template: './src/pages/saved-articles.html',
-            filename: 'saved-articles.html',
-          }),
+
         new WebpackMd5Hash(),
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

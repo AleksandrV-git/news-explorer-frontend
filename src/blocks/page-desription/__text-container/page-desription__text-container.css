@@ -1,0 +1,4 @@
+.page-desription__text-container {
+  display: flex;
+  flex-direction: column;
+}

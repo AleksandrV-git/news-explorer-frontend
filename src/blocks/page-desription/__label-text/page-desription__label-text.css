@@ -1,0 +1,21 @@
+.page-desription__label-text {
+  margin: 40px 0 28px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(26, 27, 34, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .page-desription__label-text {
+    margin: 24px 0 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 568px) {
+  .page-desription__label-text {
+    margin: 8px 0 16px;
+    font-size: 12px;
+  }
+}

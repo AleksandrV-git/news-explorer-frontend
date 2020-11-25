@@ -21,8 +21,8 @@
         <div class="header__menu-open-icon"></div>
         <nav id="nav-authorized" class="header__nav-container">
           <ul class="nav-list">
-            <li class="nav-list__item"><a class="header__link header__link_active" href="/main.html">Главная</a></li>
-            <li class="nav-list__item"><a class="header__link" href="/saved-articles.html">Сохранённые&#160;статьи</a>
+            <li class="nav-list__item"><a class="header__link" href="/main.html">Главная</a></li>
+            <li class="nav-list__item"><a class="header__link header__link_active" href="/saved-articles.html">Сохранённые&#160;статьи</a>
             </li>
           </ul>
           <button id="button-logout" class="button header__button-auth">
@@ -35,8 +35,18 @@
       </div>
     </header>
 
-    <section class="articles">
-      <h2 class="section-title root__section">Грета, у вас 5 сохранённых статей</h2>
+    <section class="page-desription">
+      <div class="page-desription__text-container root__section">
+        <span class="page-desription__label-text">Сохранённые статьи</span>
+        <h2 class="section-title page-desription__title">Грета, у вас 5 сохранённых статей</h2>
+        <h3 class="page-desription__subtitle">По ключевым словам:
+          <span class="page-desription__subtitle-inner">Природа, Тайга</span> и
+          <span class="page-desription__subtitle-inner">2-м другим</span>
+        </h3>
+      </div>
+    </section>
+
+    <section class="articles articles_page-saved-articles">
       <div class="articles__list root__section">
         <div class="article-card">
           <div class="article-card__image article-card__image_place-left"></div>
@@ -54,6 +64,7 @@
         <div class="article-card">
           <div class="article-card__image"></div>
           <span class="article-card__category">Природа</span>
+          <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
             <h3 class="article-card__title">Лесные огоньки: история одной фотографии</h3>
@@ -66,6 +77,7 @@
         <div class="article-card article-card_active-saved">
           <div class="article-card__image article-card__image_place-right"></div>
           <span class="article-card__category">Природа</span>
+          <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
             <h3 class="article-card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
@@ -78,6 +90,7 @@
         <div class="article-card article-card_active-saved">
           <div class="article-card__image article-card__image_place-right"></div>
           <span class="article-card__category">Природа</span>
+          <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
             <h3 class="article-card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
@@ -90,6 +103,7 @@
         <div class="article-card article-card_active-saved">
           <div class="article-card__image article-card__image_place-right"></div>
           <span class="article-card__category">Природа</span>
+          <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
             <h3 class="article-card__title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>

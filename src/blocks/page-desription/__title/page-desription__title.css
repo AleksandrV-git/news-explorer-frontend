@@ -1,0 +1,12 @@
+.page-desription__title {
+  max-width: 520px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .page-desription__title {
+    max-width: 340px;
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
