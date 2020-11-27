@@ -1,4 +1,4 @@
-import "./pages/saved-articles.css";
+import "../pages/saved-articles.css";
 
 document.querySelector('.header__menu-open-icon').addEventListener('click', () => {
   document.querySelector('.header__menu-open-icon').classList.toggle('header__menu-open-icon_theme-close-icon');

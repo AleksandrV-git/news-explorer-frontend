@@ -1,11 +1,13 @@
 .popup__button {
   font-family: Roboto;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
   height: 64px;
   background-color: #2F71E5;
   padding: 0 48px;
   border: none;
   margin-top: 5px;
+  align-self: center;
 }
 
 .popup__button:hover {

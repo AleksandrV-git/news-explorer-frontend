@@ -6,13 +6,11 @@
 @import url(./__button/popup__button.css);
 @import url(./_is-opened/popup_is-opened.css);
 @import url(./_img/popup_img.css);
-@import url(./__content-image/popup__content-image.css);
 @import url(./__error/popup__error.css);
 @import url(./__field-name/popup__field-name.css);
 @import url(./__link/popup__link.css);
 @import url(./__text/popup__text.css);
 /* модификаторы элементов */
-@import url(./__button/popup__button_edit-profile.css);
 @import url(./__button/popup__button_disabled.css);
 @import url(./__form-error/popup__form-error.css);
 
@@ -30,4 +28,12 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
+}
+
+@media (max-width: 568px) {
+  .popup {
+    z-index: 2;
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+  }
 }

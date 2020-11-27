@@ -7,10 +7,7 @@
 @import URL(./__source/article-card__source.css);
 @import URL(./__text-container/article-card__text-container.css);
 @import URL(./__category/article-card__category.css);
-/* модификаторы элеменов */
-@import URL(./__image/article-card__image_place-left.css);
-@import URL(./__image/article-card__image_place-center.css);
-@import URL(./__image/article-card__image_place-right.css);
+
 
 .article-card {
   width: 100%;

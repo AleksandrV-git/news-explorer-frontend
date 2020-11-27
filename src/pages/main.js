@@ -1,8 +1,8 @@
-import "./pages/main.css";
-import "./images/favicon.svg"
+import "../pages/main.css";
+import "../images/favicon.svg"
 
-import { Popup } from './scripts/popup.js';
-import { FormValidator } from './scripts/formValidator.js';
+import { Popup } from '../scripts/popup.js';
+import { FormValidator } from '../scripts/formValidator.js';
 
     const errorMessages = {
         valueMissing: 'Это обязательное поле',
@@ -16,15 +16,20 @@ const mainPageRoot = document.querySelector(".root");
 const popupSignUp = new Popup(
   document.querySelector("#popupSignUp"),
   document.querySelector(".popup__close"),
-  document.querySelector("#popupSignIn .popup__link")
+  document.querySelector("#popupSignIn .popup__link"),
+  mainPageRoot
   );
 const popupSignIn = new Popup(
   document.querySelector("#popupSignIn"),
   document.querySelector("#popupSignIn .popup__close"),
-  document.querySelector("#button-auth"));
+  document.querySelector("#button-auth"),
+  mainPageRoot
+  );
 const popupSuccessfulSignUp = new Popup(
   document.querySelector("#popupSuccessfulSignUp"),
-  document.querySelector("#popupSuccessfulSignUp .popup__close")
+  document.querySelector("#popupSuccessfulSignUp .popup__close"),
+  null,
+  mainPageRoot
   );
 const formSignUpValidator = new FormValidator(
   document.querySelector('#formSignUp'),
@@ -59,6 +64,9 @@ document.querySelector('#formSignUp').addEventListener('submit', (event) => {
   popupSignUp.close();
   });
 document.querySelector('.header__menu-open-icon').addEventListener('click', () => {
+  popupSignIn.close();
+  popupSignUp.close();
+  popupSuccessfulSignUp.close();
   document.querySelector('.header__menu-open-icon').classList.toggle('header__menu-open-icon_theme-close-icon');
   document.querySelector('#nav-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')

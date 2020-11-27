@@ -21,8 +21,8 @@
         <div class="header__menu-open-icon"></div>
         <nav id="nav-authorized" class="header__nav-container">
           <ul class="nav-list">
-            <li class="nav-list__item"><a class="header__link" href="/main.html">Главная</a></li>
-            <li class="nav-list__item"><a class="header__link header__link_active" href="/saved-articles.html">Сохранённые&#160;статьи</a>
+            <li class="nav-list__item"><a class="header__link" href="./index.html">Главная</a></li>
+            <li class="nav-list__item"><a class="header__link header__link_active" href="./saved-articles.html">Сохранённые&#160;статьи</a>
             </li>
           </ul>
           <button id="button-logout" class="button header__button-auth">
@@ -49,7 +49,7 @@
     <section class="articles articles_page-saved-articles">
       <div class="articles__list root__section">
         <div class="article-card">
-          <div class="article-card__image article-card__image_place-left"></div>
+          <img class="article-card__image" src="<%=require('./images/image_06.png')%>" alt="ветка куста, крупным планом">
           <span class="article-card__category">Природа</span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="article-card">
-          <div class="article-card__image"></div>
+          <img class="article-card__image" src="<%=require('./images/image_01.png')%>" alt="равнина, пересеченная дорогами, с высоты птичьего полета">
           <span class="article-card__category">Природа</span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="article-card article-card_active-saved">
-          <div class="article-card__image article-card__image_place-right"></div>
+          <img class="article-card__image" src="<%=require('./images/image_05.png')%>" alt="ветка растения в кувшине с водой, на столе">
           <span class="article-card__category">Природа</span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="article-card article-card_active-saved">
-          <div class="article-card__image article-card__image_place-right"></div>
+          <img class="article-card__image" src="<%=require('./images/image_06.png')%>" alt="ветка куста, крупным планом">
           <span class="article-card__category">Природа</span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
@@ -101,7 +101,7 @@
           </div>
         </div>
         <div class="article-card article-card_active-saved">
-          <div class="article-card__image article-card__image_place-right"></div>
+          <img class="article-card__image" src="<%=require('./images/image_01.png')%>" alt="равнина, пересеченная дорогами, с высоты птичьего полета">
           <span class="article-card__category">Природа</span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
@@ -114,7 +114,7 @@
           </div>
         </div>
       </div>
-      <button class="button articles__button">
+      <button class="button articles__button articles__button_hiden">
         <span class="button__inner">
           <span class="button__inner-text">Показать еще</span>
         </span>
