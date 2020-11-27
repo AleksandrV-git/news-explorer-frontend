@@ -2,43 +2,41 @@
 Версия 0.0.1
 
 ## О проекте:
-Учебный проект для демонстрации работы с ООП, взаимодействия с сервером через API, демонстрации настройки webpack
+Дипломный проект по итогам обучения в Яндекс.Практикум. Фронтенд сервиса, в котором можно найти новости по запросу и сохранить в личном кабинете. Проект состоит из двух страниц, собирается при помощи webpack, предусмотрены скрипты запускающие проект в режимах разработки, сборки и деплоя.
 
-
-## Основной функционал: 
-- Добавление, удаление карточек 
-- отображение карточек, добавленных другими пользователями, с возможностью поставить лайк
-- Редактирование профиля
-- Взаимодействие с сервором
+## Основной функционал:
+- Регистрация. авторизация пользователей
+- Поиск новостей по запросу, сохранение выбранных новостей в профиле
+- Выборочное удаление сохраненных новостей
 
 ## Стэк технологий:
-ES6, Babel, OOP, CSS3, HTML5, Webpack, BEM
+ES6, CSS3, HTML5, Webpack, структура CSS по БЭМ
 
 ## Пакеты которые используются в сборках:
 
-   - "@babel/cli": "^7.10.5",
-   - "@babel/core": "^7.11.4",
-   - "@babel/plugin-proposal-class-properties": "^7.10.4",
-   - "@babel/preset-env": "^7.11.0",
-   - "autoprefixer": "^9.8.6",
-   - "babel-loader": "^8.1.0",
-   - "cross-env": "^7.0.2",
-   - "css-loader": "^4.2.1",
-   - "cssnano": "^4.1.10",
-   - "file-loader": "^6.0.0",
+   - "@babel/cli": "7.10.5",
+   - "@babel/core": "7.11.4",
+   - "@babel/plugin-proposal-class-properties": "7.10.4",
+   - "@babel/preset-env": "7.11.0",
+   - "autoprefixer": "9.8.6",
+   - "babel-loader": "8.1.0",
+   - "cross-env": "7.0.2",
+   - "css-loader": "4.2.1",
+   - "cssnano": "4.1.10",
+   - "file-loader": "6.0.0",
    - "gh-pages": "~2.0.1",
-   - "html-webpack-plugin": "^4.3.0",
-   - "image-webpack-loader": "^6.0.0",
-   - "mini-css-extract-plugin": "^0.10.0",
-   - "optimize-css-assets-webpack-plugin": "^5.0.3",
-   - "postcss-loader": "^3.0.0",
-   - "style-loader": "^1.2.1",
-   - "webpack": "^4.44.1",
-   - "webpack-cli": "^3.3.12",
-   - "webpack-dev-server": "^3.11.0",
+   - "html-webpack-plugin": "4.3.0",
+   - "image-webpack-loader": "6.0.0",
+   - "mini-css-extract-plugin": "0.10.0",
+   - "optimize-css-assets-webpack-plugin": "5.0.3",
+   - "postcss-loader": "3.0.0",
+   - "style-loader": "1.2.1",
+   - "webpack": "4.44.1",
+   - "webpack-cli": "3.3.12",
+   - "webpack-dev-server": "3.11.0",
    - "webpack-md5-hash": "0.0.6"
-   - "babel-polyfill": "^6.26.0",
-   - "core-js": "^3.4.1"
+   - "babel-polyfill": "6.26.0",
+   - "core-js": "3.4.1"
 
 ## Инструкции по запуску:
 - Скачать или склонировать репозитори
@@ -48,4 +46,4 @@ ES6, Babel, OOP, CSS3, HTML5, Webpack, BEM
 - Разместить production-билд на github pages - `npm run deploy`
 
 ## Ссылка на github pages:
-https://
+https://aleksandrv-git.github.io/news-explorer-frontend/
