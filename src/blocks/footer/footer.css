@@ -1,0 +1,22 @@
+@import URL(./__nav-container/footer__nav-container.css);
+@import URL(./__copyrite/footer__copyrite.css);
+@import URL(./__link/footer__link.css);
+@import URL(./__social-icons/footer__social-icons.css);
+@import URL(./__nav-list-item/footer__nav-list-item.css);
+.footer {
+  min-height: 80px;
+  margin: 0 auto;
+  display: flex;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+
+  color: #1A1B22;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    min-height: 64px;
+  }
+}

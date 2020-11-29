@@ -1,0 +1,13 @@
+.author-info__paragraf {
+  margin: 24px 0 0 0;
+  font-size: 20px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@media (max-width: 1024px) {
+  .author-info__paragraf {
+    margin-top: 16px;
+  }
+}

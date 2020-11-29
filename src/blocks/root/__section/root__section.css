@@ -1,0 +1,17 @@
+.root__section {
+  width: calc(100% - 212px);
+  max-width: 1232px;
+  margin: auto;
+}
+
+@media (max-width: 1024px) {
+  .root__section {
+    width: 89.3%;
+  }
+}
+
+@media (max-width: 767px) {
+  .root__section {
+    width: 90%;
+  }
+}

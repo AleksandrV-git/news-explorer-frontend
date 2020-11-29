@@ -1,0 +1,11 @@
+.saerch-status__preloader {
+  display: flex;
+  height: 282px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+}

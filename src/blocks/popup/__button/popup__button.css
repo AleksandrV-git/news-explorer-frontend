@@ -1,0 +1,19 @@
+.popup__button {
+  font-family: Roboto;
+  width: 100%;
+  max-width: 360px;
+  height: 64px;
+  background-color: #2F71E5;
+  padding: 0 48px;
+  border: none;
+  margin-top: 5px;
+  align-self: center;
+}
+
+.popup__button:hover {
+  background-color:#347EFF;
+}
+
+.popup__button:active {
+  background-color:#2A65CC;
+}

@@ -1,0 +1,8 @@
+@media (max-width: 767px) {
+  .header__nav-container_mobile-opened {
+    height: auto;
+    padding: 56px 5% 24px;
+    z-index: 1;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,22 @@
+@import URL(./__inner/button__inner.css);
+@import URL(./__inner-text/button__inner-text.css);
+.button {
+  background-color: transparent;
+  outline: none;
+  border: solid 1px #FFFFFF;
+  border-radius: 100px;
+  padding: 0 17px;
+  color:#ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color .2s;
+}
+
+.button:focus-visible {
+  outline: auto;
+}
+

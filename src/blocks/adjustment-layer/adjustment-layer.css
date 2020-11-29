@@ -1,0 +1,21 @@
+.adjustment-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(0, 0, 0, .5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  transition: .3s;
+}
+
+@media (max-width: 767px) {
+  .adjustment-layer {
+    display: block;
+  }
+}

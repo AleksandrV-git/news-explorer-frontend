@@ -1,0 +1,39 @@
+.header_theme-text-black .nav-list__item{
+  color: #1A1B22;
+}
+
+.header_theme-text-black .logo {
+  color: #1A1B22;
+}
+
+.header_theme-text-black .header__button-auth {
+  border-color: #1A1B22;
+}
+
+.header_theme-text-black .button__inner {
+  color: #1A1B22;
+}
+
+.header_theme-text-black .header__logout-icon {
+  background-image: url(../../images/logout-icon-black.svg);
+}
+
+.header_theme-text-black .header__link_active:hover {
+  color: #1A1B22;
+}
+
+.header_theme-text-black .header__link_active::after{
+  border-bottom-color: #1A1B22;
+}
+
+.header_theme-text-black .header__menu-open-icon {
+  background-image: url(../../images/menu-open-icon-black.svg);
+}
+
+.header_theme-text-black .header__nav-container_mobile-opened {
+  background-color: #edf4f8;
+}
+
+.header_theme-text-black .header__menu-open-icon_theme-close-icon {
+  background-image: url(../../images/menu-close-icon-black.svg);
+}

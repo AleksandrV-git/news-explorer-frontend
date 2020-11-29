@@ -1,0 +1,17 @@
+@import URL(./__message-icon/search-status__message-icon.css);
+@import URL(./__message-text/search-status__message-text.css);
+@import URL(./__message-tile/search-status__message-tile.css);
+@import URL(./__message/search-status__message.css);
+@import URL(./__preloader/saerch-status__preloader.css);
+
+
+.search-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 282px;
+  background-color: #F5F6F7;
+  position: relative;
+}

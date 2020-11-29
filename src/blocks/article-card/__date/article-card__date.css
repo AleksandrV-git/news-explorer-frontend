@@ -1,0 +1,14 @@
+.article-card__date {
+  font-family: Source Sans Pro;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 1024px) {
+  .article-card__date {
+    margin-top: 16px;
+  }
+}

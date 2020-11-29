@@ -1,0 +1,18 @@
+.header__menu-open-icon {
+   width: 24px;
+   height: 24px;
+   background-image: url(../../../images/menu-open-icon.svg);
+   margin-top: 16px;
+   z-index: 2;
+   display: none;
+}
+
+.header__menu-open-icon:hover {
+   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .header__menu-open-icon {
+    display: block;
+  }
+}

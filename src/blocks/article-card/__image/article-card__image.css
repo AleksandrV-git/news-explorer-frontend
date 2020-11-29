@@ -1,0 +1,10 @@
+
+.article-card__image {
+  min-width: 1px;
+  width: 100%;
+  min-height: 1px;
+  max-height: 272px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+

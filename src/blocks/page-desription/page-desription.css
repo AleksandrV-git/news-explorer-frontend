@@ -1,0 +1,10 @@
+@import url(./__label-text/page-desription__label-text.css);
+@import url(./__subtitle-inner/page-desription__subtitle-inner.css);
+@import url(./__subtitle/page-desription__subtitle.css);
+@import url(./__text-container/page-desription__text-container.css);
+@import url(./__title/page-desription__title.css);
+
+.page-desription {
+   width: 100%;
+   background: #FFFFFF;
+}

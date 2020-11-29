@@ -1,0 +1,25 @@
+@import URL(./__text/article-card__text.css);
+@import URL(./__title/article-card__title.css);
+@import URL(./__date/article-card__date.css);
+@import URL(./__icon-save/article-card__icon-save.css);
+@import URL(./__icon-delete/article-card__icon-delete.css);
+@import URL(./__image/article-card__image.css);
+@import URL(./__source/article-card__source.css);
+@import URL(./__text-container/article-card__text-container.css);
+@import URL(./__category/article-card__category.css);
+
+
+.article-card {
+  width: 100%;
+  min-width: 1px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+.article-card:hover {
+  transition: .2s;
+  box-shadow: 0px 20px 58px rgba(8, 29, 45, 0.1);
+}

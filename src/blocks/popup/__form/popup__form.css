@@ -1,0 +1,6 @@
+.popup__form {
+  font-family: Inter;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}

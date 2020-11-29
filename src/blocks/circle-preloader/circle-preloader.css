@@ -1,0 +1,16 @@
+.circle-preloader {
+	display: block;
+	width: 74px;
+	height: 74px;
+  background: url(../../images/preloader.png);
+  background-position: center;
+  background-size: contain;
+
+	animation: spin 1.3s infinite linear;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(-360deg);
+	}
+}

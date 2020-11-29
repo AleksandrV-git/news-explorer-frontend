@@ -1,0 +1,14 @@
+.section-title {
+  margin: 0;
+  font-family: Roboto Slab;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+}

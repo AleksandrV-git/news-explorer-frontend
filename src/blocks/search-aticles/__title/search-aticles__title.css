@@ -1,0 +1,26 @@
+.search-aticles__title {
+  max-width: 608px;
+  width: 100%;
+  font-family: Roboto Slab;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  margin: 160px auto 0;
+}
+
+@media (max-width: 1024px) {
+  .search-aticles__title {
+    box-sizing: border-box;
+    padding-right: 80px;
+    max-width: 452px;
+    margin-top: 104px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 568px) {
+  .search-aticles__title {
+    margin-top: 86px;
+  }
+}

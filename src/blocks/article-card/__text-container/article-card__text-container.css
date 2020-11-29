@@ -1,0 +1,20 @@
+.article-card__text-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 78px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 6% 54px;
+}
+
+@media (max-width: 1024px) {
+  .article-card__text-container {
+    padding: 0 7.2% 21.4%;
+  }
+}
+
+@media (max-width: 320px) {
+  .article-card__text-container {
+    padding: 0 6.2% 17%;
+  }
+}

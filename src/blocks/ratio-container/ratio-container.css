@@ -1,0 +1,11 @@
+.ratio-container {
+  width: 33.7%;
+  max-width: 464px;
+}
+
+@media (max-width: 767px) {
+  .ratio-container {
+    width: 95%;
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,16 @@
+.social-icons__item_fb {
+  background-image: url(../../../images/fb.svg);
+}
+
+.social-icons__item_fb:hover {
+  background-image: url(../../../images/fb-hover.svg);
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .social-icons__item_fb {
+    background-image: url(../../../images/social-fb-round.svg);
+  }
+  .social-icons__item_fb:hover {
+    background-image: url(../../../images/social-fb-round-hover-blue.svg);
+  }
+}

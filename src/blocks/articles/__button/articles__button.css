@@ -1,0 +1,26 @@
+.articles__button {
+  width: 288px;
+  height: 64px;
+  background-color:#FFFFFF;
+  padding: 0 48px;
+  border: none;
+  margin: 0 auto 80px;
+  color:#1A1B22;
+}
+
+.articles__button:hover {
+  transition: .2s;
+  opacity: .9;
+}
+
+@media (max-width: 1024px) {
+  .articles__button {
+    margin: 0 auto 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .articles__button {
+    margin: 0 auto 32px;
+  }
+}

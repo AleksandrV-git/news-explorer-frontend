@@ -1,0 +1,25 @@
+@import URL(./__title/search-aticles__title.css);
+@import URL(./__discription/search-aticles__discription.css);
+.search-aticles {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  background-image: url(../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.png);
+  background-size: cover;
+  margin-top: -81px;
+  padding: 0 5%;
+}
+
+@media (max-width: 1024px) {
+  .search-aticles {
+    margin-top: -66px;
+  }
+}
+
+@media (max-width: 568px) {
+  .search-aticles {
+    margin-top: -56px;
+  }
+}

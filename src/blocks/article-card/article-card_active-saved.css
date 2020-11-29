@@ -1,0 +1,7 @@
+.article-card_active-saved .article-card__icon-save {
+  background-image: url(../../images/save-icon-active.svg);
+}
+
+.article-card_active-saved .article-card__icon-save:hover::before {
+  display: none;
+}

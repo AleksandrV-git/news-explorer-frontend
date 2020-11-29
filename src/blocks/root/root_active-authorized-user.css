@@ -1,0 +1,15 @@
+.root_active-authorized-user #nav-authorized {
+  display: flex;
+}
+.root_active-authorized-user #nav-not-authorized {
+  display: none;
+}
+.root_active-authorized-user #search-aticles-discription-authorized {
+  display: block;
+}
+.root_active-authorized-user #search-aticles-discription-not-authorized {
+  display: none;
+}
+.root_active-authorized-user .article-card__icon-save:hover::before {
+  display: none;
+}
