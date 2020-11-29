@@ -14,7 +14,7 @@
 }
 
 .search-form__field:focus-visible {
-    box-shadow: 0 0 0 2px#d1d2d6;
+    box-shadow: 0 0 0 2px#D1D2D6;
 }
 
 .search-form__field::placeholder {
