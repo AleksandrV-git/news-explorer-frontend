@@ -81,6 +81,17 @@
     </section>
 
     <section class="articles">
+      <template id="news-card">
+        <div class="article-card">
+          <img class="article-card__image" src="<%=require('./images/image_08.png')%>" alt="">
+          <span class="article-card__icon-save"></span>
+          <div class="article-card__text-container">
+            <p class="article-card__date"></p>
+            <h3 class="article-card__title"></h3>
+            <p class="article-card__text"></p>
+            <p class="article-card__source"></p>
+          </div>
+      </template>
       <h2 class="section-title root__section">Результаты поиска</h2>
       <div class="articles__list root__section">
         <div class="article-card">

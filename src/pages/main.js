@@ -3,14 +3,23 @@ import "../images/favicon.svg"
 
 import { Popup } from '../scripts/popup.js';
 import { FormValidator } from '../scripts/formValidator.js';
+import { CardList } from '../scripts/cardList.js';
+import { NewsCard } from '../scripts/newsCard.js';
+import { initialCards } from '../scripts/cards.js';
+import { NewsApi } from '../scripts/newsApi.js';
 
-    const errorMessages = {
-        valueMissing: 'Это обязательное поле',
-        tooShort: 'Должно быть от 2 до 30 символов',
-        emailPatternMismatch: 'Неправильный формат email'
-    };
+  const errorMessages = {
+      valueMissing: 'Это обязательное поле',
+      tooShort: 'Должно быть от 2 до 30 символов',
+      emailPatternMismatch: 'Неправильный формат email'
+  };
+
+  const newsFetchOptions = {
+    baseUrl: `https://newsapi.org`
+  };
 
 const mainPageRoot = document.querySelector(".root");
+const menuOpenIcon = document.querySelector('.header__menu-open-icon')
 
 
 const popupSignUp = new Popup(
@@ -63,13 +72,23 @@ document.querySelector('#formSignUp').addEventListener('submit', (event) => {
   popupSuccessfulSignUp.open();
   popupSignUp.close();
   });
-document.querySelector('.header__menu-open-icon').addEventListener('click', () => {
+menuOpenIcon.addEventListener('click', () => {
   popupSignIn.close();
   popupSignUp.close();
   popupSuccessfulSignUp.close();
-  document.querySelector('.header__menu-open-icon').classList.toggle('header__menu-open-icon_theme-close-icon');
+  menuOpenIcon.classList.toggle('header__menu-open-icon_theme-close-icon');
   document.querySelector('#nav-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('.adjustment-layer').classList.toggle('adjustment-layer_active')
   });
+
+const createCard = (...arg) => new NewsCard(...arg);
+const cardList = new CardList(
+  document.querySelector('.articles__list'),
+  createCard,
+);
+const newsApi = new NewsApi(newsFetchOptions)
+
+console.log(newsApi.getNews())
+cardList.renderResults(initialCards)
 
