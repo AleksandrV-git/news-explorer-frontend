@@ -1,17 +1,26 @@
 export class NewsApi {
   constructor(options) {
-      this.baseUrl = options.baseUrl;
+    this.baseUrl = options.baseUrl;
+    this.apiKey = options.apiKey;
+    this.sortBy = options.sortBy;
+    this.date = options.date;
   }
 
-  getNews = () => {
-
-      return fetch(this.baseUrl + "/v2/top-headlines?country=us&apiKey=1093de14a32d4381b3b2bf485c9cbf25")
-
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(res.status);
-          })
+  getNews = (searchWord) => {
+    console.log()
+    return fetch(
+      this.baseUrl +
+      `/v2/everything?` +
+      `q=${searchWord}&` +
+      `from=${this.date}&` +
+      `sortBy=${this.sortBy}&` +
+      `apiKey=${this.apiKey}`
+      )
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(res.status);
+      })
   }
 }

@@ -1,4 +1,4 @@
-export class FormValidator {
+export class Form {
   constructor(formElement, errorMessages) {
     this.form = formElement;
     this.errorMessages = errorMessages;
@@ -26,6 +26,14 @@ export class FormValidator {
     });
 
     this.setSubmitButtonState(valid);
+  }
+
+  _getInfo() {
+    const inputs = Array.from(this.form.elements).filter(el => el.tagName === "INPUT");
+    const inputNames = inputs.map(el => el.getAttribute('name'));
+    let inputsData = {};
+    inputNames.forEach((el) => {inputsData[el] = this.form.elements[el].value});
+    return inputsData;
   }
 
   setEventListeners() {
