@@ -1,7 +1,9 @@
 @import URL(./__field/search-form__field.css);
 @import URL(./__button/search-form__button.css);
+@import URL(./__error/search-form__error.css);
 
 .search-form {
+    position: relative;
     display: flex;
     width: 100%;
     max-width: 608px;

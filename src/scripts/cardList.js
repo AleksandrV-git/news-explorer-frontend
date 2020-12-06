@@ -1,9 +1,8 @@
 export class CardList {
-  constructor(container, callbackCreateCard, userInfo, mestoApi) {
+  constructor(container, callbackCreateCard, userInfo) {
     this.container = container || (() => {});
     this.callbackCreateCard = callbackCreateCard || (() => {});
     this.userInfo = userInfo || (() => {});
-    this.mestoApi = mestoApi || (() => {});
   }
 
   addCard(image, date, title, text, source, cardOwnerId = null) {
@@ -27,15 +26,9 @@ export class CardList {
     });
   }
 
-  renderFromRequest() {
-
-    this.mestoApi.getInitialCards()
-
-      .then((result) => {
-        this.render(result, );
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      })
+  clear() {
+    while (this.container.firstChild) {
+      this.container.removeChild(this.container.firstChild);
+    }
   }
 }

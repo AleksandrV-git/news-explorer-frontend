@@ -3,5 +3,7 @@
     line-height: 15px;
     color: #FF0000;
     align-self: center;
+    text-align: center;
     margin-top: 5px;
+    min-height: 15px;
 }
