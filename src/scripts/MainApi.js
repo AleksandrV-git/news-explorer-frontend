@@ -3,7 +3,7 @@ export class MainApi {
       this.baseUrl = options.baseUrl;
       this.headers = options.headers;
   }
-  signup = (nameValue, emailValue, passwordValue) => {
+signup = (nameValue, emailValue, passwordValue) => {
 
     return fetch(this.baseUrl + "/signup", {
         method: 'POST',
@@ -21,7 +21,7 @@ export class MainApi {
             return Promise.reject(res.status);
         })
 }
-  signin = (emailValue, passwordValue) => {
+signin = (emailValue, passwordValue) => {
 
     return fetch(this.baseUrl + "/signin", {
         method: 'POST',
@@ -40,7 +40,7 @@ export class MainApi {
         })
 }
 
-  getUserProfile = () => {
+getUserData = () => {
 
       return fetch(this.baseUrl + "/users/me", { headers: this.headers })
 
@@ -54,9 +54,9 @@ export class MainApi {
 
 
 
-  getInitialCards = () => {
+getArticles = () => {
 
-      return fetch(this.baseUrl + "/cards", { headers: this.headers })
+      return fetch(this.baseUrl + "/articles", { headers: this.headers })
 
           .then(res => {
               if (res.ok) {
@@ -66,32 +66,19 @@ export class MainApi {
           })
   }
 
-  patchUserProfile = (nameValue, aboutValue) => {
+createArticle = ({keyword, title, text, date, source, link, image}) => {
 
-      return fetch(this.baseUrl + "/users/me", {
-          method: 'PATCH',
-          headers: this.headers,
-          body: JSON.stringify({
-              name: nameValue,
-              about: aboutValue
-          })
-      })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(res.status);
-          })
-  }
-
-  postCard = (nameValue, linkValue) => {
-
-      return fetch(this.baseUrl + "/cards", {
+      return fetch(this.baseUrl + "/articles", {
           method: 'POST',
           headers: this.headers,
           body: JSON.stringify({
-              name: nameValue,
-              link: linkValue
+            keyword: keyword,
+            title: title,
+            text: text,
+            date: date,
+            source: source,
+            link: link,
+            image: image
           })
       })
           .then(res => {
@@ -102,10 +89,10 @@ export class MainApi {
           })
   }
 
-  deleteCard = (id, removeHandler) => {
+  removeArticle = (id, removeHandler) => {
 
       if (window.confirm("Вы действительно хотите удалить эту карточку?")) {
-          return fetch(this.baseUrl + "/cards/" + id, {
+          return fetch(this.baseUrl + "/articles/" + id, {
               method: 'DELETE',
               headers: this.headers
           })
@@ -117,51 +104,5 @@ export class MainApi {
               })
       }
 
-  }
-
-  likeCard = (id) => {
-      return fetch(this.baseUrl + "/cards/like/" + id, {
-          method: 'PUT',
-          headers: this.headers
-      })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(res.status);
-          })
-  }
-
-  likeCardRemove = (id) => {
-      return fetch(this.baseUrl + "/cards/like/" + id, {
-          method: 'DELETE',
-          headers: this.headers
-      })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(res.status);
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-  }
-
-  patchUserAvatar = (avatarLink) => {
-
-      return fetch(this.baseUrl + "/users/me/avatar", {
-          method: 'PATCH',
-          headers: this.headers,
-          body: JSON.stringify({
-              avatar: avatarLink,
-          })
-      })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(res.status);
-          })
   }
 }

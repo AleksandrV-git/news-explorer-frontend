@@ -83,7 +83,6 @@ popupSuccessfulSignUp.setEventListeners();
 document.querySelector("#popupSignUp .popup__link").addEventListener('click', () => { popupSignUp.close(); popupSignIn.open();});
 document.querySelector("#popupSuccessfulSignUp .popup__link").addEventListener('click', () => { popupSuccessfulSignUp.close(); popupSignIn.open();});
 document.querySelector("#popupSignIn .popup__link").addEventListener('click', () => { popupSignIn.close(); });
-
 document.querySelector('#button-logout').addEventListener('click', () => {
   mainPageRoot.classList.remove('root_active-authorized-user');
 });
@@ -126,7 +125,6 @@ formSignInNode.addEventListener('submit', (event) => {
   const { email, password } = formSignIn.getInfo();
   mainApi.signin(email, password)
     .then((res) => {
-      console.log(res);
       const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
       headerLogoutBtn.textContent = res.data.name;
       popupSignIn.close();
