@@ -3,7 +3,6 @@ export class MainApi {
       this.baseUrl = options.baseUrl;
       this.headers = options.headers;
   }
-
   signup = (nameValue, emailValue, passwordValue) => {
 
     return fetch(this.baseUrl + "/signup", {
@@ -19,7 +18,23 @@ export class MainApi {
             if (res.ok) {
                 return res.json();
             }
-            console.log(res)
+            return Promise.reject(res.status);
+        })
+}
+  signin = (emailValue, passwordValue) => {
+
+    return fetch(this.baseUrl + "/signin", {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify({
+            email: emailValue,
+            password: passwordValue
+        })
+    })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
             return Promise.reject(res.status);
         })
 }

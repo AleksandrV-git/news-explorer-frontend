@@ -28,7 +28,7 @@ export class Form {
     this.setSubmitButtonState(valid);
   }
 
-  _getInfo() {
+  getInfo() {
     const inputs = Array.from(this.form.elements).filter(el => el.tagName === "INPUT");
     const inputNames = inputs.map(el => el.getAttribute('name'));
     let inputsData = {};

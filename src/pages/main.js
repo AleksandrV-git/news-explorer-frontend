@@ -29,8 +29,9 @@ const mainApiOptions = {
 
 const mainPageRoot = document.querySelector(".root");
 const menuOpenIcon = document.querySelector('.header__menu-open-icon');
-const searchFormElement = document.querySelector('.search-form');
-const formSignUpElement = document.querySelector('#formSignUp');
+const searchFormNode = document.querySelector('.search-form');
+const formSignUpNode = document.querySelector('#formSignUp');
+const formSignInNode = document.querySelector('#formSignIn');
 
 // экземпляры классов
 const createCard = (...arg) => new NewsCard(...arg);
@@ -59,7 +60,7 @@ const popupSuccessfulSignUp = new Popup(
   mainPageRoot
 );
 const formSignUp = new Form(
-  formSignUpElement,
+  formSignUpNode,
   errorMessages
 );
 const formSignIn = new Form(
@@ -67,7 +68,7 @@ const formSignIn = new Form(
   errorMessages
 );
 const formSearch = new Form(
-  searchFormElement,
+  searchFormNode,
   errorMessages
 );
 
@@ -100,31 +101,41 @@ menuOpenIcon.addEventListener('click', () => {
   document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('.adjustment-layer').classList.toggle('adjustment-layer_active')
 });
-searchFormElement.addEventListener('submit', (event) => {
+searchFormNode.addEventListener('submit', (event) => {
   event.preventDefault();
   cardList.clear();
-  newsApi.getNews(formSearch._getInfo().search)
+  newsApi.getNews(formSearch.getInfo().search)
     .then((foundResults) => {cardList.renderResults(foundResults.articles)})
-})
-formSignUpElement.addEventListener('submit', (event) => {
+});
+formSignUpNode.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log(formSignUp._getInfo())
-  const { name, email, password } = formSignUp._getInfo()
+  const { name, email, password } = formSignUp.getInfo();
   mainApi.signup(name, email, password)
     .then(() => {
       popupSuccessfulSignUp.open();
       popupSignUp.close();
     })
     .catch((err) => {
-      console.log(err)
-      const formErr = formSignUpElement.querySelector('.popup__form-error')
+      const formErr = formSignUpNode.querySelector('.popup__form-error')
       if (err === 409) {
         formErr.textContent = 'Пользователь с данным e-mail уже зарегистрирован'
       } else {
         formErr.textContent = 'Произошла ошибка'
       }
     })
-})
+});
+formSignInNode.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const { email, password } = formSignIn.getInfo();
+  mainApi.signin(email, password)
+    .then(() => {
+      popupSignIn.close();
+    })
+    .catch(() => {
+      const formErr = formSignUpNode.querySelector('.popup__form-error')
+      formErr.textContent = 'Произошла ошибка'
+    })
+});
 
 console.log()
 
