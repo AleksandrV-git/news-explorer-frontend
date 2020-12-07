@@ -84,11 +84,6 @@ document.querySelector("#popupSignUp .popup__link").addEventListener('click', ()
 document.querySelector("#popupSuccessfulSignUp .popup__link").addEventListener('click', () => { popupSuccessfulSignUp.close(); popupSignIn.open();});
 document.querySelector("#popupSignIn .popup__link").addEventListener('click', () => { popupSignIn.close(); });
 
-document.querySelector('#formSignIn').addEventListener('submit', (event) => {
-  event.preventDefault();
-  mainPageRoot.classList.add('root_active-authorized-user');
-  popupSignIn.close();
-});
 document.querySelector('#button-logout').addEventListener('click', () => {
   mainPageRoot.classList.remove('root_active-authorized-user');
 });
@@ -106,6 +101,7 @@ searchFormNode.addEventListener('submit', (event) => {
   cardList.clear();
   newsApi.getNews(formSearch.getInfo().search)
     .then((foundResults) => {cardList.renderResults(foundResults.articles)})
+    .catch((err) => {console.log(err);})
 });
 formSignUpNode.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -116,6 +112,7 @@ formSignUpNode.addEventListener('submit', (event) => {
       popupSignUp.close();
     })
     .catch((err) => {
+      console.log(err);
       const formErr = formSignUpNode.querySelector('.popup__form-error')
       if (err === 409) {
         formErr.textContent = 'Пользователь с данным e-mail уже зарегистрирован'
@@ -128,11 +125,16 @@ formSignInNode.addEventListener('submit', (event) => {
   event.preventDefault();
   const { email, password } = formSignIn.getInfo();
   mainApi.signin(email, password)
-    .then(() => {
+    .then((res) => {
+      console.log(res);
+      const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
+      headerLogoutBtn.textContent = res.data.name;
       popupSignIn.close();
+      mainPageRoot.classList.add('root_active-authorized-user');
     })
-    .catch(() => {
-      const formErr = formSignUpNode.querySelector('.popup__form-error')
+    .catch((err) => {
+      console.log(err);
+      const formErr = formSignInNode.querySelector('.popup__form-error');
       formErr.textContent = 'Произошла ошибка'
     })
 });
