@@ -18,7 +18,7 @@ const newsApiOptions = {
   baseUrl: `https://newsapi.org`,
   apiKey: `1093de14a32d4381b3b2bf485c9cbf25`,
   sortBy: `popularity`,
-  date: `2020-12-01`
+  date: `2020-12-02`
 };
 const mainApiOptions = {
   baseUrl: `http://localhost:3000`,
@@ -98,14 +98,14 @@ menuOpenIcon.addEventListener('click', () => {
 searchFormNode.addEventListener('submit', (event) => {
   event.preventDefault();
   cardList.clear();
+  console.log(newsApi.getNews(formSearch.getInfo().search))
   newsApi.getNews(formSearch.getInfo().search)
     .then((foundResults) => {cardList.renderResults(foundResults.articles)})
     .catch((err) => {console.log(err);})
 });
 formSignUpNode.addEventListener('submit', (event) => {
   event.preventDefault();
-  const { name, email, password } = formSignUp.getInfo();
-  mainApi.signup(name, email, password)
+  mainApi.signup(formSignUp.getInfo())
     .then(() => {
       popupSuccessfulSignUp.open();
       popupSignUp.close();
@@ -122,8 +122,7 @@ formSignUpNode.addEventListener('submit', (event) => {
 });
 formSignInNode.addEventListener('submit', (event) => {
   event.preventDefault();
-  const { email, password } = formSignIn.getInfo();
-  mainApi.signin(email, password)
+  mainApi.signin(formSignIn.getInfo())
     .then((res) => {
       const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
       headerLogoutBtn.textContent = res.data.name;

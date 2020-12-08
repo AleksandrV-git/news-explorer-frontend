@@ -3,15 +3,15 @@ export class MainApi {
       this.baseUrl = options.baseUrl;
       this.headers = options.headers;
   }
-signup = (nameValue, emailValue, passwordValue) => {
+signup = ({name, email, password}) => {
 
     return fetch(this.baseUrl + "/signup", {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({
-            name: nameValue,
-            email: emailValue,
-            password: passwordValue
+            name: name,
+            email: email,
+            password: password
         })
     })
         .then(res => {
@@ -21,14 +21,14 @@ signup = (nameValue, emailValue, passwordValue) => {
             return Promise.reject(res.status);
         })
 }
-signin = (emailValue, passwordValue) => {
+signin = ({email, password}) => {
 
     return fetch(this.baseUrl + "/signin", {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({
-            email: emailValue,
-            password: passwordValue
+            email: email,
+            password: password
         })
     })
         .then(res => {

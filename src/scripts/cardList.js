@@ -21,7 +21,7 @@ export class CardList {
 
   renderResults(arr) {
     arr.forEach(item => {
-      this.addCard(item.urlToImage, item.publishedAt, item.title, item.content, item.name);
+      this.addCard(item.urlToImage, item.publishedAt, item.title, item.content, item.source);
       //this.addCard(item.name, item.link, item._id, item.owner._id, item.likes, );
     });
   }

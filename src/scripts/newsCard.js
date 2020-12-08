@@ -5,7 +5,7 @@ export class NewsCard {
     this.date = date;
     this.title = title;
     this.text = text;
-    this.source = source;
+    this.source = source.name;
     this.isSaved = false;
     // this.mestoAPI = mestoAPI;
   }
