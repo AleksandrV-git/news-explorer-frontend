@@ -33,8 +33,16 @@ const searchFormNode = document.querySelector('.search-form');
 const formSignUpNode = document.querySelector('#formSignUp');
 const formSignInNode = document.querySelector('#formSignIn');
 
+let searchKeyword = null
+
+// функции
+const saveCardCallback = (cardInstans) => {
+  console.log(cardInstans)
+  //mainApi.createArticle(articleParams);
+};
+
 // экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg);
+const createCard = (...arg) => new NewsCard(...arg, searchKeyword, saveCardCallback);
 const cardList = new CardList(
   document.querySelector('.articles__list'),
   createCard,
@@ -72,6 +80,7 @@ const formSearch = new Form(
   errorMessages
 );
 
+
 // установка слушателей
 popupSignUp.setEventListeners();
 popupSignIn.setEventListeners();
@@ -99,8 +108,10 @@ searchFormNode.addEventListener('submit', (event) => {
   event.preventDefault();
   cardList.clear();
   console.log(newsApi.getNews(formSearch.getInfo().search))
-  newsApi.getNews(formSearch.getInfo().search)
-    .then((foundResults) => {cardList.renderResults(foundResults.articles)})
+  searchKeyword = formSearch.getInfo().search
+  newsApi.getNews(searchKeyword)
+    .then((foundResults) => {
+      cardList.renderResults(foundResults.articles)})
     .catch((err) => {console.log(err);})
 });
 formSignUpNode.addEventListener('submit', (event) => {

@@ -1,11 +1,15 @@
 export class NewsCard {
 
-  constructor(image, date, title, text, source) {
-    this.image = image;
-    this.date = date;
-    this.title = title;
-    this.text = text;
-    this.source = source.name;
+  constructor(articleData, keyword, saveCardCallback) {
+    console.log(articleData)
+    this.image = articleData.image;
+    this.date = articleData.date;
+    this.title = articleData.title;
+    this.text = articleData.text;
+    this.source = articleData.source;
+    this.keyword = keyword;
+    this.link = articleData.url;
+    this.saveCardCallback = saveCardCallback.bind(this);
     this.isSaved = false;
     // this.mestoAPI = mestoAPI;
   }
@@ -13,7 +17,6 @@ export class NewsCard {
   create() {
     const card = document.querySelector('#news-card');
     const image = card.content.querySelector('.article-card__image');
-    const saveButton = card.content.querySelector('.article-card__icon-save');
     const date = card.content.querySelector('.article-card__date');
     const title = card.content.querySelector('.article-card__title');
     const text = card.content.querySelector('.article-card__text');
@@ -25,13 +28,24 @@ export class NewsCard {
     text.textContent = this.text;
     source.textContent = this.source;
 
-    const cardNode = document.importNode(card.content, true);
+    const cardNode = card.content.cloneNode(true);
 
-    this.cardElem = cardNode;
+    this.saveButton = cardNode.querySelector('.article-card__icon-save');
 
     return cardNode;
   }
 
+  consoleLog = () => {
+    console.log(this.saveCardCallback)
+  }
+
+  saveCard = () => {
+    return this.saveCardCallback(this)
+  }
+
+  setEventListeners() {
+    this.saveButton.addEventListener('click', this.saveCard);
+  }
   // setEventListeners() {
   //   this
   //     .likeButtonElem
