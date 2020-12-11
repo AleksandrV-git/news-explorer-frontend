@@ -2,6 +2,8 @@ export class Form {
   constructor(formElement, errorMessages) {
     this.form = formElement;
     this.errorMessages = errorMessages;
+    this.errorsNodeList = this.form.querySelectorAll('.popup__error');
+    this.serverErrorElem = this.form.querySelector('.popup__form-error');
   }
 
   checkInputValidity() {
@@ -32,7 +34,7 @@ export class Form {
     const inputs = Array.from(this.form.elements).filter(el => el.tagName === "INPUT");
     const inputNames = inputs.map(el => el.getAttribute('name'));
     let inputsData = {};
-    inputNames.forEach((el) => {inputsData[el] = this.form.elements[el].value});
+    inputNames.forEach((el) => { inputsData[el] = this.form.elements[el].value });
     return inputsData;
   }
 
@@ -44,9 +46,12 @@ export class Form {
     this.form.addEventListener('input', () => this.checkInputValidity());
   }
 
+  setServerError(errText) {
+    this.serverErrorElem.textContent = errText;
+  }
+
   resetErrorText() {
-    const errorElems = this.form.querySelectorAll('.popup__error');
-    errorElems.forEach((el) => {
+    this.errorsNodeList.forEach((el) => {
       el.textContent = ' ';
     });
   }

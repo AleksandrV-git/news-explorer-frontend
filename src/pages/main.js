@@ -42,7 +42,7 @@ const saveCardCallback = (cardInstans) => {
     console.log(cardInstans)
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
-        console.log(articleData);
+        //console.log(articleData);
         cardInstans.cardNode.classList.add('article-card_active-saved');
         cardInstans.isSaved = true;
         cardInstans.id = articleData.data._id;
@@ -57,7 +57,7 @@ const saveCardCallback = (cardInstans) => {
     mainApi.removeArticle(cardInstans)
       .then((articleData) => {
         cardInstans.cardNode.classList.remove('article-card_active-saved');
-        console.log(articleData)
+        //console.log(articleData)
         cardInstans.isSaved = false;
         cardInstans.id = null;
         cardInstans.ownerId = null;
@@ -151,12 +151,11 @@ formSignUpNode.addEventListener('submit', (event) => {
       popupSignUp.close();
     })
     .catch((err) => {
-      console.log(err);
-      const formErr = formSignUpNode.querySelector('.popup__form-error')
+      //console.log(err);
       if (err === 409) {
-        formErr.textContent = 'Пользователь с данным e-mail уже зарегистрирован'
+        formSignUp.setServerError('Пользователь с данным e-mail уже зарегистрирован');
       } else {
-        formErr.textContent = 'Произошла ошибка'
+        formSignUp.setServerError('Произошла ошибка');
       }
     })
 });
@@ -170,9 +169,8 @@ formSignInNode.addEventListener('submit', (event) => {
       mainPageRoot.classList.add('root_active-authorized-user');
     })
     .catch((err) => {
-      console.log(err);
-      const formErr = formSignInNode.querySelector('.popup__form-error');
-      formErr.textContent = 'Произошла ошибка'
+      //console.log(err);
+      formSignIn.setServerError('Произошла ошибка');
     })
 });
 
