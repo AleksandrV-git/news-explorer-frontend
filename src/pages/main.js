@@ -10,9 +10,9 @@ import { NewsApi } from '../scripts/newsApi.js';
 import { MainApi } from '../scripts/MainApi.js';
 
 const errorMessages = {
-    valueMissing: 'Это обязательное поле',
-    tooShort: 'Должно быть от 2 до 30 символов',
-    emailPatternMismatch: 'Неправильный формат email'
+  valueMissing: 'Это обязательное поле',
+  tooShort: 'Должно быть от 2 до 30 символов',
+  emailPatternMismatch: 'Неправильный формат email'
 };
 const newsApiOptions = {
   baseUrl: `https://newsapi.org`,
@@ -21,9 +21,10 @@ const newsApiOptions = {
   date: `2020-12-02`
 };
 const mainApiOptions = {
-  baseUrl: `http://localhost:3000`,
+  //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
+  baseUrl: 'http://localhost:3000',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 };
 
@@ -33,12 +34,39 @@ const searchFormNode = document.querySelector('.search-form');
 const formSignUpNode = document.querySelector('#formSignUp');
 const formSignInNode = document.querySelector('#formSignIn');
 
-let searchKeyword = null
+let searchKeyword = null;
 
 // функции
 const saveCardCallback = (cardInstans) => {
-  console.log(cardInstans)
-  //mainApi.createArticle(articleParams);
+  if (!cardInstans.isSaved) {
+    console.log(cardInstans)
+    mainApi.createArticle(cardInstans)
+      .then((articleData) => {
+        console.log(articleData);
+        cardInstans.cardNode.classList.add('article-card_active-saved');
+        cardInstans.isSaved = true;
+        cardInstans.id = articleData.data._id;
+        cardInstans.ownerId = articleData.data.owner;
+        console.log(cardInstans);
+      })
+      .then((res) => {
+        console.log('saved')
+      })
+      .catch((err) => { console.log(err) })
+  } else if (cardInstans.isSaved) {
+    mainApi.removeArticle(cardInstans)
+      .then((articleData) => {
+        cardInstans.cardNode.classList.remove('article-card_active-saved');
+        console.log(articleData)
+        cardInstans.isSaved = false;
+        cardInstans.id = null;
+        cardInstans.ownerId = null;
+      })
+      .then(() => {
+        console.log('deleted')
+      })
+      .catch((err) => { console.log(err) })
+  }
 };
 
 // экземпляры классов
@@ -89,8 +117,8 @@ formSignIn.setEventListeners();
 formSearch.setEventListeners();
 popupSuccessfulSignUp.setEventListeners();
 
-document.querySelector("#popupSignUp .popup__link").addEventListener('click', () => { popupSignUp.close(); popupSignIn.open();});
-document.querySelector("#popupSuccessfulSignUp .popup__link").addEventListener('click', () => { popupSuccessfulSignUp.close(); popupSignIn.open();});
+document.querySelector("#popupSignUp .popup__link").addEventListener('click', () => { popupSignUp.close(); popupSignIn.open(); });
+document.querySelector("#popupSuccessfulSignUp .popup__link").addEventListener('click', () => { popupSuccessfulSignUp.close(); popupSignIn.open(); });
 document.querySelector("#popupSignIn .popup__link").addEventListener('click', () => { popupSignIn.close(); });
 document.querySelector('#button-logout').addEventListener('click', () => {
   mainPageRoot.classList.remove('root_active-authorized-user');
@@ -111,8 +139,9 @@ searchFormNode.addEventListener('submit', (event) => {
   searchKeyword = formSearch.getInfo().search
   newsApi.getNews(searchKeyword)
     .then((foundResults) => {
-      cardList.renderResults(foundResults.articles)})
-    .catch((err) => {console.log(err);})
+      cardList.renderResults(foundResults.articles)
+    })
+    .catch((err) => { console.log(err); })
 });
 formSignUpNode.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -136,7 +165,7 @@ formSignInNode.addEventListener('submit', (event) => {
   mainApi.signin(formSignIn.getInfo())
     .then((res) => {
       const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
-      headerLogoutBtn.textContent = res.data.name;
+      //headerLogoutBtn.textContent = res.data.name;
       popupSignIn.close();
       mainPageRoot.classList.add('root_active-authorized-user');
     })

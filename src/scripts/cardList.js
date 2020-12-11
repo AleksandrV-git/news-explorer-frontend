@@ -21,13 +21,14 @@ export class CardList {
   }
 
   renderResults(arr) {
+    console.log(arr)
     arr.forEach(article => {
       const articleParams = {
         image: article.urlToImage,
         date: article.publishedAt,
-        title: article.title,
-        text: article.content,
-        source: article.source.name,
+        title: article.title.substr(0, 100),
+        text: article.description.substr(0, 200),
+        source: article.source.name.substr(0, 30),
         link: article.url,
       }
       this.addCard(articleParams);

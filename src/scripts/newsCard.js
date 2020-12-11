@@ -8,10 +8,9 @@ export class NewsCard {
     this.text = articleData.text;
     this.source = articleData.source;
     this.keyword = keyword;
-    this.link = articleData.url;
+    this.link = articleData.link;
     this.saveCardCallback = saveCardCallback.bind(this);
     this.isSaved = false;
-    // this.mestoAPI = mestoAPI;
   }
 
   create() {
@@ -30,13 +29,14 @@ export class NewsCard {
 
     const cardNode = card.content.cloneNode(true);
 
+    this.cardNode = cardNode.querySelector('.article-card')
     this.saveButton = cardNode.querySelector('.article-card__icon-save');
 
     return cardNode;
   }
 
   consoleLog = () => {
-    console.log(this.saveCardCallback)
+    console.log()
   }
 
   saveCard = () => {
