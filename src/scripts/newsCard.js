@@ -40,7 +40,7 @@ export class NewsCard {
   }
 
   saveCard = () => {
-    return this.saveCardCallback(this)
+    return this.saveCardCallback(this);
   }
 
   setEventListeners() {

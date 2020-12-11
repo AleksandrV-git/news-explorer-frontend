@@ -28,13 +28,16 @@ const mainApiOptions = {
   }
 };
 
-const mainPageRoot = document.querySelector(".root");
-const menuOpenIcon = document.querySelector('.header__menu-open-icon');
-const searchFormNode = document.querySelector('.search-form');
-const formSignUpNode = document.querySelector('#formSignUp');
-const formSignInNode = document.querySelector('#formSignIn');
+const MAIN_PAGE_ROOT = document.querySelector(".root");
+const MENU_OPEN_ICON = document.querySelector('.header__menu-open-icon');
+const SEARCH_FORM_NODE = document.querySelector('.search-form');
+const FORM_SIGNUP_NODE = document.querySelector('#formSignUp');
+const FORM_SIGNIN_NODE = document.querySelector('#formSignIn');
+const POPUP_SIGNIN_NODE = document.querySelector('#popupSignIn');
+const POPUP_SIGNUP_NODE = document.querySelector('#popupSignUp');
+const POPUP_SUCECCESFULSIGNUP_NODE = document.querySelector('#popupSuccessfulSignUp');
 
-let searchKeyword = null;
+let SEARCH_KEYWORD = null;
 
 // функции
 const saveCardCallback = (cardInstans) => {
@@ -69,34 +72,31 @@ const saveCardCallback = (cardInstans) => {
   }
 };
 
+const popupLinkCallback = (popupInstans) => {
+  if (popupInstans.popup.id === 'popupSignUp') {
+    popupSignUp.close(); popupSignIn.open();
+  }
+  if (popupInstans.popup.id === 'popupSignIn') {
+    popupSignIn.close(); popupSignUp.open();
+  }
+  if (popupInstans.popup.id === 'popupSuccessfulSignUp') {
+    popupSuccessfulSignUp.close(); popupSignIn.open();
+  }
+}
+
 // экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg, searchKeyword, saveCardCallback);
+const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, saveCardCallback);
 const cardList = new CardList(
   document.querySelector('.articles__list'),
   createCard,
 );
 const newsApi = new NewsApi(newsApiOptions);
 const mainApi = new MainApi(mainApiOptions);
-const popupSignUp = new Popup(
-  document.querySelector("#popupSignUp"),
-  document.querySelector(".popup__close"),
-  document.querySelector("#popupSignIn .popup__link"),
-  mainPageRoot
-);
-const popupSignIn = new Popup(
-  document.querySelector("#popupSignIn"),
-  document.querySelector("#popupSignIn .popup__close"),
-  document.querySelector("#button-auth"),
-  mainPageRoot
-);
-const popupSuccessfulSignUp = new Popup(
-  document.querySelector("#popupSuccessfulSignUp"),
-  document.querySelector("#popupSuccessfulSignUp .popup__close"),
-  null,
-  mainPageRoot
-);
+const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
+const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
+const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const formSignUp = new Form(
-  formSignUpNode,
+  FORM_SIGNUP_NODE,
   errorMessages
 );
 const formSignIn = new Form(
@@ -104,10 +104,9 @@ const formSignIn = new Form(
   errorMessages
 );
 const formSearch = new Form(
-  searchFormNode,
+  SEARCH_FORM_NODE,
   errorMessages
 );
-
 
 // установка слушателей
 popupSignUp.setEventListeners();
@@ -117,33 +116,34 @@ formSignIn.setEventListeners();
 formSearch.setEventListeners();
 popupSuccessfulSignUp.setEventListeners();
 
-document.querySelector("#popupSignUp .popup__link").addEventListener('click', () => { popupSignUp.close(); popupSignIn.open(); });
-document.querySelector("#popupSuccessfulSignUp .popup__link").addEventListener('click', () => { popupSuccessfulSignUp.close(); popupSignIn.open(); });
-document.querySelector("#popupSignIn .popup__link").addEventListener('click', () => { popupSignIn.close(); });
-document.querySelector('#button-logout').addEventListener('click', () => {
-  mainPageRoot.classList.remove('root_active-authorized-user');
+document.querySelector("#button-auth").addEventListener('click', () => {
+  popupSignIn.open();
 });
-menuOpenIcon.addEventListener('click', () => {
+
+document.querySelector('#button-logout').addEventListener('click', () => {
+  MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
+});
+MENU_OPEN_ICON.addEventListener('click', () => {
   popupSignIn.close();
   popupSignUp.close();
   popupSuccessfulSignUp.close();
-  menuOpenIcon.classList.toggle('header__menu-open-icon_theme-close-icon');
+  MENU_OPEN_ICON.classList.toggle('header__menu-open-icon_theme-close-icon');
   document.querySelector('#nav-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')
   document.querySelector('.adjustment-layer').classList.toggle('adjustment-layer_active')
 });
-searchFormNode.addEventListener('submit', (event) => {
+SEARCH_FORM_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
   cardList.clear();
   console.log(newsApi.getNews(formSearch.getInfo().search))
-  searchKeyword = formSearch.getInfo().search
-  newsApi.getNews(searchKeyword)
+  SEARCH_KEYWORD = formSearch.getInfo().search
+  newsApi.getNews(SEARCH_KEYWORD)
     .then((foundResults) => {
       cardList.renderResults(foundResults.articles)
     })
     .catch((err) => { console.log(err); })
 });
-formSignUpNode.addEventListener('submit', (event) => {
+FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
   mainApi.signup(formSignUp.getInfo())
     .then(() => {
@@ -159,14 +159,14 @@ formSignUpNode.addEventListener('submit', (event) => {
       }
     })
 });
-formSignInNode.addEventListener('submit', (event) => {
+FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then((res) => {
       const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
       //headerLogoutBtn.textContent = res.data.name;
       popupSignIn.close();
-      mainPageRoot.classList.add('root_active-authorized-user');
+      MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
     })
     .catch((err) => {
       //console.log(err);
