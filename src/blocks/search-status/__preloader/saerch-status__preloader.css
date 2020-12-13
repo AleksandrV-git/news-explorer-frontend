@@ -1,5 +1,5 @@
-.saerch-status__preloader {
-  display: flex;
+.search-status__preloader {
+  display: none;
   height: 282px;
   flex-direction: column;
   align-items: center;

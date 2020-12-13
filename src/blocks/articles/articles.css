@@ -3,7 +3,7 @@
 @import URL(./__button/articles__button_hiden.css);
 
 .articles {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 100%;

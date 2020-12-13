@@ -57,8 +57,8 @@
       </h3>
       <form class="search-form">
         <span id="search-field-error" class="search-form__error"></span>
-        <input id="search-field" type="text" name="search" class="search-form__field"
-          placeholder="Введите тему новости" required minlength="2" maxlength="30">
+        <input id="search-field" type="text" name="search" class="search-form__field" placeholder="Введите тему новости"
+          required minlength="2" maxlength="30">
         <button class="button search-form__button">
           <span class="button__inner">
             <span class="button__inner-text">Искать</span>
@@ -68,7 +68,7 @@
     </section>
 
     <section class="search-status">
-      <div class="saerch-status__preloader">
+      <div class="search-status__preloader">
         <i class="circle-preloader"></i>
         <span class="search-status__message-text">Идет поиск новостей...</span>
       </div>
@@ -81,7 +81,7 @@
     </section>
 
     <section class="articles">
-      <template id="news-card">
+      <template id="news-card" style="display: none;">
         <div class="article-card">
           <img class="article-card__image" src="<%=require('./images/image_08.png')%>" alt="">
           <span class="article-card__icon-save"></span>
@@ -91,11 +91,13 @@
             <p class="article-card__text"></p>
             <p class="article-card__source"></p>
           </div>
+        </div>
       </template>
       <h2 class="section-title root__section">Результаты поиска</h2>
       <div class="articles__list root__section">
         <div class="article-card">
-          <img class="article-card__image" src="<%=require('./images/image_08.png')%>" alt="листья растения с бледно-розовым оттенком, крупным планом">
+          <img class="article-card__image" src="<%=require('./images/image_08.png')%>"
+            alt="листья растения с бледно-розовым оттенком, крупным планом">
           <span class="article-card__icon-save"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
@@ -107,7 +109,8 @@
           </div>
         </div>
         <div class="article-card">
-          <img class="article-card__image" src="<%=require('./images/image_04.png')%>" alt="ветки растения, крупным планом">
+          <img class="article-card__image" src="<%=require('./images/image_04.png')%>"
+            alt="ветки растения, крупным планом">
           <span class="article-card__icon-save"></span>
           <div class="article-card__text-container">
             <p class="article-card__date">2 августа, 2019</p>
@@ -157,10 +160,12 @@
       <nav class="footer__nav-container">
         <ul class="nav-list">
           <li class="nav-list__item footer__nav-list-item"><a class="footer__link" href="/index.html">Главная</a></li>
-          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" target="blank" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a></li>
+          <li class="nav-list__item footer__nav-list-item"><a class="footer__link" target="blank"
+              href="https://praktikum.yandex.ru/">Яндекс.Практикум</a></li>
         </ul>
         <span class="social-icons footer__social-icons">
-          <a class="social-icons__item social-icons__item_github" href="https://github.com/AleksandrV-git/news-explorer-frontend"></a>
+          <a class="social-icons__item social-icons__item_github"
+            href="https://github.com/AleksandrV-git/news-explorer-frontend"></a>
           <a class="social-icons__item social-icons__item_fb" href="https://www.facebook.com/yandex.praktikum/"></a>
         </span>
       </nav>
@@ -194,7 +199,7 @@
           </span>
         </button>
       </form>
-      <span id="popupSignUp-link-signIn" class="popup__text">или&nbsp;<span class="popup__link popup__text">Войти</span></span>
+      <span id="popupSignUp-link" class="popup__text">или&nbsp;<span class="popup__link popup__text">Войти</span></span>
     </div>
   </div>
 
@@ -219,7 +224,8 @@
           </span>
         </button>
       </form>
-      <span id="popupSignIn-link-signUp" class="popup__text">или&nbsp;<span class="popup__link popup__text">Зарегистрироваться</span></span>
+      <span id="popupSignIn-link-signUp" class="popup__text">или&nbsp;<span
+          class="popup__link popup__text">Зарегистрироваться</span></span>
     </div>
   </div>
 

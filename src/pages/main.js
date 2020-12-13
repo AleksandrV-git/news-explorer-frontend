@@ -8,6 +8,7 @@ import { NewsCard } from '../scripts/newsCard.js';
 import { initialCards } from '../scripts/cards.js';
 import { NewsApi } from '../scripts/newsApi.js';
 import { MainApi } from '../scripts/MainApi.js';
+import { SearchStatus } from '../scripts/SearchStatus.js';
 
 const errorMessages = {
   valueMissing: 'Это обязательное поле',
@@ -36,6 +37,9 @@ const FORM_SIGNIN_NODE = document.querySelector('#formSignIn');
 const POPUP_SIGNIN_NODE = document.querySelector('#popupSignIn');
 const POPUP_SIGNUP_NODE = document.querySelector('#popupSignUp');
 const POPUP_SUCECCESFULSIGNUP_NODE = document.querySelector('#popupSuccessfulSignUp');
+const SEARCH_STATUS_NODE = document.querySelector('.search-status');
+const ARTICLES_NODE = document.querySelector('.articles');
+const NEWSCARD_TEMPLATE = document.querySelector('#news-card')
 
 let SEARCH_KEYWORD = null;
 
@@ -85,28 +89,17 @@ const popupLinkCallback = (popupInstans) => {
 }
 
 // экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, saveCardCallback);
-const cardList = new CardList(
-  document.querySelector('.articles__list'),
-  createCard,
-);
+const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCardCallback);
+const cardList = new CardList(ARTICLES_NODE, createCard);
 const newsApi = new NewsApi(newsApiOptions);
 const mainApi = new MainApi(mainApiOptions);
 const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
-const formSignUp = new Form(
-  FORM_SIGNUP_NODE,
-  errorMessages
-);
-const formSignIn = new Form(
-  document.querySelector('#formSignIn'),
-  errorMessages
-);
-const formSearch = new Form(
-  SEARCH_FORM_NODE,
-  errorMessages
-);
+const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
+const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages);
+const formSearch = new Form(SEARCH_FORM_NODE, errorMessages);
+const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 
 // установка слушателей
 popupSignUp.setEventListeners();
@@ -135,10 +128,12 @@ MENU_OPEN_ICON.addEventListener('click', () => {
 SEARCH_FORM_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
   cardList.clear();
+  searchStatus.renderLoader();
   console.log(newsApi.getNews(formSearch.getInfo().search))
   SEARCH_KEYWORD = formSearch.getInfo().search
   newsApi.getNews(SEARCH_KEYWORD)
     .then((foundResults) => {
+      searchStatus.close();
       cardList.renderResults(foundResults.articles)
     })
     .catch((err) => { console.log(err); })

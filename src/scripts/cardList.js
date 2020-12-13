@@ -1,13 +1,13 @@
 export class CardList {
-  constructor(container, callbackNewCard, userInfo) {
-    this.container = container || (() => {});
-    this.callbackNewCard = callbackNewCard || (() => {});
+  constructor(container, newCardCallback, userInfo) {
+    this.container = container;
+    this.grid = container.querySelector(".articles__list");
+    this.newCardCallback = newCardCallback.bind(this) || (() => {});
     this.userInfo = userInfo || (() => {});
   }
 
   addCard(articleParams, cardOwnerId = null) {
-    //const params = image, date, title, text, source
-    const newsCard = this.callbackNewCard(articleParams);
+    const newsCard = this.newCardCallback(articleParams);
     const cardElem = newsCard.create();
     // if (likes.some(user => { return user._id === this.userInfo._id })) {
     //   newsCard.isLiked = true;
@@ -17,7 +17,7 @@ export class CardList {
     //   newsCard.showDeleteButton();
     // }
     newsCard.setEventListeners();
-    this.container.appendChild(cardElem);
+    this.grid.appendChild(cardElem);
   }
 
   renderResults(arr) {
@@ -32,13 +32,21 @@ export class CardList {
         link: article.url,
       }
       this.addCard(articleParams);
-      //this.addCard(item.name, item.link, item._id, item.owner._id, item.likes, );
     });
+    this.container.style.display = 'flex'
+  }
+
+  renderStatus() {
+    return this.statusCallback(this);
+  }
+
+  renderLoader(preloder) {
+    //preloder.style.display = 'block';
   }
 
   clear() {
-    while (this.container.firstChild) {
-      this.container.removeChild(this.container.firstChild);
+    while (this.grid.firstChild) {
+      this.grid.removeChild(this.grid.firstChild);
     }
   }
 }
