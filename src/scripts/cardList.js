@@ -2,8 +2,11 @@ export class CardList {
   constructor(container, newCardCallback, userInfo) {
     this.container = container;
     this.grid = container.querySelector(".articles__list");
+    this.showMoreButton = container.querySelector(".articles__button");
     this.newCardCallback = newCardCallback.bind(this) || (() => {});
     this.userInfo = userInfo || (() => {});
+    this.cardsCount = 0;
+    this.articlesParamsArr = [];
   }
 
   addCard(articleParams, cardOwnerId = null) {
@@ -31,9 +34,22 @@ export class CardList {
         source: article.source.name.substr(0, 30),
         link: article.url,
       }
-      this.addCard(articleParams);
+      this.articlesParamsArr.push(articleParams);
     });
+    this.showMore();
+    this.setHandlers();
     this.container.style.display = 'flex'
+  }
+
+  showMore = () => {
+    const count = this.cardsCount;
+    const arr = this.articlesParamsArr;
+    for (let i = count; i < count + 3; i++) {
+      if (count < arr.length) {
+        this.addCard(arr[i]);
+        this.cardsCount = i;
+      }
+    }
   }
 
   renderStatus() {
@@ -48,5 +64,11 @@ export class CardList {
     while (this.grid.firstChild) {
       this.grid.removeChild(this.grid.firstChild);
     }
+    this.articlesParamsArr = [];
+    this.cardsCount = 0;
+  }
+
+  setHandlers() {
+    this.showMoreButton.addEventListener('click', this.showMore);
   }
 }

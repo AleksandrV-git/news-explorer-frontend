@@ -1,12 +1,12 @@
 import "../pages/main.css";
-import "../images/favicon.svg"
+import "../images/favicon.svg";
 
-import { Popup } from '../scripts/popup.js';
-import { Form } from '../scripts/form.js';
-import { CardList } from '../scripts/cardList.js';
-import { NewsCard } from '../scripts/newsCard.js';
-import { initialCards } from '../scripts/cards.js';
-import { NewsApi } from '../scripts/newsApi.js';
+import { Popup } from '../scripts/Popup.js';
+import { Form } from '../scripts/Form.js';
+import { CardList } from '../scripts/CardList.js';
+import { NewsCard } from '../scripts/NewsCard.js';
+import { initialCards } from '../scripts/Cards.js';
+import { NewsApi } from '../scripts/NewsApi.js';
 import { MainApi } from '../scripts/MainApi.js';
 import { SearchStatus } from '../scripts/SearchStatus.js';
 
