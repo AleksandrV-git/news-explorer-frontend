@@ -1,6 +1,7 @@
 import "../pages/main.css";
 import "../images/favicon.svg";
 
+import { Header } from '../scripts/Header.js';
 import { Popup } from '../scripts/Popup.js';
 import { Form } from '../scripts/Form.js';
 import { CardList } from '../scripts/CardList.js';
@@ -30,7 +31,7 @@ const mainApiOptions = {
 };
 
 const MAIN_PAGE_ROOT = document.querySelector(".root");
-const MENU_OPEN_ICON = document.querySelector('.header__menu-open-icon');
+const HEADER_NODE = document.querySelector(".header");
 const SEARCH_FORM_NODE = document.querySelector('.search-form');
 const FORM_SIGNUP_NODE = document.querySelector('#formSignUp');
 const FORM_SIGNIN_NODE = document.querySelector('#formSignIn');
@@ -39,11 +40,19 @@ const POPUP_SIGNUP_NODE = document.querySelector('#popupSignUp');
 const POPUP_SUCECCESFULSIGNUP_NODE = document.querySelector('#popupSuccessfulSignUp');
 const SEARCH_STATUS_NODE = document.querySelector('.search-status');
 const ARTICLES_NODE = document.querySelector('.articles');
-const NEWSCARD_TEMPLATE = document.querySelector('#news-card')
+const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
+const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 
 let SEARCH_KEYWORD = null;
 
 // функции
+const openHeaderMenu = (headerInstance) => {
+  popupSignIn.close();
+  popupSignUp.close();
+  popupSuccessfulSignUp.close();
+  ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
+}
+
 const saveCardCallback = (cardInstans) => {
   if (!cardInstans.isSaved) {
     console.log(cardInstans)
@@ -100,6 +109,7 @@ const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
 const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages);
 const formSearch = new Form(SEARCH_FORM_NODE, errorMessages);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
+const header = new Header(HEADER_NODE, openHeaderMenu);
 
 // установка слушателей
 popupSignUp.setEventListeners();
@@ -108,6 +118,7 @@ formSignUp.setEventListeners();
 formSignIn.setEventListeners();
 formSearch.setEventListeners();
 popupSuccessfulSignUp.setEventListeners();
+header.setHandlers();
 
 document.querySelector("#button-auth").addEventListener('click', () => {
   popupSignIn.open();
@@ -115,15 +126,6 @@ document.querySelector("#button-auth").addEventListener('click', () => {
 
 document.querySelector('#button-logout').addEventListener('click', () => {
   MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
-});
-MENU_OPEN_ICON.addEventListener('click', () => {
-  popupSignIn.close();
-  popupSignUp.close();
-  popupSuccessfulSignUp.close();
-  MENU_OPEN_ICON.classList.toggle('header__menu-open-icon_theme-close-icon');
-  document.querySelector('#nav-authorized').classList.toggle('header__nav-container_mobile-opened')
-  document.querySelector('#nav-not-authorized').classList.toggle('header__nav-container_mobile-opened')
-  document.querySelector('.adjustment-layer').classList.toggle('adjustment-layer_active')
 });
 SEARCH_FORM_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -160,6 +162,7 @@ FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
     .then((res) => {
       const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
       //headerLogoutBtn.textContent = res.data.name;
+      console.log(res);
       popupSignIn.close();
       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
     })
@@ -170,5 +173,4 @@ FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
 });
 
 console.log()
-
 

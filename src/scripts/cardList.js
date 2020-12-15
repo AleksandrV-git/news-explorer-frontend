@@ -38,16 +38,20 @@ export class CardList {
     });
     this.showMore();
     this.setHandlers();
-    this.container.style.display = 'flex'
+    this.container.style.display = 'flex';
   }
 
   showMore = () => {
     const count = this.cardsCount;
     const arr = this.articlesParamsArr;
+    console.log(count);
+    console.log(arr.length);
     for (let i = count; i < count + 3; i++) {
-      if (count < arr.length) {
+      if (count < arr.length - 3) {
         this.addCard(arr[i]);
         this.cardsCount = i;
+      } else {
+        this.showMoreButton.style.display = 'none';
       }
     }
   }
