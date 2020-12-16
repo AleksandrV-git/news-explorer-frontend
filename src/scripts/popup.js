@@ -1,8 +1,9 @@
 export class Popup {
-  constructor(popupNode, rootPageElement, linkCallBack) {
+  constructor(popupNode, rootPageElement, OpenElement, linkCallBack) {
     this.popup = popupNode;
-    console.log(popupNode)
+    console.log(linkCallBack)
     this.closeEl = popupNode.querySelector(".popup__close");
+    this.openElement = OpenElement || null;
     this.link = popupNode.querySelector(".popup__link");
     this.rootPageElement = rootPageElement || null;
     this.linkCallBack = linkCallBack.bind(this) || (() => { });
@@ -29,5 +30,8 @@ export class Popup {
   setEventListeners(handlersArr = null) {
     this.closeEl.addEventListener('click', this.close);
     this.link.addEventListener('click', this.openLink);
+    if (this.openElement !== null) {
+      this.openElement.addEventListener('click', this.open);;
+    }
   }
 }

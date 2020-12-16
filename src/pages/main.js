@@ -43,6 +43,7 @@ const SEARCH_STATUS_NODE = document.querySelector('.search-status');
 const ARTICLES_NODE = document.querySelector('.articles');
 const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
+const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let SEARCH_KEYWORD = null;
 
@@ -140,9 +141,9 @@ const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEM
 const cardList = new CardList(ARTICLES_NODE, createCard);
 const newsApi = new NewsApi(newsApiOptions);
 const mainApi = new MainApi(mainApiOptions);
-const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
-const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
-const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
+const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkCallback);
+const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, AUTH_BUTTON, popupLinkCallback);
+const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkCallback);
 const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
 const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages, signinSubmit);
 const formSearch = new SearchForm(SEARCH_FORM_NODE, searchSubmit);
@@ -158,9 +159,9 @@ popupSuccessfulSignUp.setEventListeners();
 header.setHandlers();
 formSearch.setHandlers();
 
-document.querySelector("#button-auth").addEventListener('click', () => {
-  popupSignIn.open();
-});
+// document.querySelector("#button-auth").addEventListener('click', () => {
+//   popupSignIn.open();
+// });
 
 document.querySelector('#button-logout').addEventListener('click', () => {
   MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
@@ -181,24 +182,4 @@ FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
       }
     })
 });
-// FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   let user = {};
-//   mainApi.signin(formSignIn.getInfo())
-//     .then(() => {
-//       return mainApi.getUserData().then((res) => { user = res });
-//     })
-//     .then(() => {
-//       user.isLoggedIn = true;
-//       header.render(user);
-//     })
-//     .then (() => {
-//       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
-//       popupSignIn.close();
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       formSignIn.setServerError('Произошла ошибка');
-//     })
-// });
 
