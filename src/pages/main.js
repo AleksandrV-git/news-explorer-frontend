@@ -4,6 +4,7 @@ import "../images/favicon.svg";
 import { Header } from '../scripts/Header.js';
 import { Popup } from '../scripts/Popup.js';
 import { Form } from '../scripts/Form.js';
+import { SearchForm } from '../scripts/SearchForm.js';
 import { CardList } from '../scripts/CardList.js';
 import { NewsCard } from '../scripts/NewsCard.js';
 import { initialCards } from '../scripts/Cards.js';
@@ -97,6 +98,22 @@ const popupLinkCallback = (popupInstans) => {
   }
 }
 
+const searchSubmit = (event) => {
+  event.preventDefault();
+  SEARCH_KEYWORD = formSearch.getInfo();
+  if (!SEARCH_KEYWORD) { return };
+  cardList.clear();
+  searchStatus.renderLoader();
+  console.log(formSearch.getInfo());
+  console.log(newsApi.getNews(formSearch.getInfo()));
+  newsApi.getNews(SEARCH_KEYWORD)
+    .then((foundResults) => {
+      searchStatus.close();
+      cardList.renderResults(foundResults.articles);
+    })
+    .catch((err) => { console.log(err); })
+}
+
 // экземпляры классов
 const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCardCallback);
 const cardList = new CardList(ARTICLES_NODE, createCard);
@@ -107,7 +124,8 @@ const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, popupLinkCallba
 const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
 const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages);
-const formSearch = new Form(SEARCH_FORM_NODE, errorMessages);
+//const formSearch = new Form(SEARCH_FORM_NODE, errorMessages);
+const formSearch = new SearchForm(SEARCH_FORM_NODE, searchSubmit);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu);
 
@@ -116,9 +134,10 @@ popupSignUp.setEventListeners();
 popupSignIn.setEventListeners();
 formSignUp.setEventListeners();
 formSignIn.setEventListeners();
-formSearch.setEventListeners();
+//formSearch.setEventListeners();
 popupSuccessfulSignUp.setEventListeners();
 header.setHandlers();
+formSearch.setHandlers();
 
 document.querySelector("#button-auth").addEventListener('click', () => {
   popupSignIn.open();
@@ -126,19 +145,6 @@ document.querySelector("#button-auth").addEventListener('click', () => {
 
 document.querySelector('#button-logout').addEventListener('click', () => {
   MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
-});
-SEARCH_FORM_NODE.addEventListener('submit', (event) => {
-  event.preventDefault();
-  cardList.clear();
-  searchStatus.renderLoader();
-  console.log(newsApi.getNews(formSearch.getInfo().search))
-  SEARCH_KEYWORD = formSearch.getInfo().search
-  newsApi.getNews(SEARCH_KEYWORD)
-    .then((foundResults) => {
-      searchStatus.close();
-      cardList.renderResults(foundResults.articles)
-    })
-    .catch((err) => { console.log(err); })
 });
 FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
   event.preventDefault();
