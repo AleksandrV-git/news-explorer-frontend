@@ -1,9 +1,10 @@
 export class Form {
-  constructor(formElement, errorMessages) {
+  constructor(formElement, errorMessages, submitCallback) {
     this.form = formElement;
     this.errorMessages = errorMessages;
     this.errorsNodeList = this.form.querySelectorAll('.popup__error');
     this.serverErrorElem = this.form.querySelector('.popup__form-error');
+    this.submitCallback = submitCallback;
   }
 
   checkInputValidity() {
@@ -38,12 +39,13 @@ export class Form {
     return inputsData;
   }
 
-  setEventListeners() {
+  setHandlers() {
     this.btn = this.form.querySelector('button');
     this.btnText = this.btn.textContent;
     this.btnTextSize = this.btn.style.fontSize;
     this.inputs = this.form.querySelectorAll('input');
     this.form.addEventListener('input', () => this.checkInputValidity());
+    this.form.addEventListener('submit', this.submitCallback);
   }
 
   setServerError(errText) {

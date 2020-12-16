@@ -114,6 +114,27 @@ const searchSubmit = (event) => {
     .catch((err) => { console.log(err); })
 }
 
+const signinSubmit = (event) => {
+  event.preventDefault();
+  let user = {};
+  mainApi.signin(formSignIn.getInfo())
+    .then(() => {
+      return mainApi.getUserData().then((res) => { user = res });
+    })
+    .then(() => {
+      user.isLoggedIn = true;
+      header.render(user);
+    })
+    .then (() => {
+      MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
+      popupSignIn.close();
+    })
+    .catch((err) => {
+      console.log(err);
+      formSignIn.setServerError('Произошла ошибка');
+    })
+}
+
 // экземпляры классов
 const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCardCallback);
 const cardList = new CardList(ARTICLES_NODE, createCard);
@@ -123,8 +144,7 @@ const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallba
 const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, popupLinkCallback);
 const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
-const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages);
-//const formSearch = new Form(SEARCH_FORM_NODE, errorMessages);
+const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages, signinSubmit);
 const formSearch = new SearchForm(SEARCH_FORM_NODE, searchSubmit);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu);
@@ -132,9 +152,8 @@ const header = new Header(HEADER_NODE, openHeaderMenu);
 // установка слушателей
 popupSignUp.setEventListeners();
 popupSignIn.setEventListeners();
-formSignUp.setEventListeners();
-formSignIn.setEventListeners();
-//formSearch.setEventListeners();
+formSignUp.setHandlers();
+formSignIn.setHandlers();
 popupSuccessfulSignUp.setEventListeners();
 header.setHandlers();
 formSearch.setHandlers();
@@ -162,21 +181,24 @@ FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
       }
     })
 });
-FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
-  event.preventDefault();
-  mainApi.signin(formSignIn.getInfo())
-    .then((res) => {
-      const headerLogoutBtn = document.querySelector('#button-logout .button__inner-text');
-      //headerLogoutBtn.textContent = res.data.name;
-      console.log(res);
-      popupSignIn.close();
-      MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
-    })
-    .catch((err) => {
-      //console.log(err);
-      formSignIn.setServerError('Произошла ошибка');
-    })
-});
-
-console.log()
+// FORM_SIGNIN_NODE.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   let user = {};
+//   mainApi.signin(formSignIn.getInfo())
+//     .then(() => {
+//       return mainApi.getUserData().then((res) => { user = res });
+//     })
+//     .then(() => {
+//       user.isLoggedIn = true;
+//       header.render(user);
+//     })
+//     .then (() => {
+//       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
+//       popupSignIn.close();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       formSignIn.setServerError('Произошла ошибка');
+//     })
+// });
 
