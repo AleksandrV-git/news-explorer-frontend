@@ -1,29 +1,32 @@
 import "../pages/main.css";
 import "../images/favicon.svg";
+import "../js/constants/selectors.js";
+//import * as selectors from '../js/constants/selectors.js';
+import "../js/constants/options.js";
 
-import { Header } from '../scripts/Header.js';
-import { Popup } from '../scripts/Popup.js';
-import { Form } from '../scripts/Form.js';
-import { SearchForm } from '../scripts/SearchForm.js';
-import { CardList } from '../scripts/CardList.js';
-import { NewsCard } from '../scripts/NewsCard.js';
-import { initialCards } from '../scripts/Cards.js';
-import { NewsApi } from '../scripts/NewsApi.js';
-import { MainApi } from '../scripts/MainApi.js';
-import { SearchStatus } from '../scripts/SearchStatus.js';
+import { Header } from '../js/components/Header.js';
+import { Popup } from '../js/components/Popup.js';
+import { Form } from '../js/components/Form.js';
+import { SearchForm } from '../js/components/SearchForm.js';
+import { CardList } from '../js/components/CardList.js';
+import { NewsCard } from '../js/components/NewsCard.js';
+import { initialCards } from '../js/Cards.js';
+import { NewsApi } from '../js/api/NewsApi.js';
+import { MainApi } from '../js/api/MainApi.js';
+import { SearchStatus } from '../js/components/SearchStatus.js';
 
-const errorMessages = {
+const ERROR_MESSAGES = {
   valueMissing: 'Это обязательное поле',
   tooShort: 'Должно быть от 2 до 30 символов',
   emailPatternMismatch: 'Неправильный формат email'
 };
-const newsApiOptions = {
+const NEWS_API_OPTIONS = {
   baseUrl: `https://newsapi.org`,
   apiKey: `1093de14a32d4381b3b2bf485c9cbf25`,
   sortBy: `popularity`,
   date: `2020-12-02`
 };
-const mainApiOptions = {
+const MAIN_API_OPTIONS = {
   //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
   baseUrl: 'http://localhost:3000',
   headers: {
@@ -45,7 +48,7 @@ const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const AUTH_BUTTON = document.querySelector("#button-auth");
 
-let SEARCH_KEYWORD = null;
+let searchKeyWord = null;
 let user = {};
 
 // функции
@@ -58,15 +61,12 @@ const openHeaderMenu = (headerInstance) => {
 
 const saveCard = (cardInstans) => {
   if (!cardInstans.isSaved && user.isLoggedIn) {
-    console.log(cardInstans)
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
-        //console.log(articleData);
         cardInstans.cardNode.classList.add('article-card_active-saved');
         cardInstans.isSaved = true;
         cardInstans.id = articleData.data._id;
         cardInstans.ownerId = articleData.data.owner;
-        console.log(cardInstans);
       })
       .then((res) => {
         console.log('saved')
@@ -106,13 +106,12 @@ const popupLinkHandler = (popupInstans) => {
 
 const searchHandler = (event) => {
   event.preventDefault();
-  SEARCH_KEYWORD = formSearch.getInfo();
-  if (!SEARCH_KEYWORD) { return };
+  searchKeyWord = formSearch.getInfo();
+  if (!searchKeyWord) { return };
   cardList.clear();
   searchStatus.renderLoader();
   console.log(formSearch.getInfo());
-  console.log(newsApi.getNews(formSearch.getInfo()));
-  newsApi.getNews(SEARCH_KEYWORD)
+  newsApi.getNews(searchKeyWord)
     .then((foundResults) => {
       searchStatus.close();
       cardList.renderResults(foundResults.articles);
@@ -124,7 +123,7 @@ const signinHandler = (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
-      return mainApi.getUserData().then((res) => { user = res });
+      return mainApi.getUserData().then((res) => { user = res }).catch((err) => {console.log(err)});
     })
     .then(() => {
       user.isLoggedIn = true;
@@ -153,7 +152,7 @@ const signupHandler = (event) => {
       popupSignUp.close();
     })
     .catch((err) => {
-      //console.log(err);
+      console.log(err);
       if (err === 409) {
         formSignUp.setServerError('Пользователь с данным e-mail уже зарегистрирован');
       } else {
@@ -163,15 +162,15 @@ const signupHandler = (event) => {
 }
 
 // экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCard);
+const createCard = (...arg) => new NewsCard(...arg, searchKeyWord, NEWSCARD_TEMPLATE, saveCard);
 const cardList = new CardList(ARTICLES_NODE, createCard);
-const newsApi = new NewsApi(newsApiOptions);
-const mainApi = new MainApi(mainApiOptions);
+const newsApi = new NewsApi(NEWS_API_OPTIONS);
+const mainApi = new MainApi(MAIN_API_OPTIONS);
 const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkHandler);
 const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, AUTH_BUTTON, popupLinkHandler);
 const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkHandler);
-const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages, signupHandler);
-const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages, signinHandler);
+const formSignUp = new Form(FORM_SIGNUP_NODE, ERROR_MESSAGES, signupHandler);
+const formSignIn = new Form(FORM_SIGNIN_NODE, ERROR_MESSAGES, signinHandler);
 const formSearch = new SearchForm(SEARCH_FORM_NODE, searchHandler);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
