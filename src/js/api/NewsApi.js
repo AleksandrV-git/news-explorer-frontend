@@ -6,13 +6,13 @@ export class NewsApi {
     this.date = options.date;
   }
 
-  getNews = (searchWord) => {
-    console.log()
+  getNews = (searchWord, date) => {
+    console.log(this.date)
     return fetch(
       this.baseUrl +
       `/v2/everything?` +
       `q=${searchWord}&` +
-      `from=${this.date}&` +
+      `from=${date}&` +
       `sortBy=${this.sortBy}&` +
       `apiKey=${this.apiKey}`
       )

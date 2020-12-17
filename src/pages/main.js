@@ -24,7 +24,7 @@ const NEWS_API_OPTIONS = {
   baseUrl: `https://newsapi.org`,
   apiKey: `1093de14a32d4381b3b2bf485c9cbf25`,
   sortBy: `popularity`,
-  date: `2020-12-02`
+  date: ``
 };
 const MAIN_API_OPTIONS = {
   //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
@@ -50,6 +50,13 @@ const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let searchKeyWord = null;
 let user = {};
+
+const getDateToSearch = () => {
+  const date = new Date();
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 7}`;
+}
+
+console.log(NEWS_API_OPTIONS.date);
 
 // функции
 const openHeaderMenu = (headerInstance) => {
@@ -110,20 +117,24 @@ const searchHandler = (event) => {
   if (!searchKeyWord) { return };
   cardList.clear();
   searchStatus.renderLoader();
-  console.log(formSearch.getInfo());
-  newsApi.getNews(searchKeyWord)
+  newsApi.getNews(searchKeyWord, getDateToSearch())
     .then((foundResults) => {
       searchStatus.close();
-      cardList.renderResults(foundResults.articles);
+      console.log(foundResults)
+      if (foundResults.articles.length === 0) {
+        searchStatus.renderStatusNotFond();
+      } else {
+        cardList.renderResults(foundResults.articles);
+      }
     })
-    .catch((err) => { console.log(err); })
+    .catch((err) => { searchStatus.renderErr(); console.log(err); })
 }
 
 const signinHandler = (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
-      return mainApi.getUserData().then((res) => { user = res }).catch((err) => {console.log(err)});
+      return mainApi.getUserData().then((res) => { user = res }).catch((err) => { console.log(err) });
     })
     .then(() => {
       user.isLoggedIn = true;
