@@ -46,6 +46,7 @@ const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let SEARCH_KEYWORD = null;
+let user = {};
 
 // функции
 const openHeaderMenu = (headerInstance) => {
@@ -55,8 +56,8 @@ const openHeaderMenu = (headerInstance) => {
   ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
 }
 
-const saveCardCallback = (cardInstans) => {
-  if (!cardInstans.isSaved) {
+const saveCard = (cardInstans) => {
+  if (!cardInstans.isSaved && user.isLoggedIn) {
     console.log(cardInstans)
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
@@ -71,7 +72,11 @@ const saveCardCallback = (cardInstans) => {
         console.log('saved')
       })
       .catch((err) => { console.log(err) })
-  } else if (cardInstans.isSaved) {
+  } else { deleteCard(cardInstans) }
+};
+
+const deleteCard = (cardInstans) => {
+  if (cardInstans.isSaved && user.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
       .then((articleData) => {
         cardInstans.cardNode.classList.remove('article-card_active-saved');
@@ -85,9 +90,9 @@ const saveCardCallback = (cardInstans) => {
       })
       .catch((err) => { console.log(err) })
   }
-};
+}
 
-const popupLinkCallback = (popupInstans) => {
+const popupLinkHandler = (popupInstans) => {
   if (popupInstans.popup.id === 'popupSignUp') {
     popupSignUp.close(); popupSignIn.open();
   }
@@ -99,7 +104,7 @@ const popupLinkCallback = (popupInstans) => {
   }
 }
 
-const searchSubmit = (event) => {
+const searchHandler = (event) => {
   event.preventDefault();
   SEARCH_KEYWORD = formSearch.getInfo();
   if (!SEARCH_KEYWORD) { return };
@@ -115,9 +120,8 @@ const searchSubmit = (event) => {
     .catch((err) => { console.log(err); })
 }
 
-const signinSubmit = (event) => {
+const signinHandler = (event) => {
   event.preventDefault();
-  let user = {};
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
       return mainApi.getUserData().then((res) => { user = res });
@@ -126,7 +130,7 @@ const signinSubmit = (event) => {
       user.isLoggedIn = true;
       header.render(user);
     })
-    .then (() => {
+    .then(() => {
       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
       popupSignIn.close();
     })
@@ -136,37 +140,12 @@ const signinSubmit = (event) => {
     })
 }
 
-// экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCardCallback);
-const cardList = new CardList(ARTICLES_NODE, createCard);
-const newsApi = new NewsApi(newsApiOptions);
-const mainApi = new MainApi(mainApiOptions);
-const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkCallback);
-const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, AUTH_BUTTON, popupLinkCallback);
-const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkCallback);
-const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages);
-const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages, signinSubmit);
-const formSearch = new SearchForm(SEARCH_FORM_NODE, searchSubmit);
-const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
-const header = new Header(HEADER_NODE, openHeaderMenu);
-
-// установка слушателей
-popupSignUp.setEventListeners();
-popupSignIn.setEventListeners();
-formSignUp.setHandlers();
-formSignIn.setHandlers();
-popupSuccessfulSignUp.setEventListeners();
-header.setHandlers();
-formSearch.setHandlers();
-
-// document.querySelector("#button-auth").addEventListener('click', () => {
-//   popupSignIn.open();
-// });
-
-document.querySelector('#button-logout').addEventListener('click', () => {
+const logoutHandler = () => {
+  user.isLoggedIn = false;
   MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
-});
-FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
+}
+
+const signupHandler = (event) => {
   event.preventDefault();
   mainApi.signup(formSignUp.getInfo())
     .then(() => {
@@ -181,5 +160,29 @@ FORM_SIGNUP_NODE.addEventListener('submit', (event) => {
         formSignUp.setServerError('Произошла ошибка');
       }
     })
-});
+}
+
+// экземпляры классов
+const createCard = (...arg) => new NewsCard(...arg, SEARCH_KEYWORD, NEWSCARD_TEMPLATE, saveCard);
+const cardList = new CardList(ARTICLES_NODE, createCard);
+const newsApi = new NewsApi(newsApiOptions);
+const mainApi = new MainApi(mainApiOptions);
+const popupSignUp = new Popup(POPUP_SIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkHandler);
+const popupSignIn = new Popup(POPUP_SIGNIN_NODE, MAIN_PAGE_ROOT, AUTH_BUTTON, popupLinkHandler);
+const popupSuccessfulSignUp = new Popup(POPUP_SUCECCESFULSIGNUP_NODE, MAIN_PAGE_ROOT, null, popupLinkHandler);
+const formSignUp = new Form(FORM_SIGNUP_NODE, errorMessages, signupHandler);
+const formSignIn = new Form(FORM_SIGNIN_NODE, errorMessages, signinHandler);
+const formSearch = new SearchForm(SEARCH_FORM_NODE, searchHandler);
+const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
+const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
+
+// установка слушателей
+popupSignUp.setHandlers();
+popupSignIn.setHandlers();
+formSignUp.setHandlers();
+formSignIn.setHandlers();
+popupSuccessfulSignUp.setHandlers();
+header.setHandlers();
+formSearch.setHandlers();
+
 

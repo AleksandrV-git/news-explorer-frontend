@@ -19,7 +19,7 @@ export class CardList {
     // if (cardOwnerId === this.userInfo._id) {
     //   newsCard.showDeleteButton();
     // }
-    newsCard.setEventListeners();
+    newsCard.setHandlers();
     this.grid.appendChild(cardElem);
   }
 

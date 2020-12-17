@@ -41,76 +41,17 @@ export class NewsCard {
     console.log()
   }
 
-  saveCard = () => {
+  saveCard = (event) => {
+    event.stopPropagation();
     return this.saveCardCallback(this);
   }
 
-  setEventListeners() {
-    this.saveButton.addEventListener('click', this.saveCard);
+  openLink = () => {
+    window.open(this.link);
   }
-  // setEventListeners() {
-  //   this
-  //     .likeButtonElem
-  //     .addEventListener('click', this.like);
 
-  //   this
-  //     .deleteButtonElem
-  //     .addEventListener('click', this.deleteCard);
-
-  //   this
-  //     .imageElem
-  //     .addEventListener('click', this.cardImgZoom);
-  // }
-
-  // deleteCard = (event) => {
-  //   event.stopPropagation();
-  //   this.mestoAPI.deleteCard(this.id)
-
-  //     .then(() => {
-  //       this.removeCard()
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-
-  // }
-
-  // like = () => {
-  //   if (this.isLiked === true) {
-  //     this.likeCounterElem.textContent = `${+this.likeCounterElem.textContent - 1}`
-  //     this.isLiked = false;
-  //     this.likeRemoveRender();
-  //     this.mestoAPI.likeCardRemove(this.id)
-  //       .catch((err) => {
-  //         console.log(`Ошибка: ${err}`);
-  //       });
-  //   } else {
-  //     this.likeCounterElem.textContent = `${+this.likeCounterElem.textContent + 1}`
-  //     this.isLiked = true;
-  //     this.likeAddRender();
-  //     this.mestoAPI.likeCard(this.id)
-  //       .catch((err) => {
-  //         console.log(`Ошибка: ${err}`);
-  //       });
-  //   }
-
-  // }
-
-  // likeAddRender = () => {
-  //   this.likeButtonElem.classList.add('place-card__like-icon_liked');
-  // }
-  // likeRemoveRender = () => {
-  //   this.likeButtonElem.classList.remove('place-card__like-icon_liked');
-  // }
-
-  // showDeleteButton() {
-  //   this.deleteButtonElem.style.display = "block";
-  // }
-
-  // removeCard = () => {
-  //   this.imageElem.removeEventListener('click', this.cardImgZoom)
-  //   this.likeButtonElem.removeEventListener('click', this.likeHandler)
-  //   this.cardElem.remove()
-  //   this.deleteButtonElem.removeEventListener('click', this.removeCard)
-  // };
+  setHandlers() {
+    this.saveButton.addEventListener('click', this.saveCard);
+    this.cardNode.addEventListener('click', this.openLink);
+  }
 }

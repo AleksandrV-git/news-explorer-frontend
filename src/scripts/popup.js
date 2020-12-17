@@ -27,7 +27,7 @@ export class Popup {
     return this.linkCallBack(this);
   }
 
-  setEventListeners(handlersArr = null) {
+  setHandlers() {
     this.closeEl.addEventListener('click', this.close);
     this.link.addEventListener('click', this.openLink);
     if (this.openElement !== null) {
