@@ -48,7 +48,6 @@ const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let searchKeyWord = null;
-//let user = {};
 
 const getDateToSearch = () => {
   const date = new Date();
@@ -147,7 +146,7 @@ const signinHandler = (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
-      return mainApi.getUserData().then((res) => { user.setInfo(res) }).catch((err) => { console.log(err) });
+      return mainApi.getUserData().then((res) => { user.setInfo(res.data) }).catch((err) => { console.log(err) });
     })
     .then(() => {
       header.render(user.getInfo());

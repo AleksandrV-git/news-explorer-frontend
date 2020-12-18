@@ -1,5 +1,6 @@
 import "../pages/saved-articles.css";
 
+import { User } from '../js/components/User.js';
 import { Header } from '../js/components/Header.js';
 import { CardList } from '../js/components/CardList.js';
 import { NewsCard } from '../js/components/NewsCard.js';
@@ -20,13 +21,6 @@ const ARTICLES_NODE = document.querySelector('.articles');
 const SEARCH_STATUS_NODE = document.querySelector('.search-status');
 const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
-
-let user = {};
-
-window.onload = openSavedArticles;
-
-
-
 
 const openHeaderMenu = (headerInstance) => {
   ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
@@ -59,10 +53,11 @@ const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
+const user = new User();
 console.log(cardList)
 
 const openSavedArticles = () => {
-  console.log(cardList)
+  header.render(user.getInfo())
   cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()

@@ -10,17 +10,18 @@ export class Header {
   }
 
   render(props) {
-    if (props.isLoggedIn) {
-      console.log(props)
+    if (props && props.isLoggedIn) {
       this.UserIsLoggedIn = true;
-      this.logoutBtn.textContent = props.data.name;
+      this.logoutBtn.textContent = props.name;
     }
   }
 
   openNavMenu = () => {
     this.menuOpenIcon.classList.toggle('header__menu-open-icon_theme-close-icon');
     this.navAuthorized.classList.toggle('header__nav-container_mobile-opened');
-    this.navNotAuthorized.classList.toggle('header__nav-container_mobile-opened');
+    if (this.navNotAuthorized) {
+      this.navNotAuthorized.classList.toggle('header__nav-container_mobile-opened');
+    }
     return this.openIconCallback(this);
   }
 
