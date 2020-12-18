@@ -2,6 +2,7 @@ import "../pages/main.css";
 import "../images/favicon.svg";
 //import * as selectors from '../js/constants/selectors.js';
 
+import { User } from '../js/components/User.js';
 import { Header } from '../js/components/Header.js';
 import { Popup } from '../js/components/Popup.js';
 import { Form } from '../js/components/Form.js';
@@ -47,7 +48,7 @@ const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let searchKeyWord = null;
-let user = {};
+//let user = {};
 
 const getDateToSearch = () => {
   const date = new Date();
@@ -146,11 +147,10 @@ const signinHandler = (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
-      return mainApi.getUserData().then((res) => { user = res }).catch((err) => { console.log(err) });
+      return mainApi.getUserData().then((res) => { user.setInfo(res) }).catch((err) => { console.log(err) });
     })
     .then(() => {
-      user.isLoggedIn = true;
-      header.render(user);
+      header.render(user.getInfo());
     })
     .then(() => {
       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
@@ -163,7 +163,7 @@ const signinHandler = (event) => {
 }
 
 const logoutHandler = () => {
-  user.isLoggedIn = false;
+  user.removeInfo();
   MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');
 }
 
@@ -197,6 +197,7 @@ const formSignIn = new Form(FORM_SIGNIN_NODE, ERROR_MESSAGES, signinHandler);
 const formSearch = new SearchForm(SEARCH_FORM_NODE, searchHandler);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
+const user = new User();
 
 // установка слушателей
 popupSignUp.setHandlers();
