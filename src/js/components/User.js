@@ -9,7 +9,6 @@ export class User {
   }
 
   getInfo = () => {
-    //const user = localStorage.user
     const user = JSON.parse(localStorage.user);
     return user;
   }

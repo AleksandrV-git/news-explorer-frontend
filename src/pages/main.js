@@ -9,7 +9,6 @@ import { Form } from '../js/components/Form.js';
 import { SearchForm } from '../js/components/SearchForm.js';
 import { CardList } from '../js/components/CardList.js';
 import { NewsCard } from '../js/components/NewsCard.js';
-import { initialCards } from '../js/Cards.js';
 import { NewsApi } from '../js/api/NewsApi.js';
 import { MainApi } from '../js/api/MainApi.js';
 import { SearchStatus } from '../js/components/SearchStatus.js';
@@ -55,7 +54,7 @@ const getDateToSearch = () => {
 }
 
 const newsApiDataHandler = (articlesArr) => {
-  let articlesParamsArr = {};
+  let articlesParamsArr = [];
   articlesArr.forEach(article => {
     const articleParams = {
       image: article.urlToImage,
@@ -79,12 +78,13 @@ const openHeaderMenu = (headerInstance) => {
 }
 
 const saveCard = (cardInstans) => {
-  if (!cardInstans.isSaved && user.isLoggedIn) {
+  if (!cardInstans.isSaved && user.getInfo().isLoggedIn) {
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
         cardInstans.cardNode.classList.add('article-card_active-saved');
         cardInstans.isSaved = true;
         cardInstans.id = articleData.data._id;
+        console.log(cardInstans.id)
         cardInstans.ownerId = articleData.data.owner;
       })
       .then((res) => {
@@ -205,8 +205,6 @@ window.onload = function() {
     MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
   }
 };
-
-//window.onload = header.render(user.getInfo());
 
 // установка слушателей
 popupSignUp.setHandlers();

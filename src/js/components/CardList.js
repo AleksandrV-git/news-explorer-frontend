@@ -11,31 +11,11 @@ export class CardList {
   addCard(articleParams) {
     const newsCard = this.newCardCallback(articleParams);
     const cardElem = newsCard.create();
-    // if (likes.some(user => { return user._id === this.userInfo._id })) {
-    //   newsCard.isLiked = true;
-    //   newsCard.likeAddRender();
-    // }
-    // if (cardOwnerId === this.userInfo._id) {
-    //   newsCard.showDeleteButton();
-    // }
-    console.log(this.grid)
     newsCard.setHandlers();
     this.grid.appendChild(cardElem);
   }
 
   renderResults(arr) {
-    console.log(arr)
-    // arr.forEach(article => {
-    //   const articleParams = {
-    //     image: article.urlToImage,
-    //     date: article.publishedAt,
-    //     title: article.title.substr(0, 100),
-    //     text: article.description.substr(0, 200),
-    //     source: article.source.name.substr(0, 30),
-    //     link: article.url,
-    //   }
-    //   this.articlesParamsArr.push(articleParams);
-    // });
     this.articlesParamsArr = arr;
     this.showMore();
     this.setHandlers();
@@ -45,8 +25,6 @@ export class CardList {
   showMore = () => {
     const count = this.cardsCount;
     const arr = this.articlesParamsArr;
-    console.log(count);
-    console.log(arr.length);
     for (let i = count; i < arr.length; i++) {
       if (this.cardsCount < count + 3) {
         this.addCard(arr[i]);
@@ -62,11 +40,13 @@ export class CardList {
   }
 
   clear() {
-    while (this.grid.firstChild) {
-      this.grid.removeChild(this.grid.firstChild);
+    if (this.grid.firstChild) {
+      while (this.grid.firstChild) {
+        this.grid.removeChild(this.grid.firstChild);
+      }
+      this.articlesParamsArr = [];
+      this.cardsCount = 0;
     }
-    this.articlesParamsArr = [];
-    this.cardsCount = 0;
   }
 
   setHandlers() {

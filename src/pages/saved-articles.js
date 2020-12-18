@@ -24,19 +24,18 @@ const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const PAGE_DESCRIPTION_NODE = document.querySelector('.page-desription');
 
-const openHeaderMenu = (headerInstance) => {
+const openHeaderMenu = () => {
   ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
 }
 
 const deleteCard = (cardInstans) => {
-  if (cardInstans.isSaved && user.isLoggedIn) {
+  if (user.getInfo().isLoggedIn) {
     mainApi.removeArticle(cardInstans)
-      .then((articleData) => {
-        cardInstans.cardNode.classList.remove('article-card_active-saved');
-        //console.log(articleData)
-        cardInstans.isSaved = false;
-        cardInstans.id = null;
-        cardInstans.ownerId = null;
+      .then((res) => {
+        console.log(cardInstans.id)
+        cardInstans.removeHandlers();
+        cardInstans.cardNode.remove();
+        cardInstans = null;
       })
       .then(() => {
         console.log('deleted')
@@ -51,7 +50,7 @@ const logoutHandler = () => {
 
 // экземпляры классов
 console.log(ARTICLES_NODE)
-const createCard = (...arg) => new SavedNewsCard(...arg, null, NEWSCARD_TEMPLATE, deleteCard);
+const createCard = (...arg) => new SavedNewsCard(...arg, NEWSCARD_TEMPLATE, deleteCard);
 const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
@@ -66,17 +65,15 @@ const getKeyWords = (arr) => {
 
 const openSavedArticles = () => {
   header.render(user.getInfo());
-  //cardList.clear();
+  cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
     .then((foundResults) => {
       searchStatus.close();
-      console.log(foundResults)
       const data = foundResults.data;
       if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        console.log(getKeyWords(data));
         savedArticlesr.setTitle(user.getInfo().name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
         cardList.renderResults(data);

@@ -10,7 +10,7 @@ export class NewsCard {
     this.source = articleData.source;
     this.keyword = keyword;
     this.link = articleData.link;
-    this.saveCardCallback = saveCardCallback.bind(this);
+    this.saveCardCallback = saveCardCallback.bind(this) || (() => {});
     this.isSaved = false;
   }
 
@@ -35,10 +35,6 @@ export class NewsCard {
     this.saveButton = cardNode.querySelector('.article-card__icon-save');
 
     return cardNode;
-  }
-
-  consoleLog = () => {
-    console.log()
   }
 
   saveCard = (event) => {

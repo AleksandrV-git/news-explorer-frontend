@@ -1,15 +1,21 @@
-import { NewsCard } from './NewsCard.js';
-
-export class SavedNewsCard extends NewsCard {
-  constructor(articleData, keyword, template, saveCardCallback, deleteCallback) {
-    super(articleData, keyword, template, saveCardCallback)
-    this.deleteCallback = deleteCallback || (() => {});
+export class SavedNewsCard {
+  constructor(articleData, template, deleteCallback) {
+    this.template = template;
+    this.image = articleData.image;
+    this.date = articleData.date;
+    this.title = articleData.title;
+    this.text = articleData.text;
+    this.source = articleData.source;
     this.keyword = articleData.keyword;
+    this.link = articleData.link;
+    this.ownerId = articleData.owner;
+    this.id = articleData._id;
+    this.deleteCallback = deleteCallback.bind(this) || (() => {});
+    this.isSaved = true;
   }
 
    create() {
     const card = this.template;
-    console.log(card)
     const image = card.content.querySelector('.article-card__image');
     const date = card.content.querySelector('.article-card__date');
     const title = card.content.querySelector('.article-card__title');
@@ -32,6 +38,10 @@ export class SavedNewsCard extends NewsCard {
     return cardNode;
   }
 
+  openLink = () => {
+    window.open(this.link);
+  }
+
   deleteCard = (event) => {
     event.stopPropagation();
     return this.deleteCallback(this);
@@ -40,5 +50,10 @@ export class SavedNewsCard extends NewsCard {
   setHandlers() {
     this.deleteButton.addEventListener('click', this.deleteCard);
     this.cardNode.addEventListener('click', this.openLink);
+  }
+
+  removeHandlers() {
+    this.deleteButton.removeEventListener('click', this.deleteCard);
+    this.cardNode.removeEventListener('click', this.openLink);
   }
 }
