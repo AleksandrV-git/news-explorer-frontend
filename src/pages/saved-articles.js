@@ -6,6 +6,7 @@ import { CardList } from '../js/components/CardList.js';
 import { SavedNewsCard } from '../js/components/SavedNewsCard.js';
 import { MainApi } from '../js/api/MainApi.js';
 import { SearchStatus } from '../js/components/SearchStatus.js';
+import { SavedArticles } from '../js/components/SavedArticles.js';
 
 const MAIN_API_OPTIONS = {
   //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
@@ -21,6 +22,7 @@ const ARTICLES_NODE = document.querySelector('.articles');
 const SEARCH_STATUS_NODE = document.querySelector('.search-status');
 const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
+const PAGE_DESCRIPTION_NODE = document.querySelector('.page-desription');
 
 const openHeaderMenu = (headerInstance) => {
   ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
@@ -54,21 +56,30 @@ const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
+const savedArticlesr = new SavedArticles(PAGE_DESCRIPTION_NODE);
 const user = new User();
 
+const getKeyWords = (arr) => {
+  const keyWords = arr.map((article) => {return article.keyword});
+  return keyWords;
+}
 
 const openSavedArticles = () => {
-  header.render(user.getInfo())
+  header.render(user.getInfo());
   //cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
     .then((foundResults) => {
       searchStatus.close();
       console.log(foundResults)
-      if (foundResults.data.length === 0) {
+      const data = foundResults.data;
+      if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        cardList.renderResults(foundResults.data);
+        console.log(getKeyWords(data));
+        savedArticlesr.setTitle(user.getInfo().name, data.length);
+        savedArticlesr.setKeyWords(getKeyWords(data));
+        cardList.renderResults(data);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })

@@ -198,6 +198,16 @@ const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const user = new User();
 
+window.onload = function() {
+  const userInfo = user.getInfo()
+  if (userInfo.isLoggedIn) {
+    header.render(userInfo);
+    MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
+  }
+};
+
+//window.onload = header.render(user.getInfo());
+
 // установка слушателей
 popupSignUp.setHandlers();
 popupSignIn.setHandlers();
