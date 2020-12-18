@@ -1,10 +1,9 @@
 export class CardList {
-  constructor(container, newCardCallback, userInfo) {
+  constructor(container, newCardCallback) {
     this.container = container;
     this.grid = container.querySelector(".articles__list");
     this.showMoreButton = container.querySelector(".articles__button");
     this.newCardCallback = newCardCallback.bind(this) || (() => { });
-    this.userInfo = userInfo || (() => { });
     this.cardsCount = 0;
     this.articlesParamsArr = [];
   }
@@ -19,6 +18,7 @@ export class CardList {
     // if (cardOwnerId === this.userInfo._id) {
     //   newsCard.showDeleteButton();
     // }
+    console.log(this.grid)
     newsCard.setHandlers();
     this.grid.appendChild(cardElem);
   }

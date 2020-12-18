@@ -3,7 +3,7 @@ import "../pages/saved-articles.css";
 import { User } from '../js/components/User.js';
 import { Header } from '../js/components/Header.js';
 import { CardList } from '../js/components/CardList.js';
-import { NewsCard } from '../js/components/NewsCard.js';
+import { SavedNewsCard } from '../js/components/SavedNewsCard.js';
 import { MainApi } from '../js/api/MainApi.js';
 import { SearchStatus } from '../js/components/SearchStatus.js';
 
@@ -48,17 +48,18 @@ const logoutHandler = () => {
 }
 
 // экземпляры классов
-const createCard = (...arg) => new NewsCard(...arg, '12', NEWSCARD_TEMPLATE, deleteCard);
+console.log(ARTICLES_NODE)
+const createCard = (...arg) => new SavedNewsCard(...arg, null, NEWSCARD_TEMPLATE, deleteCard);
 const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const user = new User();
-console.log(cardList)
+
 
 const openSavedArticles = () => {
   header.render(user.getInfo())
-  cardList.clear();
+  //cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
     .then((foundResults) => {
