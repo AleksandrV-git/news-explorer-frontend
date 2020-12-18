@@ -1,8 +1,6 @@
 import "../pages/main.css";
 import "../images/favicon.svg";
-import "../js/constants/selectors.js";
 //import * as selectors from '../js/constants/selectors.js';
-import "../js/constants/options.js";
 
 import { Header } from '../js/components/Header.js';
 import { Popup } from '../js/components/Popup.js';
@@ -56,7 +54,21 @@ const getDateToSearch = () => {
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 7}`;
 }
 
-console.log(NEWS_API_OPTIONS.date);
+const newsApiDataHandler = (articlesArr) => {
+  let articlesParamsArr = {};
+  articlesArr.forEach(article => {
+    const articleParams = {
+      image: article.urlToImage,
+      date: article.publishedAt,
+      title: article.title.substr(0, 100),
+      text: article.description.substr(0, 200),
+      source: article.source.name.substr(0, 30),
+      link: article.url,
+    }
+    articlesParamsArr.push(articleParams);
+  });
+  return articlesParamsArr;
+}
 
 // функции
 const openHeaderMenu = (headerInstance) => {
@@ -124,7 +136,7 @@ const searchHandler = (event) => {
       if (foundResults.articles.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        cardList.renderResults(foundResults.articles);
+        cardList.renderResults(newsApiDataHandler(foundResults.articles));
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })

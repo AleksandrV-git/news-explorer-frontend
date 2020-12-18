@@ -3,13 +3,13 @@ export class CardList {
     this.container = container;
     this.grid = container.querySelector(".articles__list");
     this.showMoreButton = container.querySelector(".articles__button");
-    this.newCardCallback = newCardCallback.bind(this) || (() => {});
-    this.userInfo = userInfo || (() => {});
+    this.newCardCallback = newCardCallback.bind(this) || (() => { });
+    this.userInfo = userInfo || (() => { });
     this.cardsCount = 0;
     this.articlesParamsArr = [];
   }
 
-  addCard(articleParams, cardOwnerId = null) {
+  addCard(articleParams) {
     const newsCard = this.newCardCallback(articleParams);
     const cardElem = newsCard.create();
     // if (likes.some(user => { return user._id === this.userInfo._id })) {
@@ -25,17 +25,18 @@ export class CardList {
 
   renderResults(arr) {
     console.log(arr)
-    arr.forEach(article => {
-      const articleParams = {
-        image: article.urlToImage,
-        date: article.publishedAt,
-        title: article.title.substr(0, 100),
-        text: article.description.substr(0, 200),
-        source: article.source.name.substr(0, 30),
-        link: article.url,
-      }
-      this.articlesParamsArr.push(articleParams);
-    });
+    // arr.forEach(article => {
+    //   const articleParams = {
+    //     image: article.urlToImage,
+    //     date: article.publishedAt,
+    //     title: article.title.substr(0, 100),
+    //     text: article.description.substr(0, 200),
+    //     source: article.source.name.substr(0, 30),
+    //     link: article.url,
+    //   }
+    //   this.articlesParamsArr.push(articleParams);
+    // });
+    this.articlesParamsArr = arr;
     this.showMore();
     this.setHandlers();
     this.container.style.display = 'flex';
@@ -46,22 +47,18 @@ export class CardList {
     const arr = this.articlesParamsArr;
     console.log(count);
     console.log(arr.length);
-    for (let i = count; i < count + 3; i++) {
-      if (count < arr.length - 3) {
+    for (let i = count; i < arr.length; i++) {
+      if (this.cardsCount < count + 3) {
         this.addCard(arr[i]);
         this.cardsCount = i;
-      } else {
+      } else if (count >= arr.length - 3) {
         this.showMoreButton.style.display = 'none';
-      }
+      } else { return }
     }
   }
 
   renderStatus() {
     return this.statusCallback(this);
-  }
-
-  renderLoader(preloder) {
-    //preloder.style.display = 'block';
   }
 
   clear() {

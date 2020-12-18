@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' newsapi.org localhost:3000 https://www.news-v.api.students.nomoreparties.co; img-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'">
   <meta name="description" content="Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.">
   <meta name="author" content="Aleksandr">
   <title>NewsExplorer</title>
@@ -46,7 +47,32 @@
       </div>
     </section>
 
+    <section class="search-status">
+      <div class="search-status__preloader">
+        <i class="circle-preloader"></i>
+        <span class="search-status__message-text">Идет поиск новостей...</span>
+      </div>
+      <div class="search-status__message">
+        <span class="search-status__message-icon"></span>
+        <span class="search-status__message-title">Ничего не найдено</span>
+        <p id="err-message" class="search-status__message-text">К сожалению по вашему запросу
+          ничего не найдено.</p>
+      </div>
+    </section>
+
     <section class="articles articles_page-saved-articles">
+      <template id="news-card" style="display: none;">
+        <div class="article-card">
+          <img class="article-card__image" src="<%=require('./images/image_08.png')%>" alt="">
+          <span class="article-card__icon-save"></span>
+          <div class="article-card__text-container">
+            <p class="article-card__date"></p>
+            <h3 class="article-card__title"></h3>
+            <p class="article-card__text"></p>
+            <p class="article-card__source"></p>
+          </div>
+        </div>
+      </template>
       <div class="articles__list root__section">
         <div class="article-card">
           <img class="article-card__image" src="<%=require('./images/image_06.png')%>" alt="ветка куста, крупным планом">
