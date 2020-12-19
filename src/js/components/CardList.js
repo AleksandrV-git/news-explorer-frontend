@@ -26,10 +26,10 @@ export class CardList {
     const count = this.cardsCount;
     const arr = this.articlesParamsArr;
     for (let i = count; i < arr.length; i++) {
-      if (this.cardsCount < count + 3) {
+      if (this.cardsCount < count + 2) {
         this.addCard(arr[i]);
         this.cardsCount = i;
-      } else if (count >= arr.length - 3) {
+      } else if (count >= arr.length - 2) {
         this.showMoreButton.style.display = 'none';
       } else { return }
     }
