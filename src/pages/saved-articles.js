@@ -71,7 +71,7 @@ const openSavedArticles = () => {
       if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        savedArticlesr.setTitle(user.getInfo().name, data.length);
+        savedArticlesr.setTitle(user.getInfo(localStorage.user).name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
         cardList.renderResults(data);
       }

@@ -191,7 +191,7 @@ const user = new User();
 
 // проверка авторизации при загрузке страницы
 window.onload = function() {
-  const userInfo = user.getInfo()
+  const userInfo = user.getInfo(localStorage.user);
   if (userInfo.isLoggedIn) {
     header.render(userInfo);
     MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');

@@ -8,8 +8,8 @@ export class User {
     localStorage.user = JSON.stringify(user);;
   }
 
-  getInfo = () => {
-    const user = JSON.parse(localStorage.user);
+  getInfo = (localStorageUser) => {
+    const user = JSON.parse(localStorageUser);
     return user;
   }
 
