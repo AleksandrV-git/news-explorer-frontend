@@ -10,7 +10,6 @@ export class Header {
   }
 
   render(props) {
-    console.log(props)
     if (props && props.isLoggedIn) {
       this.UserIsLoggedIn = true;
       this.logoutBtn.textContent = props.name;

@@ -5,7 +5,6 @@ export class SavedArticles {
     this.keyWordsCount = savedArticlesNode.querySelector('#key-words-count');
     this.keyWords = savedArticlesNode.querySelector('#key-words');
     this.subtitle = savedArticlesNode.querySelector('.page-desription__subtitle');
-    console.log(this.title)
   }
 
   setTitle(name, count) {

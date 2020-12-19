@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' newsapi.org localhost:3000 https://www.news-v.api.students.nomoreparties.co; img-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    content="default-src 'self' newsapi.org localhost:3000 api.news-v.students.nomoreparties.space www.api.news-v.students.nomoreparties.space; img-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' 'unsafe-eval'">
   <meta name="description" content="Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.">
   <meta name="author" content="Aleksandr">
   <title>NewsExplorer</title>
@@ -41,10 +41,10 @@
     <section class="page-desription">
       <div class="page-desription__text-container root__section">
         <span class="page-desription__label-text">Сохранённые статьи</span>
-        <h2 class="section-title page-desription__title">Грета, у вас 5 сохранённых статей</h2>
+        <h2 class="section-title page-desription__title"></h2>
         <h3 class="page-desription__subtitle">По ключевым словам:
-          <span id="key-words" class="page-desription__subtitle-inner">Природа, Тайга</span> и
-          <span id="key-words-count" class="page-desription__subtitle-inner">2-м другим</span>
+          <span id="key-words" class="page-desription__subtitle-inner"></span> и
+          <span id="key-words-count" class="page-desription__subtitle-inner"></span>
         </h3>
       </div>
     </section>
@@ -66,7 +66,7 @@
       <template id="news-card" style="display: none;">
         <div class="article-card">
           <img class="article-card__image" src="<%=require('./images/image_08.png')%>" alt="">
-          <span class="article-card__category">Природа</span>
+          <span class="article-card__category"></span>
           <span class="article-card__icon-delete"></span>
           <div class="article-card__text-container">
             <p class="article-card__date"></p>

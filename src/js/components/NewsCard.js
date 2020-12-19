@@ -1,7 +1,6 @@
 export class NewsCard {
 
   constructor(articleData, keyword, template, saveCardCallback) {
-    console.log(articleData)
     this.template = template;
     this.image = articleData.image;
     this.date = articleData.date;
@@ -16,7 +15,6 @@ export class NewsCard {
 
   create() {
     const card = this.template;
-    console.log(card)
     const image = card.content.querySelector('.article-card__image');
     const date = card.content.querySelector('.article-card__date');
     const title = card.content.querySelector('.article-card__title');

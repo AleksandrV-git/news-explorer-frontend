@@ -1,6 +1,5 @@
 import "../pages/main.css";
 import "../images/favicon.svg";
-//import * as selectors from '../js/constants/selectors.js';
 
 import { User } from '../js/components/User.js';
 import { Header } from '../js/components/Header.js';
@@ -25,8 +24,7 @@ const NEWS_API_OPTIONS = {
   date: ``
 };
 const MAIN_API_OPTIONS = {
-  //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
-  baseUrl: 'http://localhost:3000',
+  baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
   headers: {
     'Content-Type': 'application/json',
   }
@@ -48,6 +46,7 @@ const AUTH_BUTTON = document.querySelector("#button-auth");
 
 let searchKeyWord = null;
 
+// вспомогательные функции
 const getDateToSearch = () => {
   const date = new Date();
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 7}`;
@@ -69,8 +68,8 @@ const newsApiDataHandler = (articlesArr) => {
   return articlesParamsArr;
 }
 
-// функции
-const openHeaderMenu = (headerInstance) => {
+// коллбеки для работы с экземплярами классов
+const openHeaderMenu = () => {
   popupSignIn.close();
   popupSignUp.close();
   popupSuccessfulSignUp.close();
@@ -84,11 +83,7 @@ const saveCard = (cardInstans) => {
         cardInstans.cardNode.classList.add('article-card_active-saved');
         cardInstans.isSaved = true;
         cardInstans.id = articleData.data._id;
-        console.log(cardInstans.id)
         cardInstans.ownerId = articleData.data.owner;
-      })
-      .then((res) => {
-        console.log('saved')
       })
       .catch((err) => { console.log(err) })
   } else { deleteCard(cardInstans) }
@@ -97,15 +92,12 @@ const saveCard = (cardInstans) => {
 const deleteCard = (cardInstans) => {
   if (cardInstans.isSaved && user.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
-      .then((articleData) => {
+      .then(() => {
         cardInstans.cardNode.classList.remove('article-card_active-saved');
         //console.log(articleData)
         cardInstans.isSaved = false;
         cardInstans.id = null;
         cardInstans.ownerId = null;
-      })
-      .then(() => {
-        console.log('deleted')
       })
       .catch((err) => { console.log(err) })
   }
@@ -132,7 +124,6 @@ const searchHandler = (event) => {
   newsApi.getNews(searchKeyWord, getDateToSearch())
     .then((foundResults) => {
       searchStatus.close();
-      console.log(foundResults)
       if (foundResults.articles.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
@@ -198,6 +189,7 @@ const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const user = new User();
 
+// проверка авторизации при загрузке страницы
 window.onload = function() {
   const userInfo = user.getInfo()
   if (userInfo.isLoggedIn) {

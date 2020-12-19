@@ -1,7 +1,6 @@
 export class Popup {
   constructor(popupNode, rootPageElement, OpenElement, linkCallBack) {
     this.popup = popupNode;
-    console.log(linkCallBack)
     this.closeEl = popupNode.querySelector(".popup__close");
     this.openElement = OpenElement || null;
     this.link = popupNode.querySelector(".popup__link");

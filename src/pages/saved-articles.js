@@ -9,14 +9,12 @@ import { SearchStatus } from '../js/components/SearchStatus.js';
 import { SavedArticles } from '../js/components/SavedArticles.js';
 
 const MAIN_API_OPTIONS = {
-  //baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
-  baseUrl: 'http://localhost:3000',
+  baseUrl: `https://api.news-v.students.nomoreparties.space`,
   headers: {
     'Content-Type': 'application/json',
   }
 };
 
-const MAIN_PAGE_ROOT = document.querySelector(".root");
 const HEADER_NODE = document.querySelector(".header");
 const ARTICLES_NODE = document.querySelector('.articles');
 const SEARCH_STATUS_NODE = document.querySelector('.search-status');
@@ -32,7 +30,6 @@ const deleteCard = (cardInstans) => {
   if (user.getInfo().isLoggedIn) {
     mainApi.removeArticle(cardInstans)
       .then((res) => {
-        console.log(cardInstans.id)
         cardInstans.removeHandlers();
         cardInstans.cardNode.remove();
         cardInstans = null;
@@ -45,11 +42,11 @@ const deleteCard = (cardInstans) => {
 }
 
 const logoutHandler = () => {
-  user.isLoggedIn = false;
+  //user.removeInfo();
+  window.location.replace('./index.html');
 }
 
 // экземпляры классов
-console.log(ARTICLES_NODE)
 const createCard = (...arg) => new SavedNewsCard(...arg, NEWSCARD_TEMPLATE, deleteCard);
 const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);

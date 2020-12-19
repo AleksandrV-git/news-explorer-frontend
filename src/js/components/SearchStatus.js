@@ -4,7 +4,6 @@ export class SearchStatus {
     this.status = StatusNode.querySelector('.search-status__message');
     this.title = StatusNode.querySelector('.search-status__message-title');
     this.text = StatusNode.querySelector('#err-message');
-    console.log(this.title)
   }
 
   renderLoader() {

@@ -17,7 +17,6 @@ export class SearchForm {
 
   checkInputValidity = (input) => {
     const regExp = /^\S{1,30}$/;
-    console.log(regExp.test(input.value));
     return regExp.test(input.value);
   }
 
