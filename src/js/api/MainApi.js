@@ -31,7 +31,6 @@ export class MainApi {
       })
     })
       .then(res => {
-        console.log(res)
         if (res.ok) {
           return res;
         }
@@ -48,7 +47,7 @@ export class MainApi {
       })
   }
   getArticles = () => {
-    return fetch(this.baseUrl + "/articles", { credentials: 'include',headers: this.headers })
+    return fetch(this.baseUrl + "/articles", { credentials: 'include', headers: this.headers })
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -78,19 +77,17 @@ export class MainApi {
         return Promise.reject(res.status);
       })
   }
-  removeArticle = ({id}) => {
-    if (window.confirm("Вы действительно хотите удалить эту карточку?")) {
-      return fetch(this.baseUrl + "/articles/" + id, {
-        method: 'DELETE',
-        credentials: 'include',
-        headers: this.headers
+  removeArticle = ({ id }) => {
+    return fetch(this.baseUrl + "/articles/" + id, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this.headers
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(res.status);
       })
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(res.status);
-        })
-    }
   }
 }

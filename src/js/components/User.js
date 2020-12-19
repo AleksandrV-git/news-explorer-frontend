@@ -9,11 +9,13 @@ export class User {
   }
 
   getInfo = (localStorageUser) => {
-    const user = JSON.parse(localStorageUser);
-    return user;
+    if (localStorageUser) {
+      const user = JSON.parse(localStorageUser);
+      return user;
+    }
   }
 
   removeInfo = () => {
-    localStorage.user = {};
+    localStorage.user = null;
   }
 }

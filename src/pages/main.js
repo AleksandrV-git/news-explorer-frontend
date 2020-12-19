@@ -24,7 +24,7 @@ const NEWS_API_OPTIONS = {
   date: ``
 };
 const MAIN_API_OPTIONS = {
-  baseUrl: `https://www.news-v.api.students.nomoreparties.co`,
+  baseUrl: `https://api.news-v.students.nomoreparties.space`,
   headers: {
     'Content-Type': 'application/json',
   }
@@ -77,7 +77,8 @@ const openHeaderMenu = () => {
 }
 
 const saveCard = (cardInstans) => {
-  if (!cardInstans.isSaved && user.getInfo().isLoggedIn) {
+  const userInfo = user.getInfo(localStorage.user);
+  if (!cardInstans.isSaved && userInfo && userInfo.isLoggedIn) {
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
         cardInstans.cardNode.classList.add('article-card_active-saved');
@@ -90,11 +91,11 @@ const saveCard = (cardInstans) => {
 };
 
 const deleteCard = (cardInstans) => {
-  if (cardInstans.isSaved && user.isLoggedIn) {
+  const userInfo = user.getInfo(localStorage.user);
+  if (cardInstans.isSaved && userInfo && userInfo.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
       .then(() => {
         cardInstans.cardNode.classList.remove('article-card_active-saved');
-        //console.log(articleData)
         cardInstans.isSaved = false;
         cardInstans.id = null;
         cardInstans.ownerId = null;
@@ -137,10 +138,16 @@ const signinHandler = (event) => {
   event.preventDefault();
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
-      return mainApi.getUserData().then((res) => { user.setInfo(res.data) }).catch((err) => { console.log(err) });
+      return mainApi.getUserData()
+        .then((res) => {console.log(res); user.setInfo(res.data); return res.data})
+        .catch((err) => {
+          console.log(err);
+          if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
+        });
     })
-    .then(() => {
-      header.render(user.getInfo());
+    .then((userData) => {
+      if (!userData) { return Promise.reject('данные пользователя не получены') };
+      header.render(user.getInfo(localStorage.user));
     })
     .then(() => {
       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
@@ -190,9 +197,9 @@ const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const user = new User();
 
 // проверка авторизации при загрузке страницы
-window.onload = function() {
+window.onload = function () {
   const userInfo = user.getInfo(localStorage.user);
-  if (userInfo.isLoggedIn) {
+  if (userInfo && userInfo.isLoggedIn) {
     header.render(userInfo);
     MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
   }
