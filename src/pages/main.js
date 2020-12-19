@@ -18,7 +18,7 @@ const ERROR_MESSAGES = {
   emailPatternMismatch: 'Неправильный формат email'
 };
 const NEWS_API_OPTIONS = {
-  baseUrl: `https://newsapi.org`,
+  baseUrl: `https://nomoreparties.co/news`,
   apiKey: `1093de14a32d4381b3b2bf485c9cbf25`,
   sortBy: `popularity`,
   date: ``
