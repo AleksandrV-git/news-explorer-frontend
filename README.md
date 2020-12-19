@@ -47,3 +47,5 @@ ES6, CSS3, HTML5, Webpack, структура CSS по БЭМ
 
 ## Ссылка на github pages:
 https://aleksandrv-git.github.io/news-explorer-frontend/
+## Ссылка на сайт:
+https://www.news-v.students.nomoreparties.space
