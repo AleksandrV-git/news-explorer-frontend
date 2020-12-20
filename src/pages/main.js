@@ -128,7 +128,7 @@ const searchHandler = (event) => {
       if (foundResults.articles.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        cardList.renderResults(newsApiDataHandler(foundResults.articles));
+        cardList.renderResults(newsApiDataHandler(foundResults.articles), 3);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })

@@ -27,15 +27,13 @@ const openHeaderMenu = () => {
 }
 
 const deleteCard = (cardInstans) => {
-  if (user.getInfo().isLoggedIn) {
+  const userInfo = user.getInfo(localStorage.user);
+  if (userInfo && userInfo.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
-      .then((res) => {
+      .then(() => {
         cardInstans.removeHandlers();
         cardInstans.cardNode.remove();
         cardInstans = null;
-      })
-      .then(() => {
-        console.log('deleted')
       })
       .catch((err) => { console.log(err) })
   }
@@ -56,12 +54,12 @@ const savedArticlesr = new SavedArticles(PAGE_DESCRIPTION_NODE);
 const user = new User();
 
 const getKeyWords = (arr) => {
-  const keyWords = arr.map((article) => {return article.keyword});
+  const keyWords = arr.map((article) => { return article.keyword });
   return keyWords;
 }
 
 const openSavedArticles = () => {
-  header.render(user.getInfo());
+  header.render(user.getInfo(localStorage.user));
   cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
@@ -73,7 +71,7 @@ const openSavedArticles = () => {
       } else {
         savedArticlesr.setTitle(user.getInfo(localStorage.user).name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
-        cardList.renderResults(data);
+        cardList.renderResults(data, 3);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })

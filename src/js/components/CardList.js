@@ -6,6 +6,7 @@ export class CardList {
     this.newCardCallback = newCardCallback.bind(this) || (() => { });
     this.cardsCount = 0;
     this.articlesParamsArr = [];
+    this.numberOfShowedCards = 0;
   }
 
   addCard(articleParams) {
@@ -15,21 +16,23 @@ export class CardList {
     this.grid.appendChild(cardElem);
   }
 
-  renderResults(arr) {
+  renderResults(arr, numberOfCards) {
     this.articlesParamsArr = arr;
+    this.numberOfShowedCards = numberOfCards;
     this.showMore();
     this.setHandlers();
     this.container.style.display = 'flex';
   }
 
   showMore = () => {
+    const n = this.numberOfShowedCards;
     const count = this.cardsCount;
     const arr = this.articlesParamsArr;
     for (let i = count; i < arr.length; i++) {
-      if (this.cardsCount < count + 2) {
+      if (this.cardsCount < count + n) {
         this.addCard(arr[i]);
-        this.cardsCount = i;
-      } else if (count >= arr.length - 2) {
+        this.cardsCount++;
+      } else if (count >= arr.length - n -1) {
         this.showMoreButton.style.display = 'none';
       } else { return }
     }
