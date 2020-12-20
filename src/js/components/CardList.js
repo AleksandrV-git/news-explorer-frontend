@@ -28,11 +28,14 @@ export class CardList {
     const n = this.numberOfShowedCards;
     const count = this.cardsCount;
     const arr = this.articlesParamsArr;
-    for (let i = count; i < arr.length; i++) {
-      if (this.cardsCount < count + n) {
+    for (let i = count; i <= arr.length; i++) {
+      if (this.cardsCount < count + n && this.cardsCount < arr.length) {
         this.addCard(arr[i]);
         this.cardsCount++;
-      } else if (count >= arr.length - n -1) {
+        console.log(this.cardsCount)
+      } else if (this.cardsCount === arr.length) {
+        console.log(this.cardsCount)
+        console.log(arr.length)
         this.showMoreButton.style.display = 'none';
       } else { return }
     }
