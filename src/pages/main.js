@@ -202,7 +202,7 @@ window.onload = function () {
   if (userInfo && userInfo.isLoggedIn) {
     header.render(userInfo);
     MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
-  }
+  } else {MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');}
 };
 
 // установка слушателей

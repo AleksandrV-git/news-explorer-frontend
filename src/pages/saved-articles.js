@@ -40,7 +40,7 @@ const deleteCard = (cardInstans) => {
 }
 
 const logoutHandler = () => {
-  //user.removeInfo();
+  user.removeInfo();
   window.location.replace('./index.html');
 }
 

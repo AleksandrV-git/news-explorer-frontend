@@ -32,10 +32,7 @@ export class CardList {
       if (this.cardsCount < count + n && this.cardsCount < arr.length) {
         this.addCard(arr[i]);
         this.cardsCount++;
-        console.log(this.cardsCount)
       } else if (this.cardsCount === arr.length) {
-        console.log(this.cardsCount)
-        console.log(arr.length)
         this.showMoreButton.style.display = 'none';
       } else { return }
     }
