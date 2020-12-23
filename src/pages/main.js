@@ -48,8 +48,9 @@ let searchKeyWord = null;
 
 // вспомогательные функции
 const getDateToSearch = () => {
-  const date = new Date();
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 7}`;
+  let date = new Date();
+  date.setDate(date.getDate() - 7);
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
 
 const newsApiDataHandler = (articlesArr) => {
@@ -139,7 +140,7 @@ const signinHandler = (event) => {
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
       return mainApi.getUserData()
-        .then((res) => {console.log(res); user.setInfo(res.data); return res.data})
+        .then((res) => { console.log(res); user.setInfo(res.data); return res.data })
         .catch((err) => {
           console.log(err);
           if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
@@ -202,7 +203,7 @@ window.onload = function () {
   if (userInfo && userInfo.isLoggedIn) {
     header.render(userInfo);
     MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
-  } else {MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user');}
+  } else { MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user'); }
 };
 
 // установка слушателей
