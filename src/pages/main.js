@@ -29,6 +29,8 @@ const MAIN_API_OPTIONS = {
     'Content-Type': 'application/json',
   }
 };
+const RENDERED_CARDS_NUMBER = 3;
+const DAYS_AGO_TOSEARCH = 7;
 
 const MAIN_PAGE_ROOT = document.querySelector(".root");
 const HEADER_NODE = document.querySelector(".header");
@@ -47,11 +49,12 @@ const AUTH_BUTTON = document.querySelector("#button-auth");
 let searchKeyWord = null;
 
 // вспомогательные функции
-const getDateToSearch = () => {
+const getDateToSearch = (daysAgo) => {
   let date = new Date();
-  date.setDate(date.getDate() - 7);
+  date.setDate(date.getDate() - daysAgo);
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
+console.log(getDateToSearch(DAYS_AGO_TOSEARCH))
 
 const newsApiDataHandler = (articlesArr) => {
   let articlesParamsArr = [];
@@ -123,13 +126,13 @@ const searchHandler = (event) => {
   if (!searchKeyWord) { return };
   cardList.clear();
   searchStatus.renderLoader();
-  newsApi.getNews(searchKeyWord, getDateToSearch())
+  newsApi.getNews(searchKeyWord, getDateToSearch(DAYS_AGO_TOSEARCH))
     .then((foundResults) => {
       searchStatus.close();
       if (foundResults.articles.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        cardList.renderResults(newsApiDataHandler(foundResults.articles), 3);
+        cardList.renderResults(newsApiDataHandler(foundResults.articles), RENDERED_CARDS_NUMBER);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })

@@ -15,6 +15,8 @@ const MAIN_API_OPTIONS = {
   }
 };
 
+const RENDERED_CARDS_NUMBER = 3;
+
 const HEADER_NODE = document.querySelector(".header");
 const ARTICLES_NODE = document.querySelector('.articles');
 const SEARCH_STATUS_NODE = document.querySelector('.search-status');
@@ -71,7 +73,7 @@ const openSavedArticles = () => {
       } else {
         savedArticlesr.setTitle(user.getInfo(localStorage.user).name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
-        cardList.renderResults(data, 3);
+        cardList.renderResults(data, RENDERED_CARDS_NUMBER);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })
