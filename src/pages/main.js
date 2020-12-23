@@ -142,7 +142,7 @@ const signinHandler = (event) => {
   mainApi.signin(formSignIn.getInfo())
     .then(() => {
       return mainApi.getUserData()
-        .then((res) => { console.log(res); user.setInfo(res.data); return res.data })
+        .then((res) => { user.setInfo(res.data); return res.data })
         .catch((err) => {
           console.log(err);
           if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
