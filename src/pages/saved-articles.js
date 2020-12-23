@@ -78,7 +78,13 @@ const openSavedArticles = () => {
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })
 }
-openSavedArticles();
+
+window.onload = function () {
+  const userInfo = user.getInfo(localStorage.user);
+  if (userInfo && userInfo.isLoggedIn) {
+    openSavedArticles();
+  } else { window.location.replace('./index.html'); }
+};
 
 // установка слушателей
 header.setHandlers();

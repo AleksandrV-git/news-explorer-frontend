@@ -54,7 +54,6 @@ const getDateToSearch = (daysAgo) => {
   date.setDate(date.getDate() - daysAgo);
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
-console.log(getDateToSearch(DAYS_AGO_TOSEARCH))
 
 const newsApiDataHandler = (articlesArr) => {
   let articlesParamsArr = [];
