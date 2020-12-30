@@ -28,4 +28,5 @@
 body {
   background-color: #FFFFFF;
   font-family: Roboto, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  width: 100vw;
 }

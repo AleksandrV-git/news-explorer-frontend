@@ -37,3 +37,9 @@
     margin-top: 50px;
   }
 }
+
+@media (max-height: 450px) {
+  .popup {
+    transform: scale(.7);
+  }
+}
