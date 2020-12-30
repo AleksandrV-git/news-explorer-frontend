@@ -38,7 +38,7 @@
   }
 }
 
-@media (max-height: 450px) {
+@media (max-height: 600px) {
   .popup {
     transform: scale(.7);
   }
