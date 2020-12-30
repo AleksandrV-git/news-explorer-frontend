@@ -40,6 +40,6 @@
 
 @media (max-height: 600px) {
   .popup {
-    transform: scale(.7);
+    transform: scale(.5);
   }
 }
