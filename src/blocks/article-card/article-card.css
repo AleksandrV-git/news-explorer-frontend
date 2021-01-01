@@ -22,4 +22,5 @@
 .article-card:hover {
   transition: .2s;
   box-shadow: 0px 20px 58px rgba(8, 29, 45, 0.1);
+  cursor: pointer;
 }
