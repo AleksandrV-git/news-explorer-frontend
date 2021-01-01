@@ -58,6 +58,7 @@ const getDateToSearch = (daysAgo) => {
 const newsApiDataHandler = (articlesArr) => {
   let articlesParamsArr = [];
   articlesArr.forEach(article => {
+    if (!article.title) {article.title = ""}
     const articleParams = {
       image: article.urlToImage,
       date: article.publishedAt,
