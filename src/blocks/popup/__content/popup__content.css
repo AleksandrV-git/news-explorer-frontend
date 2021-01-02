@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 430px;
   min-height: 182px;
-  max-height: 90vw;
   background-color: #fff;
   border-radius: 16px;
   position: relative;
@@ -24,7 +23,7 @@
   }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 500px) {
   .popup__content {
     transform: scale(.7);
   }
