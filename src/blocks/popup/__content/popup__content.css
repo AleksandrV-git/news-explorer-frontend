@@ -23,3 +23,9 @@
     padding: 34px 16px 28px;
   }
 }
+
+@media screen and (orientation:landscape) and (max-height: 700px) {
+  .popup__content {
+    transform: scale(.7);
+  }
+}
