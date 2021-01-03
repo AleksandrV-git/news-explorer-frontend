@@ -24,6 +24,7 @@ const NEWSCARD_TEMPLATE = document.querySelector('#news-card');
 const ADJUSTMENT_LAYER = document.querySelector('.adjustment-layer');
 const PAGE_DESCRIPTION_NODE = document.querySelector('.page-desription');
 
+// коллбеки для работы с экземплярами классов
 const openHeaderMenu = () => {
   ADJUSTMENT_LAYER.classList.toggle('adjustment-layer_active');
 }
@@ -55,13 +56,15 @@ const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const savedArticlesr = new SavedArticles(PAGE_DESCRIPTION_NODE);
 const user = new User();
 
+//вспомогательные функции
 const getKeyWords = (arr) => {
   const keyWords = arr.map((article) => { return article.keyword });
   return keyWords;
 }
 
-const openSavedArticles = () => {
-  header.render(user.getInfo(localStorage.user));
+// функция отрисовки страницы
+const openSavedArticles = (UserInfo) => {
+  header.render(UserInfo);
   cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
@@ -71,7 +74,7 @@ const openSavedArticles = () => {
       if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        savedArticlesr.setTitle(user.getInfo(localStorage.user).name, data.length);
+        savedArticlesr.setTitle(UserInfo.name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
         cardList.renderResults(data, RENDERED_CARDS_NUMBER);
       }
@@ -79,10 +82,11 @@ const openSavedArticles = () => {
     .catch((err) => { searchStatus.renderErr(); console.log(err); })
 }
 
+// проверка авторизации пользователя при загрузке старницы
 window.onload = function () {
   const userInfo = user.getInfo(localStorage.user);
   if (userInfo && userInfo.isLoggedIn) {
-    openSavedArticles();
+    openSavedArticles(userInfo);
   } else { window.location.replace('./index.html'); }
 };
 
