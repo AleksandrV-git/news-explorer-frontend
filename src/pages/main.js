@@ -58,7 +58,7 @@ const getDateToSearch = (daysAgo) => {
 const newsApiDataHandler = (articlesArr) => {
   let articlesParamsArr = [];
   articlesArr.forEach(article => {
-    if (!article.title) {article.title = ""}
+    if (!article.title) { article.title = "" }
     const articleParams = {
       image: article.urlToImage,
       date: article.publishedAt,
@@ -151,7 +151,7 @@ const signinHandler = (event) => {
     })
     .then((userData) => {
       if (!userData) { return Promise.reject('данные пользователя не получены') };
-      header.render(user.getInfo(localStorage.user));
+      header.render(user);
     })
     .then(() => {
       MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
@@ -202,11 +202,19 @@ const user = new User();
 
 // проверка авторизации при загрузке страницы
 window.onload = function () {
-  const userInfo = user.getInfo(localStorage.user);
-  if (userInfo && userInfo.isLoggedIn) {
-    header.render(userInfo);
-    MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
-  } else { MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user'); }
+  const userParams = JSON.parse(localStorage.getItem('user'));
+  if (userParams && userParams.isAuthorized)
+    mainApi.getUserData()
+      .then((res) => {
+        user.setInfo(res.data);
+        header.render(user);
+        MAIN_PAGE_ROOT.classList.add('root_active-authorized-user');
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
+      });
+  else { MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user'); }
 };
 
 // установка слушателей

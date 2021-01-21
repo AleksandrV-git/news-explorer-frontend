@@ -1,21 +1,19 @@
 export class User {
   constructor() {
+    this.info = {};
+    this.isLoggedIn = false;
   }
 
-  setInfo = (userData) => {
-    const user = userData;
-    user.isLoggedIn = true;
-    localStorage.user = JSON.stringify(user);;
-  }
-
-  getInfo = (localStorageUser) => {
-    if (localStorageUser) {
-      const user = JSON.parse(localStorageUser);
-      return user;
-    }
+  setInfo = (user) => {
+    user.isAuthorized = true;
+    localStorage.setItem('user', JSON.stringify(user));
+    this.info = user;
+    this.isLoggedIn = true;
   }
 
   removeInfo = () => {
-    localStorage.user = null;
+    localStorage.removeItem('user');
+    this.info = {};
+    this.isLoggedIn = false;
   }
 }

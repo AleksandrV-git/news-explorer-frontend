@@ -63,8 +63,8 @@ const getKeyWords = (arr) => {
 }
 
 // функция отрисовки страницы
-const openSavedArticles = (UserInfo) => {
-  header.render(UserInfo);
+const openSavedArticles = () => {
+  header.render(user);
   cardList.clear();
   searchStatus.renderLoader();
   mainApi.getArticles()
@@ -74,7 +74,7 @@ const openSavedArticles = (UserInfo) => {
       if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
-        savedArticlesr.setTitle(UserInfo.name, data.length);
+        savedArticlesr.setTitle(user.info.name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
         cardList.renderResults(data, RENDERED_CARDS_NUMBER);
       }
@@ -84,10 +84,18 @@ const openSavedArticles = (UserInfo) => {
 
 // проверка авторизации пользователя при загрузке старницы
 window.onload = function () {
-  const userInfo = user.getInfo(localStorage.user);
-  if (userInfo && userInfo.isLoggedIn) {
-    openSavedArticles(userInfo);
-  } else { window.location.replace('./index.html'); }
+  const userParams = JSON.parse(localStorage.getItem('user'));
+  if (userParams && userParams.isAuthorized)
+    mainApi.getUserData()
+      .then((res) => {
+        user.setInfo(res.data);
+        openSavedArticles();
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
+      });
+  else { window.location.replace('./index.html'); }
 };
 
 // установка слушателей
