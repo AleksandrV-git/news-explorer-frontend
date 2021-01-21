@@ -81,8 +81,7 @@ const openHeaderMenu = () => {
 }
 
 const saveCard = (cardInstans) => {
-  const userInfo = user.getInfo(localStorage.user);
-  if (!cardInstans.isSaved && userInfo && userInfo.isLoggedIn) {
+  if (!cardInstans.isSaved && user && user.isLoggedIn) {
     mainApi.createArticle(cardInstans)
       .then((articleData) => {
         cardInstans.cardNode.classList.add('article-card_active-saved');
@@ -95,8 +94,7 @@ const saveCard = (cardInstans) => {
 };
 
 const deleteCard = (cardInstans) => {
-  const userInfo = user.getInfo(localStorage.user);
-  if (cardInstans.isSaved && userInfo && userInfo.isLoggedIn) {
+  if (cardInstans.isSaved && user && user.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
       .then(() => {
         cardInstans.cardNode.classList.remove('article-card_active-saved');

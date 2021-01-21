@@ -30,8 +30,7 @@ const openHeaderMenu = () => {
 }
 
 const deleteCard = (cardInstans) => {
-  const userInfo = user.getInfo(localStorage.user);
-  if (userInfo && userInfo.isLoggedIn) {
+  if (user && user.isLoggedIn) {
     mainApi.removeArticle(cardInstans)
       .then(() => {
         cardInstans.removeHandlers();
