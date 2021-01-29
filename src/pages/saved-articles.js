@@ -81,7 +81,7 @@ const openSavedArticles = () => {
     })
     .then((status) => {
       if (status === 'ok') {
-        PAGE_DESCRIPTION_NODE.style.opacity = '1';
+        PAGE_DESCRIPTION_NODE.classList.remove('page-desription_hiden');
         cardList.renderResults(data, RENDERED_CARDS_NUMBER);
       }
     })

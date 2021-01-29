@@ -22,6 +22,7 @@
 @import url(../blocks/root/root_active-authorized-user.css);
 @import url(../blocks/adjustment-layer/adjustment-layer_active.css);
 @import URL(../blocks/articles/articles_page-saved-articles.css);
+@import URL(../blocks/page-desription/page-desription_hiden.css);
 
 body {
   background-color: #FFFFFF;

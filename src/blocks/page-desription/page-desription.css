@@ -7,6 +7,7 @@
 .page-desription {
    width: 100%;
    background: #FFFFFF;
-   opacity: 0;
+   opacity: 1;
    min-height: 203px;
+   transition: 2s;
 }
