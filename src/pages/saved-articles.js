@@ -66,15 +66,22 @@ const openSavedArticles = () => {
   header.render(user);
   cardList.clear();
   searchStatus.renderLoader();
+  let data = {};
   mainApi.getArticles()
     .then((foundResults) => {
       searchStatus.close();
-      const data = foundResults.data;
+      data = foundResults.data;
       if (data.length === 0) {
         searchStatus.renderStatusNotFond();
       } else {
         savedArticlesr.setTitle(user.info.name, data.length);
         savedArticlesr.setKeyWords(getKeyWords(data));
+        return 'ok'
+      }
+    })
+    .then((status) => {
+      if (status === 'ok') {
+        PAGE_DESCRIPTION_NODE.style.opacity = '1';
         cardList.renderResults(data, RENDERED_CARDS_NUMBER);
       }
     })
@@ -82,7 +89,7 @@ const openSavedArticles = () => {
 }
 
 // проверка авторизации пользователя при загрузке старницы
-window.onload = function () {
+const authCheck = () => {
   const userParams = JSON.parse(localStorage.getItem('user'));
   if (userParams && userParams.isAuthorized)
     mainApi.getUserData()
@@ -96,6 +103,8 @@ window.onload = function () {
       });
   else { window.location.replace('./index.html'); }
 };
+
+authCheck();
 
 // установка слушателей
 header.setHandlers();

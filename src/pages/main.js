@@ -199,7 +199,7 @@ const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
 const user = new User();
 
 // проверка авторизации при загрузке страницы
-window.onload = function () {
+const authCheck = () => {
   const userParams = JSON.parse(localStorage.getItem('user'));
   if (userParams && userParams.isAuthorized)
     mainApi.getUserData()
@@ -214,6 +214,8 @@ window.onload = function () {
       });
   else { MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user'); }
 };
+
+authCheck();
 
 // установка слушателей
 popupSignUp.setHandlers();

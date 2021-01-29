@@ -11,6 +11,7 @@
 @import url(../blocks/articles/articles.css);
 @import url(../blocks/article-card/article-card.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/circle-preloader/circle-preloader.css);
 @import url(../blocks/adjustment-layer/adjustment-layer.css);
 @import url(../blocks/ratio-container/ratio-container.css);
 @import url(../blocks/page-desription/page-desription.css);
