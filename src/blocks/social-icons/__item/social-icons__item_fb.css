@@ -1,5 +1,6 @@
 .social-icons__item_fb {
   background-image: url(../../../images/fb.svg);
+  transition: .2s;
 }
 
 .social-icons__item_fb:hover {

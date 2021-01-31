@@ -58,10 +58,10 @@ const getDateToSearch = (daysAgo) => {
 const newsApiDataHandler = (articlesArr) => {
   return articlesArr.map(article => ({
     image: article.urlToImage,
-    date: article.publishedAt,
+    date: article.publishedAt.substr(0, 10) || "",
     title: article.title.substr(0, 100) || "",
-    text: article.description.substr(0, 200),
-    source: article.source.name.substr(0, 30),
+    text: article.description.substr(0, 200) || "",
+    source: article.source.name.substr(0, 30) || "",
     link: article.url,
   }));
 }
@@ -123,7 +123,8 @@ const searchHandler = (event) => {
       searchStatus.close();
       if (foundResults.articles.length === 0) {
         searchStatus.renderStatusNotFond();
-      } else {
+      }
+      else {
         cardList.renderResults(newsApiDataHandler(foundResults.articles), RENDERED_CARDS_NUMBER);
       }
     })
