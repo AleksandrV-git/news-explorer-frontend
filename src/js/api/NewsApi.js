@@ -7,7 +7,6 @@ export class NewsApi {
   }
 
   getNews = (searchWord, date) => {
-    console.log(this.date)
     return fetch(
       this.baseUrl +
       `/v2/everything?` +
@@ -17,9 +16,7 @@ export class NewsApi {
       `apiKey=${this.apiKey}`
       )
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }

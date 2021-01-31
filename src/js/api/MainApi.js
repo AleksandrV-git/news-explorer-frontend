@@ -7,16 +7,10 @@ export class MainApi {
     return fetch(this.baseUrl + "/signup", {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password
-      })
+      body: JSON.stringify({ name, email, password })
     })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }
@@ -25,33 +19,24 @@ export class MainApi {
       credentials: "include",
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
+      body: JSON.stringify({ email, password })
     })
       .then(res => {
-        if (res.ok) {
-          return res;
-        }
+        if (res.ok) { return res; }
         return Promise.reject(res.status);
       })
   }
   getUserData = () => {
     return fetch(this.baseUrl + "/users/me", { credentials: 'include', headers: this.headers })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }
   getArticles = () => {
     return fetch(this.baseUrl + "/articles", { credentials: 'include', headers: this.headers })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }
@@ -60,20 +45,10 @@ export class MainApi {
       method: 'POST',
       credentials: 'include',
       headers: this.headers,
-      body: JSON.stringify({
-        keyword: keyword,
-        title: title,
-        text: text,
-        date: date,
-        source: source,
-        link: link,
-        image: image
-      })
+      body: JSON.stringify({ keyword, title, text, date, source, link, image })
     })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }
@@ -84,9 +59,7 @@ export class MainApi {
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+        if (res.ok) { return res.json(); }
         return Promise.reject(res.status);
       })
   }

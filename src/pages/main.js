@@ -56,20 +56,14 @@ const getDateToSearch = (daysAgo) => {
 }
 
 const newsApiDataHandler = (articlesArr) => {
-  let articlesParamsArr = [];
-  articlesArr.forEach(article => {
-    if (!article.title) { article.title = "" }
-    const articleParams = {
-      image: article.urlToImage,
-      date: article.publishedAt,
-      title: article.title.substr(0, 100),
-      text: article.description.substr(0, 200),
-      source: article.source.name.substr(0, 30),
-      link: article.url,
-    }
-    articlesParamsArr.push(articleParams);
-  });
-  return articlesParamsArr;
+  return articlesArr.map(article => ({
+    image: article.urlToImage,
+    date: article.publishedAt,
+    title: article.title.substr(0, 100) || "",
+    text: article.description.substr(0, 200),
+    source: article.source.name.substr(0, 30),
+    link: article.url,
+  }));
 }
 
 // коллбеки для работы с экземплярами классов
