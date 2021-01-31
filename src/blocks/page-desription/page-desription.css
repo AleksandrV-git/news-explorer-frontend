@@ -8,6 +8,12 @@
    width: 100%;
    background: #FFFFFF;
    opacity: 1;
-   min-height: 203px;
+   min-height: 293px;
    transition: 2s;
+}
+
+@media (max-width: 1024px) {
+  .page-desription {
+    min-height: 203px;
+  }
 }
