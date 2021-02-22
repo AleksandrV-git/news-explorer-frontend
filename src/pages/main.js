@@ -29,7 +29,7 @@ const MAIN_API_OPTIONS = {
     'Content-Type': 'application/json',
   }
 };
-const RENDERED_CARDS_NUMBER = 3;
+const SHOWN_CARDS_NUMBER = 3;
 const DAYS_AGO_TOSEARCH = 7;
 
 const MAIN_PAGE_ROOT = document.querySelector(".root");
@@ -125,7 +125,7 @@ const searchHandler = (event) => {
         searchStatus.renderStatusNotFond();
       }
       else {
-        cardList.renderResults(newsApiDataHandler(foundResults.articles), RENDERED_CARDS_NUMBER);
+        cardList.renderResults(newsApiDataHandler(foundResults.articles), SHOWN_CARDS_NUMBER);
       }
     })
     .catch((err) => { searchStatus.renderErr(); console.log(err); })
@@ -205,7 +205,7 @@ const authCheck = () => {
       })
       .catch((err) => {
         console.log(err);
-        if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
+        if (err === 401) { console.log('Пользователь не зарегистрирован'); }
       });
   else { MAIN_PAGE_ROOT.classList.remove('root_active-authorized-user'); }
 };

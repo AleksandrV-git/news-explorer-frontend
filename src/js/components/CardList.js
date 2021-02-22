@@ -4,9 +4,9 @@ export class CardList {
     this.grid = container.querySelector(".articles__list");
     this.showMoreButton = container.querySelector(".articles__button");
     this.newCardCallback = newCardCallback.bind(this) || (() => { });
-    this.cardsCount = 0;
+    this.shownQuantity = 0;
     this.articlesParamsArr = [];
-    this.numberOfShowedCards = 0;
+    this.cardsIncrement = 0;
   }
 
   addCard(articleParams) {
@@ -16,25 +16,28 @@ export class CardList {
     this.grid.appendChild(cardElem);
   }
 
-  renderResults(arr, numberOfCards) {
+  renderResults(arr, quantity) {
     this.articlesParamsArr = arr;
-    this.numberOfShowedCards = numberOfCards;
+    this.cardsIncrement = quantity;
     this.showMore();
     this.setHandlers();
     this.container.style.display = 'flex';
   }
 
   showMore = () => {
-    const n = this.numberOfShowedCards;
-    const count = this.cardsCount;
+    const n = this.cardsIncrement;
     const arr = this.articlesParamsArr;
-    for (let i = count; i <= arr.length; i++) {
-      if (this.cardsCount < count + n && this.cardsCount < arr.length) {
-        this.addCard(arr[i]);
-        this.cardsCount++;
-      } else if (this.cardsCount === arr.length) {
+    let counter = this.shownQuantity - 1;
+
+    for (let i = 1; i <= n; i++) {
+      if (this.shownQuantity < arr.length) {
+        counter++
+        this.addCard(arr[counter]);
+        this.shownQuantity++;
+      } else {
         this.showMoreButton.style.display = 'none';
-      } else { return }
+        break;
+      }
     }
   }
 
@@ -48,7 +51,7 @@ export class CardList {
         this.grid.removeChild(this.grid.firstChild);
       }
       this.articlesParamsArr = [];
-      this.cardsCount = 0;
+      this.shownQuantity = 0;
     }
   }
 

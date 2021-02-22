@@ -99,7 +99,7 @@ const authCheck = () => {
       })
       .catch((err) => {
         console.log(err);
-        if (err === 401) { formSignIn.setServerError('Пользователь не зарегистрирован'); }
+        if (err === 401) { console.log('Пользователь не зарегистрирован'); }
       });
   else { window.location.replace('./index.html'); }
 };
