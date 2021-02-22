@@ -6,7 +6,7 @@ import { CardList } from '../js/components/CardList.js';
 import { SavedNewsCard } from '../js/components/SavedNewsCard.js';
 import { MainApi } from '../js/api/MainApi.js';
 import { SearchStatus } from '../js/components/SearchStatus.js';
-import { SavedArticles } from '../js/components/SavedArticles.js';
+import { SavedArticlesDescription } from '../js/components/SavedArticlesDescription.js';
 
 const MAIN_API_OPTIONS = {
   baseUrl: `https://api.news-v.students.nomoreparties.space`,
@@ -15,7 +15,7 @@ const MAIN_API_OPTIONS = {
   }
 };
 
-const RENDERED_CARDS_NUMBER = 3;
+const SHOWN_CARDS_NUMBER = 3;
 
 const HEADER_NODE = document.querySelector(".header");
 const ARTICLES_NODE = document.querySelector('.articles');
@@ -52,7 +52,7 @@ const cardList = new CardList(ARTICLES_NODE, createCard);
 const mainApi = new MainApi(MAIN_API_OPTIONS);
 const searchStatus = new SearchStatus(SEARCH_STATUS_NODE);
 const header = new Header(HEADER_NODE, openHeaderMenu, logoutHandler);
-const savedArticlesr = new SavedArticles(PAGE_DESCRIPTION_NODE);
+const savedArticlesDescription = new SavedArticlesDescription(PAGE_DESCRIPTION_NODE);
 const user = new User();
 
 //вспомогательные функции
@@ -72,20 +72,25 @@ const openSavedArticles = () => {
       searchStatus.close();
       data = foundResults.data;
       if (data.length === 0) {
-        searchStatus.renderStatusNotFond();
+        searchStatus.renderStatusNotFond("статей не найдено", " ");
       } else {
-        savedArticlesr.setTitle(user.info.name, data.length);
-        savedArticlesr.setKeyWords(getKeyWords(data));
-        return 'ok'
-      }
-    })
-    .then((status) => {
-      if (status === 'ok') {
+        savedArticlesDescription.setKeyWords(getKeyWords(data));
+        savedArticlesDescription.setTitle(user.info.name, data.length);
         PAGE_DESCRIPTION_NODE.classList.remove('page-desription_hiden');
-        cardList.renderResults(data, RENDERED_CARDS_NUMBER);
+        cardList.renderResults(data, SHOWN_CARDS_NUMBER);
       }
     })
-    .catch((err) => { searchStatus.renderErr(); console.log(err); })
+    .catch((err) => {
+      console.log(err);
+      if (err === 404) {
+        searchStatus.renderStatusNotFond("статей не найдено", " ");
+        savedArticlesDescription.hideKeyWords();
+        savedArticlesDescription.setTitle(user.info.name, "нет");
+        PAGE_DESCRIPTION_NODE.classList.remove('page-desription_hiden');
+      } else {
+        searchStatus.renderErr();
+      }
+    })
 }
 
 // проверка авторизации пользователя при загрузке старницы

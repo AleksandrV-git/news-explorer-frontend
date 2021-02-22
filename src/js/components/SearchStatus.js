@@ -11,9 +11,9 @@ export class SearchStatus {
     this.preloader.style.display = 'flex';
   }
 
-  renderStatusNotFond() {
-    this.title.textContent = 'Ничего не найдено';
-    this.text.textContent = 'К сожалению по вашему запросу ничего не найдено.';
+  renderStatusNotFond(title, text) {
+    this.title.textContent = title || 'Ничего не найдено';
+    this.text.textContent = text || 'К сожалению по вашему запросу ничего не найдено.';
     this.preloader.style.display = 'none';
     this.status.style.display = 'flex';
   }
